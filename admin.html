@@ -341,9 +341,9 @@ tbody tr.fresh{animation:fresh 1.2s}
       <a href="index.html" style="color:#C9C7EA;font-size:12.5px;padding:8px 12px;flex-shrink:0"><i class="fa-solid fa-arrow-right"></i> العرض</a>
     </nav>
     <header class="top">
-      <div><h1 id="pgT">نظرة عامة</h1><div class="sub" id="pgS">ضاحية الخزامى · آخر 90 يوماً</div></div>
+      <div><h1 id="pgT">نظرة عامة</h1><div class="sub" id="pgS">ضاحية الخزام · آخر 90 يوماً</div></div>
       <div class="sp"></div>
-      <div class="sel hide-m"><i class="fa-solid fa-location-dot"></i>ضاحية الخزامى<i class="fa-solid fa-chevron-down" style="color:var(--dim);font-size:10px"></i></div>
+      <div class="sel hide-m"><i class="fa-solid fa-location-dot"></i>ضاحية الخزام<i class="fa-solid fa-chevron-down" style="color:var(--dim);font-size:10px"></i></div>
       <div class="sel hide-m"><i class="fa-regular fa-calendar"></i>آخر 90 يوماً</div>
       <button class="ib" id="themeBtn" title="الوضع الليلي"><i class="fa-solid fa-moon"></i></button>
       <div class="user"><div class="av">م</div><div><b>مدير الضاحية</b><small>الشركة الوطنية للإسكان</small></div></div>
@@ -356,7 +356,7 @@ tbody tr.fresh{animation:fresh 1.2s}
         <div class="grid g-map">
           <div class="card">
             <div class="ch">
-              <h3><i class="fa-solid fa-map-location-dot"></i>خريطة ضاحية الخزامى — آخر 90 يوماً</h3>
+              <h3><i class="fa-solid fa-map-location-dot"></i>خريطة ضاحية الخزام — آخر 90 يوماً</h3>
               <div class="seg" id="metric"></div>
             </div>
             <div class="chips" id="cats"></div>
@@ -573,7 +573,7 @@ const scoreCol=s=>s>=85?'var(--ok)':s>=60?'var(--amber)':'var(--red)';
 const scoreTxt=s=>s>=85?'مؤهل للترسية القادمة':s>=60?'مؤهل بشروط تصحيحية':'تحت المراجعة قبل أي ترسية';
 
 /* ============ NAV ============ */
-const TITLES={ov:['نظرة عامة','ضاحية الخزامى · آخر 90 يوماً'],dev:['المطورون','أداء وجودة المطورين في الضاحية'],units:['الوحدات والملاك','كل وحدة: مالكها، صيانتها، طلباتها، وضماناتها'],rep:['البلاغات والصيانة','متابعة بلاغات الساكنين وإحالتها'],ven:['مقدمو الخدمة','إدارة سوق الخدمات في تطبيق المستفيد']};
+const TITLES={ov:['نظرة عامة','ضاحية الخزام · آخر 90 يوماً'],dev:['المطورون','أداء وجودة المطورين في الضاحية'],units:['الوحدات والملاك','كل وحدة: مالكها، صيانتها، طلباتها، وضماناتها'],rep:['البلاغات والصيانة','متابعة بلاغات الساكنين وإحالتها'],ven:['مقدمو الخدمة','إدارة سوق الخدمات في تطبيق المستفيد']};
 function go(p){document.querySelectorAll('[data-p]').forEach(b=>b.classList.toggle('on',b.dataset.p===p));document.querySelectorAll('.page').forEach(s=>s.classList.toggle('on',s.id==='p-'+p));$('pgT').textContent=TITLES[p][0];$('pgS').textContent=TITLES[p][1];scrollTo({top:0,behavior:'smooth'});if(p==='ov')animTiles()}
 document.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.p)));
 /* theme */
@@ -686,13 +686,13 @@ function renderTrend(){
 function renderRev(){
   const host=U.length*1000,insp=U.reduce((a,u)=>a+u.orders.filter(o=>o.c==='inspection').reduce((s,o)=>s+o.amt*.15,0),0),mkt=U.reduce((a,u)=>a+u.orders.filter(o=>o.c!=='inspection').reduce((s,o)=>s+o.amt*.10,0),0),ven=V.filter(v=>v.active).reduce((a,v)=>a+(PLANS[v.plan]||PLANS.basic).fee,0),tot=host+insp+mkt+ven;
   $('rev').innerHTML=[['رسوم استضافة ملفات الوحدات',host],['عمولات الفحص قبل الاستلام',insp],['عمولات سوق الخدمات',mkt],['اشتراكات مقدمي الخدمة',ven]].map(x=>`<div><small>${x[0]}</small><b>${fmt(x[1])} ﷼</b></div>`).join('')+
-  `<div style="grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;background:linear-gradient(120deg,var(--nhcl),var(--tl))"><span style="font-size:13px">إجمالي الدخل من ضاحية الخزامى</span><b class="kufi" style="color:var(--ok);font-size:20px">${fmt(tot)} ﷼</b></div>`;
+  `<div style="grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;background:linear-gradient(120deg,var(--nhcl),var(--tl))"><span style="font-size:13px">إجمالي الدخل من ضاحية الخزام</span><b class="kufi" style="color:var(--ok);font-size:20px">${fmt(tot)} ﷼</b></div>`;
 }
 
 /* ============ DEVELOPERS ============ */
 function renderDevs(){
   $('devs').innerHTML=DEVS.map(d=>{const s=DS[d.id];return `<div class="card dev"><div class="band" style="background:${d.col}"></div>
-  <div class="hd"><div class="lg" style="background:${d.col}"><i class="fa-solid ${d.ic}"></i></div><div><b>${d.n}</b><small>المرحلة ${d.z} · ضاحية الخزامى</small></div></div>
+  <div class="hd"><div class="lg" style="background:${d.col}"><i class="fa-solid ${d.ic}"></i></div><div><b>${d.n}</b><small>المرحلة ${d.z} · ضاحية الخزام</small></div></div>
   <div class="ms"><div><b>${s.us.length}</b><span>وحدة</span></div><div><b>${s.del.length}</b><span>مسلّمة</span></div><div><b>${s.con.length}</b><span>قيد الإنشاء</span></div></div>
   <div class="big-score"><div class="ring">${ring(s.score,scoreCol(s.score),70,8)}<b style="color:${scoreCol(s.score)}">${s.score}</b></div><div><div style="font-size:12px;color:var(--muted)">مؤشر الجودة</div><b style="color:${scoreCol(s.score)}">${scoreTxt(s.score)}</b></div></div>
   <div class="row"><span>نسبة الوحدات المسلّمة ببلاغات</span><b style="color:${s.repRate>.4?'var(--red)':'inherit'}">${Math.round(s.repRate*100)}%</b></div>

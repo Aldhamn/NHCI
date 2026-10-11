@@ -203,7 +203,7 @@ input[type=range]{width:100%;accent-color:#6D35E8}
   <aside class="side">
     <div class="logo"><img src="dhamn-icon.png" alt=""><div><b>الضامن</b><small>بوابة المطور العقاري</small></div></div>
     <div class="devcard"><div class="r"><div class="lg"><i class="fa-solid fa-building"></i></div><div><b>المطور الثلاثي</b><small>حساب مطور معتمد</small></div></div>
-      <div class="zone"><i class="fa-solid fa-location-dot"></i>ضاحية الخزامى · المرحلة B</div></div>
+      <div class="zone"><i class="fa-solid fa-location-dot"></i>ضاحية الخزام · المرحلة B</div></div>
     <button class="nav-i on" data-p="home"><i class="fa-solid fa-gauge-high"></i>لوحة المطور</button>
     <button class="nav-i" data-p="new"><i class="fa-solid fa-user-plus"></i>تسجيل مستفيد جديد</button>
     <button class="nav-i" data-p="units"><i class="fa-solid fa-house-chimney"></i>الوحدات والمستفيدون</button>
@@ -223,7 +223,7 @@ input[type=range]{width:100%;accent-color:#6D35E8}
       <a href="index.html"><i class="fa-solid fa-arrow-right"></i>العرض</a>
     </nav>
     <header class="top">
-      <div><h1 id="pgT">لوحة المطور</h1><div class="sub" id="pgS">المطور الثلاثي · ضاحية الخزامى · المرحلة B</div></div>
+      <div><h1 id="pgT">لوحة المطور</h1><div class="sub" id="pgS">المطور الثلاثي · ضاحية الخزام · المرحلة B</div></div>
       <div class="sp"></div>
       <div class="user"><div class="av">ث</div><div><b>مدير المبيعات</b><small>المطور الثلاثي</small></div></div>
     </header>
@@ -248,7 +248,7 @@ input[type=range]{width:100%;accent-color:#6D35E8}
           <div>
             <div class="card assign">
               <div class="ch" style="margin-bottom:8px"><h3><i class="fa-solid fa-file-signature" style="color:var(--nhc)"></i>تخصيص NHC</h3></div>
-              <div class="r"><span>الضاحية</span><b>ضاحية الخزامى</b></div>
+              <div class="r"><span>الضاحية</span><b>ضاحية الخزام</b></div>
               <div class="r"><span>الزون</span><b>المرحلة B</b></div>
               <div class="r"><span>إجمالي الوحدات المخصصة</span><b>60 وحدة</b></div>
               <div class="r"><span>رسوم استضافة الملفات</span><b style="color:var(--ok)">تُحتسب لكل وحدة تُسجل</b></div>
@@ -323,7 +323,7 @@ function persist(){try{localStorage.setItem(KEY,JSON.stringify(U.filter(u=>u.new
 const catOf=id=>CATS.find(c=>c.id===id);
 
 /* nav */
-const TT={home:['لوحة المطور','المطور الثلاثي · ضاحية الخزامى · المرحلة B'],new:['تسجيل مستفيد جديد','عند توقيع عقد البيع على الخريطة'],units:['الوحدات والمستفيدون','حدّث حالة كل وحدة وتنعكس فوراً في حساب مستفيدها'],rep:['بلاغات الضمان','البلاغات المحالة من ساكني وحداتك']};
+const TT={home:['لوحة المطور','المطور الثلاثي · ضاحية الخزام · المرحلة B'],new:['تسجيل مستفيد جديد','عند توقيع عقد البيع على الخريطة'],units:['الوحدات والمستفيدون','حدّث حالة كل وحدة وتنعكس فوراً في حساب مستفيدها'],rep:['بلاغات الضمان','البلاغات المحالة من ساكني وحداتك']};
 function go(p){document.querySelectorAll('[data-p]').forEach(b=>b.classList.toggle('on',b.dataset.p===p));document.querySelectorAll('.page').forEach(s=>s.classList.toggle('on',s.id==='p-'+p));$('pgT').textContent=TT[p][0];$('pgS').textContent=TT[p][1];scrollTo({top:0,behavior:'smooth'});if(p==='home')renderHome();if(p==='units')renderUnits();if(p==='new'&&WZ.step===4)resetWZ()}
 document.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.p)));
 
@@ -364,7 +364,7 @@ function drawWZ(){
     <div class="wlist"><div>الهيكل الإنشائي<b>10 سنوات</b></div><div>العزل المائي والحراري<b>5 سنوات</b></div><div>التكييف · الأبواب والنوافذ · السلامة<b>سنتان</b></div><div>السباكة · الكهرباء · التشطيبات<b>سنة</b></div></div>
     <div class="f bad" id="f-doc" style="display:${WZ.err?'flex':'none'};margin-top:8px"><span class="err">ارفع عقد البيع الموقّع للمتابعة</span></div>`}
   if(WZ.step===4){b=`<div class="welcome"><div><div style="font-size:12.5px;opacity:.8">بطاقة ترحيب المستفيد · تُسلَّم مع العقد</div><h3>أهلاً ${d.n.split(' ')[0]}، وحدتك صارت على الضامن</h3>
-      <div class="kv"><div><span>الوحدة: </span><b>${d.unit} · ${catOf(d.cat).n}</b></div><div><span>الضاحية: </span><b>ضاحية الخزامى · المرحلة B</b></div><div><span>اسم المستخدم: </span><b dir="ltr">${d.ph}</b></div></div>
+      <div class="kv"><div><span>الوحدة: </span><b>${d.unit} · ${catOf(d.cat).n}</b></div><div><span>الضاحية: </span><b>ضاحية الخزام · المرحلة B</b></div><div><span>اسم المستخدم: </span><b dir="ltr">${d.ph}</b></div></div>
       <div style="font-size:12px;opacity:.8;margin-top:10px">رمز التفعيل</div><div class="code">${d.code}</div></div>
       <div class="qr">${qrSVG(d.code+d.unit)}</div></div>
     <div class="sent"><i class="fa-solid fa-comment-sms"></i><span>أُرسل رابط التفعيل برسالة نصية إلى <b dir="ltr">${d.ph.slice(0,3)} ••• ${d.ph.slice(-4)}</b>. يدخل المستفيد بالرابط أو بمسح الرمز، ويوثّق دخوله عبر نفاذ، ثم يرى وحدته ومستنداتها وضماناتها مباشرة.</span></div>
