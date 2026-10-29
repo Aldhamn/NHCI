@@ -282,8 +282,47 @@ textarea:focus,select:focus{border-color:var(--g)}
 .note{font-size:11.5px;color:var(--m);background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;line-height:1.7;display:flex;gap:8px}
 .note i{color:var(--gold);margin-top:4px}
 .credit{font-size:11px;text-align:center;opacity:.75;padding:10px 12px;line-height:1.6}
+
+/* ===== DESKTOP (browser) VIEW ===== */
+.dsk-only{display:none}
+@media(min-width:821px){
+html.desk body{display:block;padding:0;background:var(--bg);gap:0}
+html.desk .side{display:none}
+html.desk .phone{width:100%;height:100vh;border:0;border-radius:0;box-shadow:none;display:grid;grid-template-columns:270px 1fr;grid-template-rows:auto 1fr}
+html.desk .notch{display:none}
+html.desk .top{grid-column:1/-1;padding:14px 28px}
+html.desk .top .tbar{max-width:none}
+html.desk .content{grid-column:2;grid-row:2;padding:30px 40px 60px;overflow-y:auto}
+html.desk .content>.fade{max-width:1080px;margin:0 auto}
+html.desk .bnav{position:static;grid-column:1;grid-row:2;flex-direction:column;justify-content:flex-start;gap:4px;padding:20px 14px;border-top:0;border-left:1px solid var(--line);background:#fff;backdrop-filter:none;overflow-y:auto}
+html.desk .bnav button{flex:none;flex-direction:row;justify-content:flex-start;gap:14px;font-size:14px;padding:12px 14px;border-radius:12px;color:var(--m)}
+html.desk .bnav button i{font-size:16px;width:22px;text-align:center}
+html.desk .bnav button:hover{background:var(--g3)}
+html.desk .bnav button.on{background:var(--g3);color:var(--g);font-weight:700}
+html.desk .bnav button.on::before{top:10px;bottom:10px;right:-14px;width:4px;height:auto}
+html.desk .bnav .dotn{position:static;margin-inline-start:auto}
+html.desk .dsk-only{display:block}
+html.desk .acct{margin:0 0 14px;padding:14px;border-radius:16px;background:linear-gradient(135deg,#2A1680,#4F46E5 60%,#0E9C93);color:#fff}
+html.desk .acct b{font-family:'Noto Kufi Arabic';font-size:15px;display:block}
+html.desk .acct small{font-size:12px;opacity:.85;display:block;line-height:1.8}
+html.desk .bnav .sep2{font-size:11px;color:var(--d);padding:14px 14px 4px}
+html.desk .uimg{height:300px}
+html.desk .uhero .ubody{padding:20px 24px}
+html.desk .qgrid{grid-template-columns:repeat(6,1fr)}
+html.desk .specs{grid-template-columns:repeat(6,1fr)}
+html.desk .checks{grid-template-columns:repeat(3,1fr)}
+html.desk .wsum,html.desk .countdown{max-width:none}
+html.desk .wc,html.desk .pv,html.desk .rc{display:block}
+html.desk #content .wlist2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+html.desk .scrim{position:fixed}
+html.desk .sheet{position:fixed;left:50%;right:auto;bottom:auto;top:50%;width:min(580px,92vw);max-height:86vh;border-radius:24px;transform:translate(-50%,-40%);opacity:0;pointer-events:none;transition:transform .35s,opacity .25s}
+html.desk .sheet.on{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}
+html.desk .grab{display:none}
+html.desk .toast{position:fixed;top:80px}
+html.desk .credit{max-width:1080px;margin:20px auto 0}
+}
 </style>
-<script>(function(){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'null');if(!s||s.role!=='owner'){location.replace('index.html?r=owner');}window.DH_SESSION=s}catch(e){}})();function dhLogout(){try{sessionStorage.removeItem('dh_session')}catch(e){}location.href='index.html'}</script>
+<script>(function(){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'null');if(!s||s.role!=='owner'){(window.top||window).location.replace('index.html?r=owner');return}window.DH_SESSION=s;var fr=window.top!==window;if(fr)document.documentElement.classList.add('framed');if(s.view==='desktop'&&!fr)document.documentElement.classList.add('desk');}catch(e){}})();function dhLogout(){try{sessionStorage.removeItem('dh_session')}catch(e){}(window.top||window).location.href='index.html'}function dhView(v){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'{}');s.view=v;sessionStorage.setItem('dh_session',JSON.stringify(s))}catch(e){}(window.top||window).location.href="owner.html"}</script>
 </head>
 <body>
 
@@ -295,6 +334,7 @@ textarea:focus,select:focus{border-color:var(--g)}
     <h4><i class="fa-solid fa-user"></i> حسابك</h4>
     <div style="font-size:13px;color:#d6d4f0;line-height:2" id="sideAcc"></div>
   </div>
+  <button class="mode" onclick="dhView('desktop')" style="margin-top:12px;justify-content:center;width:100%"><i class="fa-solid fa-display"></i>التبديل إلى عرض المتصفح</button>
   <button class="mode" onclick="dhLogout()" style="margin-top:12px;justify-content:center;width:100%"><i class="fa-solid fa-right-from-bracket"></i>تسجيل الخروج</button>
   <div class="tips">تم تطوير هذه المنصة بواسطة سليمان الخطيب · 0559965929</div>
 </aside>
@@ -323,11 +363,15 @@ textarea:focus,select:focus{border-color:var(--g)}
   <div class="content" id="content"></div>
 
   <nav class="bnav" id="bnav">
+    <div class="acct dsk-only" id="acct"></div>
     <button data-t="home" onclick="go('home')"><i class="fa-solid fa-house"></i>الرئيسية</button>
     <button data-t="unit" onclick="go('unit')"><i class="fa-solid fa-building"></i>وحدتي</button>
     <button data-t="war" onclick="go('war')"><i class="fa-solid fa-shield-halved"></i>الضمانات<span class="dotn" id="wdot" style="display:none"></span></button>
     <button data-t="mkt" onclick="go('mkt')"><i class="fa-solid fa-store"></i>السوق</button>
     <button data-t="rep" onclick="go('rep')"><i class="fa-solid fa-screwdriver-wrench"></i>البلاغات</button>
+    <div class="sep2 dsk-only">الحساب</div>
+    <button class="dsk-only" onclick="dhView('mobile')"><i class="fa-solid fa-mobile-screen-button"></i>عرض تطبيق الجوال</button>
+    <button class="dsk-only" onclick="dhLogout()"><i class="fa-solid fa-right-from-bracket"></i>تسجيل الخروج</button>
   </nav>
 
   <div class="scrim" id="scrim" onclick="closeSheet()"></div>
@@ -638,6 +682,7 @@ function confirmBook(){
   const ref='DH-'+Math.floor(100000+Math.random()*899999);
   const d=bk.days[bk.day].toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long'});
   S.bookings.unshift({n:bk.p.n,d,t:bk.times[bk.time]});
+  try{const L=JSON.parse(localStorage.getItem('dhamn_orders_v1')||'[]');L.unshift({id:ref,vid:bk.p.id,cust:(ACC==='post'?'فيصل الشمري':'عبدالله العتيبي'),unit:UNIT.id,pkg:bk.pkn,date:bk.days[bk.day].toISOString(),time:bk.times[bk.time],total:bk.total||0,st:0});localStorage.setItem('dhamn_orders_v1',JSON.stringify(L.slice(0,50)))}catch(e){}
   openSheet(`<div class="ok-big"><div class="ck"><i class="fa-solid fa-check"></i></div><h3>تم تأكيد الحجز</h3><div class="sub">سيتواصل معك ${bk.p.n} لتأكيد الموعد خلال ساعتين</div></div>
   <div class="refbox"><div><span>رقم الحجز</span><b>${ref}</b></div><div><span>الخدمة</span><b>${bk.pkn}</b></div><div><span>الموعد</span><b>${d} · ${bk.times[bk.time]}</b></div><div><span>الموقع</span><b>فيلا ${UNIT.id}</b></div>${bk.total?`<div><span>المبلغ</span><b>${fmt(bk.total)} ﷼</b></div>`:''}</div>
   <button class="cbtn pri" onclick="closeSheet();go('home')">العودة للرئيسية</button>`);
@@ -702,7 +747,7 @@ function render(){setTimeout(()=>{const c=document.getElementById('content');if(
   const nb=$('nbadge');nb.textContent=S.mode==='pre'?3:soonest().slice(0,3).length+1;
 }
 if(ACC==='post'){Object.assign(UNIT,{owner:'فيصل',id:'B-205'})}
-(function(){try{const n=ACC==='post'?'فيصل الشمري':'عبدالله العتيبي';document.getElementById('sideName').textContent=n.split(' ')[0];document.getElementById('sideUnit').textContent='فيلا '+UNIT.id+' · '+UNIT.suburb+' · '+UNIT.dev;document.getElementById('sideAcc').innerHTML='الاسم: <b>'+n+'</b><br>الوحدة: <b>'+UNIT.id+'</b><br>الحالة: <b>'+(ACC==='post'?'مستلمة':'قيد الإنشاء')+'</b><br>الدخول: <b>موثّق عبر نفاذ</b>'}catch(e){}})();
+(function(){try{const n=ACC==='post'?'فيصل الشمري':'عبدالله العتيبي';document.getElementById('sideName').textContent=n.split(' ')[0];document.getElementById('sideUnit').textContent='فيلا '+UNIT.id+' · '+UNIT.suburb+' · '+UNIT.dev;document.getElementById('acct').innerHTML='<b>'+n+'</b><small>فيلا '+UNIT.id+' · '+UNIT.suburb+'<br>'+UNIT.dev+' · '+(ACC==='post'?'مستلمة':'قيد الإنشاء')+'</small>';document.getElementById('sideAcc').innerHTML='الاسم: <b>'+n+'</b><br>الوحدة: <b>'+UNIT.id+'</b><br>الحالة: <b>'+(ACC==='post'?'مستلمة':'قيد الإنشاء')+'</b><br>الدخول: <b>موثّق عبر نفاذ</b>'}catch(e){}})();
 render();
 </script>
 </body>

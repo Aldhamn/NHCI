@@ -198,8 +198,9 @@ input[type=range]{width:100%;accent-color:#6D35E8}
 .li:last-child{border:0}
 .li .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex-shrink:0}
 .li .tx{flex:1;min-width:0}.li .tx b{font-size:13px;display:block}.li .tx span{font-size:11.5px;color:var(--muted)}
+html.framed .mnav{padding-top:46px}
 </style>
-<script>(function(){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'null');if(!s||s.role!=='developer'){location.replace('index.html?r=developer');}window.DH_SESSION=s}catch(e){}})();function dhLogout(){try{sessionStorage.removeItem('dh_session')}catch(e){}location.href='index.html'}</script>
+<script>(function(){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'null');if(!s||s.role!=='developer'){(window.top||window).location.replace('index.html?r=developer');return}window.DH_SESSION=s;var fr=window.top!==window;if(fr)document.documentElement.classList.add('framed');if(s.view==='desktop'&&!fr)document.documentElement.classList.add('desk');if(s.view==='mobile'&&!fr&&window.innerWidth>820){location.replace('frame.html?p=developer.html');return}}catch(e){}})();function dhLogout(){try{sessionStorage.removeItem('dh_session')}catch(e){}(window.top||window).location.href='index.html'}function dhView(v){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'{}');s.view=v;sessionStorage.setItem('dh_session',JSON.stringify(s))}catch(e){}(window.top||window).location.href=(v==="mobile"?"frame.html?p=developer.html":"developer.html")}</script>
 </head>
 <body>
 <div class="app">
@@ -212,6 +213,7 @@ input[type=range]{width:100%;accent-color:#6D35E8}
     <button class="nav-i" data-p="units"><i class="fa-solid fa-house-chimney"></i>الوحدات والمستفيدون</button>
     <button class="nav-i" data-p="rep"><i class="fa-solid fa-screwdriver-wrench"></i>بلاغات الضمان<span class="cnt" id="repCnt">4</span></button>
     <div class="sep">الحساب</div>
+    <button class="nav-i" onclick="dhView('mobile')"><i class="fa-solid fa-mobile-screen-button"></i>عرض تطبيق الجوال</button>
     <button class="nav-i" onclick="dhLogout()"><i class="fa-solid fa-right-from-bracket"></i>تسجيل الخروج</button>
     <div class="foot"><img src="nhc-logo-white.png" alt="NHC"><span>نسخة تجريبية<br>بيانات توضيحية</span></div>
   </aside>

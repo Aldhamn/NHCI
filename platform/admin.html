@@ -315,8 +315,9 @@ tbody tr.fresh{animation:fresh 1.2s}
 .empty i{font-size:34px;color:var(--dim);display:block;margin-bottom:10px}
 .demo{font-size:11px;color:var(--dim);margin-top:18px;text-align:center}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.u{opacity:1;transform:none}}
+html.framed .mnav{padding-top:46px}
 </style>
-<script>(function(){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'null');if(!s||s.role!=='admin'){location.replace('index.html?r=admin');}window.DH_SESSION=s}catch(e){}})();function dhLogout(){try{sessionStorage.removeItem('dh_session')}catch(e){}location.href='index.html'}</script>
+<script>(function(){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'null');if(!s||s.role!=='admin'){(window.top||window).location.replace('index.html?r=admin');return}window.DH_SESSION=s;var fr=window.top!==window;if(fr)document.documentElement.classList.add('framed');if(s.view==='desktop'&&!fr)document.documentElement.classList.add('desk');if(s.view==='mobile'&&!fr&&window.innerWidth>820){location.replace('frame.html?p=admin.html');return}}catch(e){}})();function dhLogout(){try{sessionStorage.removeItem('dh_session')}catch(e){}(window.top||window).location.href='index.html'}function dhView(v){try{var s=JSON.parse(sessionStorage.getItem('dh_session')||'{}');s.view=v;sessionStorage.setItem('dh_session',JSON.stringify(s))}catch(e){}(window.top||window).location.href=(v==="mobile"?"frame.html?p=admin.html":"admin.html")}</script>
 </head>
 <body>
 <div class="app">
@@ -328,6 +329,7 @@ tbody tr.fresh{animation:fresh 1.2s}
     <button class="nav-i" data-p="rep"><i class="fa-solid fa-screwdriver-wrench"></i>البلاغات والصيانة</button>
     <button class="nav-i" data-p="ven"><i class="fa-solid fa-store"></i>مقدمو الخدمة</button>
     <div class="sep">الحساب</div>
+    <button class="nav-i" onclick="dhView('mobile')"><i class="fa-solid fa-mobile-screen-button"></i>عرض تطبيق الجوال</button>
     <button class="nav-i" onclick="dhLogout()"><i class="fa-solid fa-right-from-bracket"></i>تسجيل الخروج</button>
     <div class="foot"><img src="nhc-logo-white.png" alt="NHC"><span>نسخة تجريبية<br>بيانات توضيحية</span></div>
   </aside>

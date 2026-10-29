@@ -36,7 +36,7 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 
 .head h1{font-size:clamp(26px,3.4vw,40px);font-weight:900}
 .gt{background:linear-gradient(100deg,#C2A8FF,#7B8CFF 35%,#16D1C2 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .head p{color:var(--muted);font-size:15.5px;margin-top:6px}
-.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .role{position:relative;text-align:start;padding:26px 24px;border-radius:24px;background:var(--card);border:1.5px solid var(--line2);transition:transform .3s,border-color .3s,background .3s;overflow:hidden;display:flex;flex-direction:column}
 .role::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;inset-inline-end:-90px;top:-110px;background:radial-gradient(circle,var(--glow),transparent 65%);opacity:.5;transition:.3s}
 .role:hover{transform:translateY(-5px);border-color:var(--bd);background:var(--card2)}
@@ -51,7 +51,25 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 
 .r-own{--glow:rgba(22,209,194,.55);--bd:rgba(22,209,194,.6);--ibg:linear-gradient(135deg,#16D1C2,#4F46E5);--ac:var(--t2)}
 .r-dev{--glow:rgba(123,63,242,.6);--bd:rgba(168,139,255,.6);--ibg:linear-gradient(135deg,#7B3FF2,#4F46E5);--ac:var(--p2)}
 .r-adm{--glow:rgba(95,211,165,.45);--bd:rgba(95,211,165,.55);--ibg:linear-gradient(135deg,#2F7A5B,#1F4537);--ac:var(--mint)}
-@media(max-width:900px){.roles{grid-template-columns:1fr}}
+@media(max-width:1100px){.roles{grid-template-columns:1fr 1fr}}@media(max-width:620px){.roles{grid-template-columns:1fr}}
+.r-ven{--glow:rgba(255,192,102,.45);--bd:rgba(255,192,102,.55);--ibg:linear-gradient(135deg,#E8962A,#C2410C);--ac:#FFC066}
+/* view step */
+.views{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:780px;margin:0 auto}
+.view{text-align:center;padding:26px 22px;border-radius:24px;background:var(--card);border:1.5px solid var(--line2);transition:.3s}
+.view:hover{transform:translateY(-5px);border-color:var(--t);background:var(--card2)}
+.view .art{height:150px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:16px}
+.view h3{font-size:19px;margin-bottom:6px}
+.view p{font-size:13px;color:var(--muted);line-height:1.7}
+.mk-ph{width:78px;height:142px;border-radius:16px;border:5px solid #26234d;background:linear-gradient(180deg,#4F46E5 0 22%,#F3F4FA 22%);position:relative;box-shadow:0 18px 40px -16px rgba(22,209,194,.6)}
+.mk-ph::after{content:"";position:absolute;left:8px;right:8px;top:40px;height:46px;border-radius:7px;background:#dfe6ef;box-shadow:0 54px 0 -8px #e9e8f3}
+.mk-pc{width:200px;height:122px;border-radius:12px;border:5px solid #26234d;background:linear-gradient(90deg,#F3F4FA 0 70%,#1C1848 70%);position:relative;box-shadow:0 18px 40px -16px rgba(123,63,242,.7)}
+.mk-pc::before{content:"";position:absolute;bottom:-21px;left:50%;transform:translateX(-50%);width:60px;height:16px;background:#26234d;border-radius:0 0 6px 6px}
+.mk-pc::after{content:"";position:absolute;left:10px;top:12px;width:110px;height:30px;border-radius:6px;background:#dfe6ef;box-shadow:0 40px 0 0 #e9e8f3}
+.chosen{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:5px 11px;border-radius:99px;background:rgba(22,209,194,.1);border:1px solid rgba(22,209,194,.35);color:var(--t2);margin-bottom:14px}
+.chosen button{color:var(--muted);text-decoration:underline;font-size:12px}
+.panel.mob{max-width:390px;border:10px solid #0c1714;border-radius:44px;padding:44px 20px 24px;position:relative;background:#120F33}
+.panel.mob::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:100px;height:24px;border-radius:20px;background:#0c1714}
+@media(max-width:620px){.views{grid-template-columns:1fr}.panel.mob{border:0;border-radius:26px;padding:22px}.panel.mob::before{display:none}}
 
 /* login panel */
 .panel{display:none;max-width:460px;margin:0 auto;padding:30px;border-radius:26px;background:rgba(14,12,42,.85);border:1.5px solid var(--line);backdrop-filter:blur(14px);box-shadow:0 40px 90px -30px rgba(0,0,0,.8);animation:in .4s cubic-bezier(.2,.8,.2,1)}
@@ -127,7 +145,24 @@ footer b{color:var(--muted);font-weight:600}
           <ul><li><i class="fa-solid fa-check"></i>خريطة الضاحية وذكاء الجودة</li><li><i class="fa-solid fa-check"></i>مؤشر جودة المطورين</li><li><i class="fa-solid fa-check"></i>إدارة مقدمي الخدمة</li></ul>
           <span class="go">دخول الإدارة<i class="fa-solid fa-arrow-left"></i></span>
         </button>
+        <button class="role r-ven" onclick="openRole('vendor')">
+          <div class="ic"><i class="fa-solid fa-store"></i></div>
+          <h3>مقدم الخدمة</h3>
+          <p>لشركات الفحص والصيانة والتنظيف والأثاث المسجلة في سوق خدمات المنصة.</p>
+          <ul><li><i class="fa-solid fa-check"></i>استقبال طلبات الساكنين</li><li><i class="fa-solid fa-check"></i>إدارة الخدمات والأسعار</li><li><i class="fa-solid fa-check"></i>التقييمات والاشتراك</li></ul>
+          <span class="go">دخول مقدم الخدمة<i class="fa-solid fa-arrow-left"></i></span>
+        </button>
       </div>
+    </div>
+
+    <!-- VIEW STEP -->
+    <div id="viewStep" style="display:none">
+      <div class="head"><span class="chosen" id="roleChip"></span><h1>كيف تريد <span class="gt">عرض المنصة؟</span></h1><p>تقدر تغيّر طريقة العرض في أي وقت من داخل حسابك</p></div>
+      <div class="views">
+        <button class="view" onclick="chooseView('mobile')"><div class="art"><div class="mk-ph"></div></div><h3><i class="fa-solid fa-mobile-screen-button" style="color:var(--t)"></i> تطبيق الجوال</h3><p>تجربة التطبيق كما تظهر على الجوال، داخل إطار هاتف.</p></button>
+        <button class="view" onclick="chooseView('desktop')"><div class="art"><div class="mk-pc"></div></div><h3><i class="fa-solid fa-display" style="color:var(--p2)"></i> متصفح الكمبيوتر</h3><p>منصة ويب كاملة بعرض الشاشة، بقوائم جانبية وجداول.</p></button>
+      </div>
+      <div style="text-align:center;margin-top:20px"><button class="back" onclick="pick()" style="margin:0"><i class="fa-solid fa-arrow-right"></i>تغيير نوع الحساب</button></div>
     </div>
 
     <!-- OWNER -->
@@ -175,6 +210,18 @@ footer b{color:var(--muted);font-weight:600}
         <button class="acc" onclick="enter('admin')"><div class="av" style="background:rgba(95,211,165,.15);color:var(--mint)">م</div><div><b>مدير الضاحية</b><small>الشركة الوطنية للإسكان · ضاحية الخزام</small></div><i class="fa-solid fa-arrow-left"></i></button>
       </div>
     </div>
+    <!-- VENDOR -->
+    <div class="panel r-ven" id="p-vendor">
+      <button class="back" onclick="pick()"><i class="fa-solid fa-arrow-right"></i>تغيير نوع الحساب</button>
+      <div class="ph"><div class="ic"><i class="fa-solid fa-store"></i></div><div><h2>دخول مقدم الخدمة</h2><small>الحساب يُفعَّل بعد اعتماد الضامن والاشتراك</small></div></div>
+      <div class="f" id="f-ve"><label>البريد الإلكتروني للمنشأة</label><input id="ve" dir="ltr" placeholder="info@company.sa"><span class="err">أدخل بريداً صحيحاً</span></div>
+      <div class="f" id="f-vp"><label>كلمة المرور</label><input id="vp" type="password" dir="ltr" placeholder="••••••••"><span class="err">كلمة المرور مطلوبة</span></div>
+      <button class="btn btn-p" onclick="loginForm('vendor','ve','vp')"><i class="fa-solid fa-right-to-bracket"></i>دخول</button>
+      <div class="demo"><h4><i class="fa-solid fa-flask"></i>حسابات تجريبية</h4>
+        <button class="acc" onclick="enter('vendor',{vid:1,vname:'مكتب الفحص الهندسي الدقيق'})"><div class="av" style="background:rgba(255,192,102,.15);color:#FFC066"><i class="fa-solid fa-clipboard-check"></i></div><div><b>مكتب الفحص الهندسي الدقيق</b><small>فحص قبل الاستلام · باقة ذهبية</small></div><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="acc" onclick="enter('vendor',{vid:8,vname:'لمعة لتنظيف ما بعد البناء'})"><div class="av" style="background:rgba(255,192,102,.15);color:#FFC066"><i class="fa-solid fa-broom"></i></div><div><b>لمعة لتنظيف ما بعد البناء</b><small>تنظيف · باقة ذهبية</small></div><i class="fa-solid fa-arrow-left"></i></button>
+      </div>
+    </div>
   </div>
 </main>
 
@@ -185,12 +232,15 @@ footer b{color:var(--muted);font-weight:600}
 
 <script>
 const $=id=>document.getElementById(id);
-const DEST={owner:'owner.html',developer:'developer.html',admin:'admin.html'};
-function pick(){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));$('pick').style.display='';history.replaceState(null,'',location.pathname)}
-function openRole(r){$('pick').style.display='none';document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='p-'+r));history.replaceState(null,'','?r='+r)}
-function enter(role,extra){const s=Object.assign({role,at:Date.now()},extra||{});try{sessionStorage.setItem('dh_session',JSON.stringify(s))}catch(e){}
+const DEST={owner:'owner.html',developer:'developer.html',admin:'admin.html',vendor:'vendor.html'};
+const RN={owner:'مالك الوحدة',developer:'المطور العقاري',admin:'الإدارة · NHC',vendor:'مقدم الخدمة'};
+let ROLE=null,VIEW=null;const narrow=()=>innerWidth<=820;
+function pick(){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));$('viewStep').style.display='none';$('pick').style.display='';ROLE=VIEW=null;history.replaceState(null,'',location.pathname)}
+function openRole(r){ROLE=r;$('pick').style.display='none';history.replaceState(null,'','?r='+r);if(narrow()){chooseView('mobile');return}$('roleChip').innerHTML='<i class="fa-solid fa-user"></i>'+RN[r];$('viewStep').style.display='';document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));scrollTo(0,0)}
+function chooseView(v){VIEW=v;$('viewStep').style.display='none';document.querySelectorAll('.panel').forEach(p=>{const on=p.id==='p-'+ROLE;p.classList.toggle('on',on);p.classList.toggle('mob',on&&v==='mobile'&&!narrow())});const p=$('p-'+ROLE),b=p.querySelector('.back');b.innerHTML='<i class="fa-solid fa-arrow-right"></i>'+(narrow()?'تغيير نوع الحساب':'رجوع · '+(v==='mobile'?'عرض الجوال':'عرض المتصفح'));b.onclick=()=>narrow()?pick():openRole(ROLE);scrollTo(0,0)}
+function enter(role,extra){const s=Object.assign({role,view:VIEW||(narrow()?'mobile':'desktop'),at:Date.now()},extra||{});try{sessionStorage.setItem('dh_session',JSON.stringify(s))}catch(e){}
   const b=document.activeElement;if(b&&b.classList&&b.classList.contains('btn')){b.innerHTML='<span class="spin"></span>'}
-  setTimeout(()=>location.href=DEST[role],350)}
+  setTimeout(()=>location.href=(s.view==='mobile'&&role!=='owner'&&!narrow())?'frame.html?p='+DEST[role]:DEST[role],350)}
 function bad(id,v){$(id).classList.toggle('bad',!v);return v}
 function loginForm(role,e,p){const ok1=bad('f-'+e,/^\S+@\S+\.\S+$/.test($(e).value.trim())),ok2=bad('f-'+p,$(p).value.length>0);if(ok1&&ok2)enter(role)}
 function nafath(){enter('owner',{acc:'pre'})}
