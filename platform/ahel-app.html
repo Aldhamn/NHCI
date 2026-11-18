@@ -187,6 +187,7 @@ body:not(.hl) .is .wb{background:#E2F6EF}
 @media(max-width:860px){.fab{display:flex}}
 .empty{text-align:center;color:var(--mut);font-size:12.5px;padding:24px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (pointer:fine){.scr{cursor:grab;scrollbar-width:thin}.scr::-webkit-scrollbar{width:5px}.scr::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2);border-radius:9px}}
 </style>
 </head>
 <body class="hl">
@@ -313,7 +314,7 @@ body:not(.hl) .is .wb{background:#E2F6EF}
       <div class="st"><b>4</b><span>المجتمع ← الأسر المنتجة ← أضف منتجين وادفع.</span></div>
       <div class="st"><b>5</b><span>الطلبات: كل ما سبق في مكان واحد.</span></div>
     </div>
-    <div class="links"><a href="ahel.html"><i class="fa-solid fa-arrow-right"></i>مقترح التحالف</a><a href="index.html"><i class="fa-solid fa-right-to-bracket"></i>بوابات المنصة</a><a href="../index.html"><i class="fa-solid fa-house"></i>العرض الرئيسي</a></div>
+    <div class="links"><a href="ahel.html"><i class="fa-solid fa-arrow-right"></i>مقترح التحالف</a><a href="index.html"><i class="fa-solid fa-right-to-bracket"></i>بوابات المنصة</a><a href="../index.html"><i class="fa-solid fa-house"></i>الرئيسية</a></div>
     <div class="credit">تم تطوير هذه المنصة بواسطة سليمان الخطيب · 0559965929</div>
   </aside>
 </div>
@@ -389,6 +390,14 @@ function renderOrders(){$('ordList').innerHTML=S.orders.map(o=>`<div class="li">
 function renderDeps(){$('depList').innerHTML=S.deps.map(d=>`<div class="li"><span class="ic"><i class="fa-solid ${d[1]}"></i></span><div class="tx"><b>تابع · ${d[0]}</b><small>أضافه المطور عند توقيع العقد · له هوية رقمية</small></div><span class="ap g">مفعّل</span></div>`).join('')}
 renderCats();renderIss();renderWar();renderSvc();renderJar();renderProd();renderOrders();renderDeps();
 setTimeout(()=>notify('تحديث من المطور الثلاثي','نسبة إنجاز فيلتك B-214 أصبحت 94%','fa-building'),RM?0:1200);
+</script>
+<script>/* desktop drag-to-scroll for phone simulations */
+(function(){if(matchMedia('(pointer:coarse)').matches)return;var el=null,sy=0,sx=0,st=0,sl=0,moved=false,fr=window.top!==window;
+function sc(t){while(t&&t!==document.body&&t!==document.documentElement){var cs=getComputedStyle(t);if((/(auto|scroll)/.test(cs.overflowY)&&t.scrollHeight>t.clientHeight+2)||(/(auto|scroll)/.test(cs.overflowX)&&t.scrollWidth>t.clientWidth+2))return t;t=t.parentElement}return fr?document.scrollingElement:null}
+addEventListener('mousedown',function(e){if(e.button!==0||e.target.closest('input,select,textarea,[contenteditable],.no-drag'))return;var t=sc(e.target);if(!t)return;el=t;el._sb=el.style.scrollBehavior;el.style.scrollBehavior='auto';sy=e.clientY;sx=e.clientX;st=t.scrollTop;sl=t.scrollLeft;moved=false});
+addEventListener('mousemove',function(e){if(!el)return;var dy=e.clientY-sy,dx=e.clientX-sx;if(!moved&&Math.abs(dy)+Math.abs(dx)<6)return;moved=true;el.scrollTop=st-dy;el.scrollLeft=sl-dx;document.documentElement.style.userSelect='none';document.documentElement.style.cursor='grabbing';e.preventDefault()});
+addEventListener('mouseup',function(){if(el)el.style.scrollBehavior=el._sb||'';el=null;document.documentElement.style.userSelect='';document.documentElement.style.cursor=''});
+addEventListener('click',function(e){if(moved){e.stopPropagation();e.preventDefault();moved=false}},true)})();
 </script>
 </body>
 </html>

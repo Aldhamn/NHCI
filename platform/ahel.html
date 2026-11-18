@@ -377,6 +377,7 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
 .toast.on{opacity:1;transform:translate(-50%,0)}.toast i{color:#0FB3A6}
 @media(max-width:600px){.btn{white-space:normal;justify-content:center;width:100%}.hero{padding-top:44px}.cbody{padding:12px;min-height:0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media (pointer:fine){.scr{cursor:grab;scrollbar-width:thin}.scr::-webkit-scrollbar{width:5px}.scr::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2);border-radius:9px}}
 </style>
 </head>
 <body>
@@ -384,7 +385,7 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
 <header class="nav"><div class="wrap">
   <div class="trio"><span class="lg"><img src="dhamn-icon.png" alt="الضامن"></span><span class="x">×</span><span class="ahel-lg"><img src="ahel-logo.png" alt="أهل" onerror="this.parentNode.classList.add('fb')"><span class="tx">أهل</span></span><span class="x">×</span><span class="lg"><img src="nhc-logo-white.png" alt="NHC"></span></div>
   <nav class="navlinks"><a href="#gap">جدول المقارنة</a><a href="#alliance">شكل التحالف</a><a href="#sim">المحاكي</a><a href="#value">القيمة</a><a href="#arch">آلية التكامل</a></nav>
-  <div style="display:flex;gap:8px"><a class="pillk" href="index.html"><i class="fa-solid fa-right-to-bracket"></i><span>بوابات المنصة</span></a><a class="pillk" href="../index.html"><i class="fa-solid fa-house"></i><span>العرض الرئيسي</span></a></div>
+  <div style="display:flex;gap:8px"><a class="pillk" href="index.html"><i class="fa-solid fa-right-to-bracket"></i><span>بوابات المنصة</span></a><a class="pillk" href="../index.html"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a></div>
 </div></header>
 
 <main>
@@ -721,6 +722,14 @@ function calc(){const u=+$('u').value,h=+$('h').value,s=+$('s').value,f=+$('f').
 renderHome();renderSvc();renderProd();renderJar();kpis();calc();
 log('GET','/v1/units/B-214','out');log('GET','/v1/services?suburb=alkhuzam','out');
 $('prog').addEventListener('change',()=>{$('hoBtn').disabled=true});
+</script>
+<script>/* desktop drag-to-scroll for phone simulations */
+(function(){if(matchMedia('(pointer:coarse)').matches)return;var el=null,sy=0,sx=0,st=0,sl=0,moved=false,fr=window.top!==window;
+function sc(t){while(t&&t!==document.body&&t!==document.documentElement){var cs=getComputedStyle(t);if((/(auto|scroll)/.test(cs.overflowY)&&t.scrollHeight>t.clientHeight+2)||(/(auto|scroll)/.test(cs.overflowX)&&t.scrollWidth>t.clientWidth+2))return t;t=t.parentElement}return fr?document.scrollingElement:null}
+addEventListener('mousedown',function(e){if(e.button!==0||e.target.closest('input,select,textarea,[contenteditable],.no-drag'))return;var t=sc(e.target);if(!t)return;el=t;el._sb=el.style.scrollBehavior;el.style.scrollBehavior='auto';sy=e.clientY;sx=e.clientX;st=t.scrollTop;sl=t.scrollLeft;moved=false});
+addEventListener('mousemove',function(e){if(!el)return;var dy=e.clientY-sy,dx=e.clientX-sx;if(!moved&&Math.abs(dy)+Math.abs(dx)<6)return;moved=true;el.scrollTop=st-dy;el.scrollLeft=sl-dx;document.documentElement.style.userSelect='none';document.documentElement.style.cursor='grabbing';e.preventDefault()});
+addEventListener('mouseup',function(){if(el)el.style.scrollBehavior=el._sb||'';el=null;document.documentElement.style.userSelect='';document.documentElement.style.cursor=''});
+addEventListener('click',function(e){if(moved){e.stopPropagation();e.preventDefault();moved=false}},true)})();
 </script>
 </body>
 </html>

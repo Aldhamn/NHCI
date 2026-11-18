@@ -454,5 +454,13 @@ renderAll();
 addEventListener('storage',e=>{if(e.key===OKEY){loadO();renderAll();toast('وصل طلب جديد من تطبيق المالك','fa-bell')}if(e.key===VKEY){loadV();renderAll()}});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 </script>
+<script>/* desktop drag-to-scroll for phone simulations */
+(function(){if(matchMedia('(pointer:coarse)').matches)return;var el=null,sy=0,sx=0,st=0,sl=0,moved=false,fr=window.top!==window;
+function sc(t){while(t&&t!==document.body&&t!==document.documentElement){var cs=getComputedStyle(t);if((/(auto|scroll)/.test(cs.overflowY)&&t.scrollHeight>t.clientHeight+2)||(/(auto|scroll)/.test(cs.overflowX)&&t.scrollWidth>t.clientWidth+2))return t;t=t.parentElement}return fr?document.scrollingElement:null}
+addEventListener('mousedown',function(e){if(e.button!==0||e.target.closest('input,select,textarea,[contenteditable],.no-drag'))return;var t=sc(e.target);if(!t)return;el=t;el._sb=el.style.scrollBehavior;el.style.scrollBehavior='auto';sy=e.clientY;sx=e.clientX;st=t.scrollTop;sl=t.scrollLeft;moved=false});
+addEventListener('mousemove',function(e){if(!el)return;var dy=e.clientY-sy,dx=e.clientX-sx;if(!moved&&Math.abs(dy)+Math.abs(dx)<6)return;moved=true;el.scrollTop=st-dy;el.scrollLeft=sl-dx;document.documentElement.style.userSelect='none';document.documentElement.style.cursor='grabbing';e.preventDefault()});
+addEventListener('mouseup',function(){if(el)el.style.scrollBehavior=el._sb||'';el=null;document.documentElement.style.userSelect='';document.documentElement.style.cursor=''});
+addEventListener('click',function(e){if(moved){e.stopPropagation();e.preventDefault();moved=false}},true)})();
+</script>
 </body>
 </html>
