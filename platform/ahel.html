@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>مقترح التكامل | الضامن × أهل × NHC</title>
-<meta name="description" content="مقترح تكامل منصة الضامن مع تطبيق أهل: قاعدة بيانات المطورين، شبكة مقدمي الخدمات، الجار للجار، وسوق الأسر المنتجة.">
+<meta name="description" content="مقترح تكامل منصة الضامن مع تطبيق أهل: قاعدة بيانات المطورين، شبكة مقدمي الخدمات، الجار للجار، وشركات التأمين كمقدمي خدمة.">
 <meta name="author" content="SULAIMAN O. ALKHATEEB">
 <meta name="theme-color" content="#08071C">
 <link rel="icon" href="dhamn-icon.png">
@@ -128,6 +128,17 @@ h2{font-size:clamp(24px,3.1vw,38px);font-weight:900;margin-bottom:10px}
 .ph2{padding:18px;border-radius:18px;background:var(--card);border:1px dashed var(--line)}
 .ph2 .pn{font-size:11px;font-weight:800;color:var(--t2)}.ph2 b{display:block;font-size:15px;margin:2px 0 4px}.ph2 p{font-size:12.8px;color:var(--muted)}
 @media(max-width:900px){.raci,.phs{grid-template-columns:1fr}}
+.fut{border-radius:28px;padding:30px;background:linear-gradient(135deg,rgba(201,168,106,.1),rgba(123,63,242,.06));border:1.5px dashed rgba(201,168,106,.45)}
+.fut-b{display:inline-block;font-size:12px;font-weight:800;color:#E9D6AE;background:rgba(201,168,106,.15);padding:4px 12px;border-radius:99px;margin-bottom:10px}
+.fut-h p{color:var(--muted);font-size:15px;max-width:760px}
+.fut-g{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.fut-c{padding:20px;border-radius:20px;background:var(--card);border:1px solid var(--line2)}
+.fut-c h4{font-size:15px;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.fut-c.bad h4 i{color:#FF7A8A}.fut-c.good h4 i{color:#5FD3A5}
+.fut-c ul{list-style:none;display:grid;gap:8px;font-size:13.5px;color:#d6d4f0}
+.fut-c li{display:flex;gap:8px}.fut-c li::before{content:"•";color:var(--dim)}
+.fut-n{font-size:12.5px;color:var(--dim);margin-top:14px}
+@media(max-width:800px){.fut-g{grid-template-columns:1fr}.fut{padding:22px 18px}}
 /* simulator */
 .sim{display:grid;grid-template-columns:1fr 120px 390px;gap:0;align-items:start}
 .sim>*{min-width:0}
@@ -392,7 +403,7 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
 <section class="hero"><div class="wrap">
   <span class="eyebrow"><i class="fa-solid fa-puzzle-piece"></i>مقترح إضافي · تكامل لا ازدواجية</span>
   <h1>أهل يبقى واجهة الساكن…<br><span class="gt">والضامن يغذّيه بالمطورين ومقدمي الخدمات</span></h1>
-  <p class="lead">لا نبني تطبيقاً منافساً. نربط منصة الضامن الإلكترونية بتطبيق أهل: المطور يحدّث وحداته من موقعنا، ومقدم الخدمة ينشر خدماته من موقعنا، وكل ذلك يظهر للساكن داخل أهل. ونضيف لمجتمع الضاحية «الجار للجار» و«سوق الأسر المنتجة» بدفع إلكتروني موثّق.</p>
+  <p class="lead">لا نبني تطبيقاً منافساً. نربط منصة الضامن الإلكترونية بتطبيق أهل: المطور يحدّث وحداته من موقعنا، ومقدم الخدمة ينشر خدماته من موقعنا، وكل ذلك يظهر للساكن داخل أهل. ونضيف شركات التأمين كمقدمي خدمة داخل التطبيق، و«الجار للجار» لمجتمع الضاحية.</p>
   <div class="lockup">
     <div class="lu"><div class="im"><img src="dhamn-icon.png" alt=""></div><b>الضامن</b><small>منصة المطورين ومقدمي الخدمات</small></div>
     <span class="plus"><i class="fa-solid fa-link"></i></span>
@@ -428,31 +439,42 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
 <tr data-s="n"><td><span class="ct">الخدمات</span><b>بوابة مقدمي الخدمات</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">لا يستطيع المزود إدارة خدماته وأسعاره بنفسه</td><td class="ad">بوابة الضامن لمقدمي الخدمة</td><td>خدماتهم تنعكس في أهل تلقائياً<span class="ow od">الضامن يغذّي أهل</span></td></tr>
 <tr data-s="n"><td><span class="ct">الخدمات</span><b>ذكاء جودة المطورين</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">البلاغات لا تتحول إلى مؤشر لأداء المطور</td><td class="ad">مؤشر جودة من بلاغات الضمان الفعلية</td><td>ورقة ضغط لـ NHC في تخصيص المشاريع<span class="ow od">الضامن يغذّي أهل</span></td></tr>
 <tr data-s="n"><td><span class="ct">المجتمع</span><b>الجار للجار</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">الإعارة على الواتساب والحرج من المطالبة</td><td class="ad">طلب وإعارة بسجل وتذكير وتأكيد إرجاع</td><td>مجتمع منظم داخل أهل<span class="ow od">الضامن يغذّي أهل</span></td></tr>
-<tr data-s="n"><td><span class="ct">المجتمع</span><b>سوق الأسر المنتجة</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">البيع على الواتساب والدفع كاش أو تحويل</td><td class="ad">سوق موثق ودفع Apple Pay ومدى</td><td>رسوم معاملات وحوكمة للأسر المنتجة<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+<tr data-s="n"><td><span class="ct">الخدمات</span><b>التأمين على المنزل والأجهزة</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">لا يُعرض على الساكن أي تأمين، ولا يرتبط بالاستلام أو بانتهاء الضمان</td><td class="ad">شركات تأمين معتمدة كمقدمي خدمة: تأمين المنزل والمحتويات، والأجهزة بعد انتهاء الضمان</td><td>وثيقة تُشترى داخل أهل عند الاستلام وعند انتهاء كل ضمان<span class="ow od">الضامن يغذّي أهل</span></td></tr>
 </tbody></table></div>
   <div class="call"><span class="ci"><i class="fa-solid fa-circle-exclamation"></i></span><div><b>المثال الأوضح: «حالة الضمان غير معروفة»</b><p>عند رفع بلاغ صيانة في أهل اليوم تظهر رسالة بأن بيانات الضمان غير مكتملة. السبب أن بيانات الضمان عند المطور ولا تصل للتطبيق. بوابة المطورين في الضامن تنقلها مباشرة، فتصبح الرسالة: «الضمان ساري · المكيفات حتى 2031» ويُوجَّه البلاغ للمطور تلقائياً.</p></div></div>
 </div></section>
 
 <section class="s" id="alliance" style="padding-top:20px"><div class="wrap">
-  <div class="s-head"><span class="tag">شكل التحالف</span><h2>أهل الواجهة، والضامن المحرّك، <span class="gt">وNHC صاحبة القرار</span></h2><p>تقسيم واضح للأدوار يمنع الازدواجية: الساكن لا يرى إلا أهل، والمطور ومقدم الخدمة والأسرة المنتجة يعملون من موقع الضامن.</p></div>
+  <div class="s-head"><span class="tag">شكل التحالف</span><h2>أهل الواجهة، والضامن المحرّك، <span class="gt">وNHC صاحبة القرار</span></h2><p>تقسيم واضح للأدوار يمنع الازدواجية: الساكن لا يرى إلا أهل، والمطور ومقدم الخدمة وشركة التأمين يعملون من موقع الضامن.</p></div>
   <div class="raci">
     <div class="rc ra"><div class="rh"><span class="ahel-lg"><img src="ahel-logo.png" alt="أهل" onerror="this.parentNode.classList.add('fb')"><span class="tx">أهل</span></span><b>واجهة الساكن</b></div><ul><li>الهوية الرقمية والتصاريح</li><li>الفعاليات والأخبار والعروض</li><li>الخريطة والمرافق</li><li>عرض الوحدة والضمانات والخدمات</li><li>المحفظة والدفع</li></ul></div>
-    <div class="rc rd"><div class="rh"><img src="dhamn-icon.png" alt=""><b>محرّك البيانات والخدمات</b></div><ul><li>بوابة المطورين: الوحدات، الإنجاز، التابعون، الضمانات</li><li>بوابة مقدمي الخدمة والفحص</li><li>تسجيل الأسر المنتجة وحوكمتها</li><li>توجيه البلاغات وقياس الاستجابة</li><li>تشغيل ودعم المزودين</li></ul></div>
+    <div class="rc rd"><div class="rh"><img src="dhamn-icon.png" alt=""><b>محرّك البيانات والخدمات</b></div><ul><li>بوابة المطورين: الوحدات، الإنجاز، التابعون، الضمانات</li><li>بوابة مقدمي الخدمة والفحص</li><li>اعتماد شركات التأمين ومنتجاتها</li><li>توجيه البلاغات وقياس الاستجابة</li><li>تشغيل ودعم المزودين</li></ul></div>
     <div class="rc rn"><div class="rh"><img src="nhc-logo-white.png" alt="NHC" style="height:26px"><b>المالك وصاحب القرار</b></div><ul><li>ملكية البيانات والعلامة</li><li>اعتماد المطورين والمزودين</li><li>السياسات والأسعار والرسوم</li><li>لوحة ذكاء الجودة</li><li>الإيراد المشترك</li></ul></div>
   </div>
   <div class="phs">
     <div class="ph2"><span class="pn">المرحلة 1</span><b>ربط بيانات الوحدات والضمانات</b><p>بوابة المطورين تغذي أهل: الإنجاز، التابعون، الضمانات. تنتهي رسالة «الضمان غير معروف».</p></div>
-    <div class="ph2"><span class="pn">المرحلة 2</span><b>سوق الخدمات المعتمدة</b><p>مقدمو الخدمة والفحص ينشرون من الضامن، والحجز والدفع داخل «سهل» في أهل.</p></div>
-    <div class="ph2"><span class="pn">المرحلة 3</span><b>المجتمع</b><p>«الجار للجار» و«سوق الأسر المنتجة» كأقسام جديدة في أهل بدفع إلكتروني.</p></div>
+    <div class="ph2"><span class="pn">المرحلة 2</span><b>سوق الخدمات المعتمدة</b><p>مقدمو الخدمة والفحص وشركات التأمين ينشرون من الضامن، والحجز والدفع داخل أهل.</p></div>
+    <div class="ph2"><span class="pn">المرحلة 3</span><b>المجتمع</b><p>«الجار للجار» قسم جديد في أهل للإعارة بين الجيران بسجل وتأكيد إرجاع.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="future" style="padding-top:10px"><div class="wrap">
+  <div class="fut">
+    <div class="fut-h"><span class="fut-b"><i class="fa-solid fa-seedling"></i> مقترح مستقبلي · مرحلة لاحقة</span><h2>سوق الأسر المنتجة <span class="gt">بين الجيران</span></h2><p>في كل ضاحية جيران يطبخون ويبيعون من بيوتهم. كل واحد منهم يتمنى منصة ودفعاً إلكترونياً سهلاً، لكن ليس لديه القدرة على بنائهما.</p></div>
+    <div class="fut-g">
+      <div class="fut-c bad"><h4><i class="fa-solid fa-triangle-exclamation"></i>الواقع اليوم</h4><ul><li>الطلب على الواتساب، والدفع كاش أو تحويل</li><li>طلبات تُحضَّر ثم تُلغى في آخر لحظة، والخسارة على الأسرة</li><li>لا متجر، ولا سجل طلبات، ولا تقييم</li><li>لا حوكمة ولا رؤية لـ NHC</li></ul></div>
+      <div class="fut-c good"><h4><i class="fa-solid fa-circle-check"></i>بعد إطلاقه داخل أهل</h4><ul><li>صفحة متجر لكل أسرة موثقة خلال دقائق</li><li>دفع مسبق بـ Apple Pay ومدى، فالإلغاء لا يضر الأسرة</li><li>تتبّع الطلب والتقييم داخل الضاحية</li><li>رسوم معاملات وحوكمة لـ NHC</li></ul></div>
+    </div>
+    <p class="fut-n">نقترح إطلاقه بعد استقرار التحالف ومرحلتي البيانات والخدمات، لأنه يحتاج سياسات اعتماد للأسر ومتطلبات سلامة الغذاء.</p>
   </div>
 </div></section>
 
 <section class="s" id="sim" style="padding-top:30px"><div class="wrap">
-  <div class="s-head"><span class="tag">المحاكي المترابط</span><h2>نفّذ إجراءً في موقع الضامن… <span class="gt">وشاهده يظهر في أهل</span></h2><p>موقع الضامن كما يراه المطور ومقدم الخدمة والأسرة المنتجة وإدارة NHC، وبجانبه تصوّر لتطبيق أهل بعد التكامل. كل زر هنا يرسل بيانات بين الطرفين داخل العرض.</p></div>
+  <div class="s-head"><span class="tag">المحاكي المترابط</span><h2>نفّذ إجراءً في موقع الضامن… <span class="gt">وشاهده يظهر في أهل</span></h2><p>موقع الضامن كما يراه المطور ومقدم الخدمة وشركة التأمين وإدارة NHC، وبجانبه تصوّر لتطبيق أهل بعد التكامل. كل زر هنا يرسل بيانات بين الطرفين داخل العرض.</p></div>
   <div class="sim">
     <div class="console">
       <div class="cbar"><i class="d"></i><i class="d"></i><i class="d"></i><span class="url" id="url">aldhamn.sa/developer</span></div>
-      <div class="ctabs"><button class="on" data-c="dev"><i class="fa-solid fa-building"></i>المطور العقاري</button><button data-c="ven"><i class="fa-solid fa-store"></i>مقدم الخدمة</button><button data-c="fam"><i class="fa-solid fa-basket-shopping"></i>الأسرة المنتجة</button><button data-c="nhc"><i class="fa-solid fa-building-columns"></i>إدارة NHC</button></div>
+      <div class="ctabs"><button class="on" data-c="dev"><i class="fa-solid fa-building"></i>المطور العقاري</button><button data-c="ven"><i class="fa-solid fa-store"></i>مقدم الخدمة</button><button data-c="ins"><i class="fa-solid fa-umbrella"></i>شركة التأمين</button><button data-c="nhc"><i class="fa-solid fa-building-columns"></i>إدارة NHC</button></div>
       <div class="cbody">
         <div class="cp on" id="c-dev">
           <div class="wh"><span class="av" style="background:linear-gradient(135deg,#7B3FF2,#4F46E5)"><i class="fa-solid fa-building"></i></span><div><b>المطور الثلاثي</b><small>ضاحية الخزام · المرحلة B · حساب مطور</small></div></div>
@@ -475,13 +497,13 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
           </div>
           <div class="wc" style="margin:0"><h4><i class="fa-solid fa-inbox"></i>الطلبات الواردة من أهل</h4><div id="venOrders"><div class="empty">لا توجد طلبات بعد. احجز خدمة من التطبيق.</div></div></div>
         </div>
-        <div class="cp" id="c-fam">
-          <div class="wh"><span class="av" style="background:linear-gradient(135deg,#C9A86A,#9C7B3D)"><i class="fa-solid fa-kitchen-set"></i></span><div><b>مطبخ أم سلطان</b><small>أسرة منتجة موثقة · الوحدة B-230</small></div></div>
-          <div class="wc"><h4><i class="fa-solid fa-plus"></i>إضافة منتج</h4>
-            <div class="fm"><div><label>المنتج</label><select id="pName"><option value="0">كليجا القصيم · علبة</option><option value="1">سمبوسة مجمدة · 30 حبة</option><option value="2">قهوة سعودية مُحمّصة · نصف كيلو</option></select></div><div><label>السعر</label><input id="pPrice" type="number" value="45"></div></div>
-            <div class="wbs"><button class="wb" onclick="pubProduct()"><i class="fa-solid fa-paper-plane"></i>نشر في السوق</button></div>
+        <div class="cp" id="c-ins">
+          <div class="wh"><span class="av" style="background:linear-gradient(135deg,#2563EB,#0FB3A6)"><i class="fa-solid fa-umbrella"></i></span><div><b>رواسي للتأمين التعاوني</b><small>شركة تأمين مرخّصة · مقدم خدمة معتمد · اسم توضيحي</small></div></div>
+          <div class="wc"><h4><i class="fa-solid fa-bullhorn"></i>نشر منتج تأميني في أهل</h4>
+            <div class="fm"><div class="full"><label>المنتج</label><select id="iName"><option value="0">تأمين المنزل والمحتويات · سنوي</option><option value="1">تأمين الأجهزة بعد انتهاء الضمان · سنوي</option><option value="2">تأمين المسؤولية تجاه الغير · سنوي</option></select></div><div><label>القسط (ريال)</label><input id="iPrice" type="number" value="650"></div><div><label>يظهر للساكن</label><select><option>عند استلام المفتاح</option><option>قبل انتهاء الضمان بشهر</option><option>دائماً في الخدمات</option></select></div></div>
+            <div class="wbs"><button class="wb" onclick="pubIns()"><i class="fa-solid fa-paper-plane"></i>نشر في أهل</button></div>
           </div>
-          <div class="wc" style="margin:0"><h4><i class="fa-solid fa-receipt"></i>الطلبات المدفوعة</h4><div id="famOrders"><div class="empty">لا توجد طلبات. اطلب من «الأسر المنتجة» في التطبيق.</div></div></div>
+          <div class="wc" style="margin:0"><h4><i class="fa-solid fa-file-contract"></i>الوثائق الصادرة عبر أهل</h4><div id="insOrders"><div class="empty">لا توجد وثائق بعد. اشترِ وثيقة من «الصيانة» في التطبيق.</div></div></div>
         </div>
         <div class="cp" id="c-nhc">
           <div class="wh"><span class="av" style="background:linear-gradient(135deg,#2F7A5B,#1F4537)"><i class="fa-solid fa-building-columns"></i></span><div><b>إدارة الضاحية · NHC</b><small>ضاحية الخزام · لوحة التكامل</small></div></div>
@@ -511,10 +533,10 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
               <button class="tl nw" onclick="tab('svc')"><em>جديد</em><i class="fa-solid fa-shield-halved"></i>ضماناتي</button>
               <button class="tl nw" onclick="tab('svc')"><em>جديد</em><i class="fa-solid fa-clipboard-check"></i>خدمات معتمدة</button>
               <button class="tl nw" onclick="tab('jar')"><em>جديد</em><i class="fa-solid fa-people-arrows"></i>الجار للجار</button>
-              <button class="tl nw" onclick="tab('fam')"><em>جديد</em><i class="fa-solid fa-basket-shopping"></i>الأسر المنتجة</button>
+              <button class="tl nw" onclick="insGo()"><em>جديد</em><i class="fa-solid fa-umbrella"></i>التأمين</button>
               <div class="tl"><i class="fa-regular fa-calendar"></i>الفعاليات</div>
             </div>
-            <button class="gbn" onclick="tab('fam')"><span class="gi"><i class="fa-solid fa-basket-shopping"></i></span><div><b>من مطابخ جيرانك</b><small>ورق عنب، مرقوق، حلا… بدفع إلكتروني</small></div><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="gbn" onclick="insGo()"><span class="gi"><i class="fa-solid fa-umbrella"></i></span><div><b>أمّن منزلك من أول يوم</b><small>تأمين المنزل والمحتويات من شركات معتمدة</small></div><i class="fa-solid fa-chevron-left"></i></button>
             <div class="sec">الفعاليات <small>عرض الكل</small></div>
             <div class="evc"><b>أمسية الحي الشتوية</b><small>فعالية مجتمعية · الخميس 7:00 م · الساحة المركزية</small></div>
           </div>
@@ -526,19 +548,14 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
             <button class="gbn" style="margin-top:10px" onclick="warrantyTicket()"><span class="gi"><i class="fa-solid fa-shield-halved"></i></span><div><b>بلاغ تحت الضمان</b><small>يُوجَّه تلقائياً للمطور المسؤول · مجاناً</small></div><i class="fa-solid fa-chevron-left"></i></button>
             <div class="sec">خدمات معتمدة <small>من مقدمي الخدمة عبر الضامن</small></div>
             <div id="svcList"></div>
+            <div class="sec" id="insSec">التأمين <small>شركات تأمين معتمدة عبر الضامن</small></div>
+            <div id="insList"></div>
           </div>
           <!-- COMMUNITY: NEIGHBOR -->
           <div class="pg" id="a-jar">
-            <div class="cseg"><button class="on" onclick="tab('jar')">الجار للجار</button><button onclick="tab('fam')">الأسر المنتجة</button></div>
+            <div class="hn">الجار للجار</div>
             <div class="seg" id="jseg"><button class="on" data-j="req">طلبات الجيران</button><button data-j="mine">إعاراتي</button></div>
             <div id="jarBody"></div>
-          </div>
-          <!-- COMMUNITY: FAMILY -->
-          <div class="pg" id="a-fam">
-            <div class="cseg"><button onclick="tab('jar')">الجار للجار</button><button class="on" onclick="tab('fam')">الأسر المنتجة</button></div>
-            <div class="hi" style="margin:0 0 10px">أسر موثقة من سكان الضاحية · دفع إلكتروني فقط</div>
-            <div class="prod" id="prodList"></div>
-            <div class="cart" id="cart"><span id="cartT"></span><button class="mb" onclick="checkout()"><i class="fa-brands fa-apple-pay" style="font-size:22px"></i></button></div>
           </div>
           <!-- ORDERS -->
           <div class="pg" id="a-ord">
@@ -574,7 +591,7 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
   <div class="pil">
     <div class="card pi"><div class="ic" style="background:linear-gradient(135deg,#2F7A5B,#1F4537)"><i class="fa-solid fa-coins"></i></div><h3>خفض التكلفة</h3><ul><li><i class="fa-solid fa-check"></i>لا تطبيق مكرر ولا تسويق لتطبيق جديد</li><li><i class="fa-solid fa-check"></i>المطور يُدخل بياناته بنفسه بدل فرق الإدخال</li><li><i class="fa-solid fa-check"></i>بلاغات الضمان تُحمَّل على المطور لا على NHC</li></ul></div>
     <div class="card pi"><div class="ic" style="background:linear-gradient(135deg,#7B3FF2,#4F46E5)"><i class="fa-solid fa-bolt"></i></div><h3>استجابة أسرع</h3><ul><li><i class="fa-solid fa-check"></i>البلاغ يذهب مباشرة لجهة مسؤولة وتقاس سرعتها</li><li><i class="fa-solid fa-check"></i>حساب الساكن مكتمل من يوم توقيع العقد</li><li><i class="fa-solid fa-check"></i>أشهر تطوير أقل لأن الواجهة قائمة</li></ul></div>
-    <div class="card pi"><div class="ic" style="background:linear-gradient(135deg,#16D1C2,#4F46E5)"><i class="fa-solid fa-chart-line"></i></div><h3>دخل إضافي</h3><ul><li><i class="fa-solid fa-check"></i>رسوم استضافة ملفات الوحدات من المطورين</li><li><i class="fa-solid fa-check"></i>عمولات واشتراكات مقدمي الخدمات</li><li><i class="fa-solid fa-check"></i>رسوم معاملات سوق الأسر المنتجة</li></ul></div>
+    <div class="card pi"><div class="ic" style="background:linear-gradient(135deg,#16D1C2,#4F46E5)"><i class="fa-solid fa-chart-line"></i></div><h3>دخل إضافي</h3><ul><li><i class="fa-solid fa-check"></i>رسوم استضافة ملفات الوحدات من المطورين</li><li><i class="fa-solid fa-check"></i>عمولات واشتراكات مقدمي الخدمات</li><li><i class="fa-solid fa-check"></i>عمولات توزيع وثائق التأمين</li></ul></div>
   </div>
   <div class="calc">
     <div class="card">
@@ -582,30 +599,30 @@ footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-siz
       <div class="ctrl"><div class="lb"><span>عدد الوحدات في الضواحي المتكاملة</span><b id="uT"></b></div><input class="dk" type="range" id="u" min="5000" max="100000" step="5000" value="20000"></div>
       <div class="ctrl"><div class="lb"><span>رسوم استضافة ملف الوحدة (مرة واحدة)</span><b id="hT"></b></div><input class="dk" type="range" id="h" min="100" max="1000" step="50" value="350"></div>
       <div class="ctrl"><div class="lb"><span>إنفاق الوحدة على الخدمات سنوياً</span><b id="sT"></b></div><input class="dk" type="range" id="s" min="200" max="3000" step="100" value="800"></div>
-      <div class="ctrl"><div class="lb"><span>طلبات الأسر المنتجة لكل وحدة شهرياً</span><b id="fT"></b></div><input class="dk" type="range" id="f" min="0" max="6" step="0.5" value="1.5"></div>
+      <div class="ctrl"><div class="lb"><span>الوحدات المؤمَّنة عبر أهل</span><b id="fT"></b></div><input class="dk" type="range" id="f" min="0" max="60" step="5" value="20"></div>
       <div class="ctrl" style="margin:0"><div class="lb"><span>مقدمو خدمات مشتركون</span><b id="vT"></b></div><input class="dk" type="range" id="v" min="20" max="1000" step="20" value="200"></div>
     </div>
     <div class="card" style="border-color:var(--line)">
       <div class="total"><small>إجمالي الدخل السنوي التقديري</small><b id="tot"></b><em>ريال سعودي · قبل أي تقسيم بين الأطراف</em></div>
       <div id="rows"></div>
-      <p class="assume">افتراضات ثابتة للعرض: عمولة الخدمات 12% · متوسط طلب الأسر المنتجة 60 ريالاً برسوم معاملة 8% · اشتراك مقدم الخدمة 3,000 ريال سنوياً · رسوم الاستضافة تُحتسب لدفعة الوحدات الحالية. الأرقام تقديرية ونسب الشراكة لم تُحدد بعد.</p>
+      <p class="assume">افتراضات ثابتة للعرض: عمولة الخدمات 12% · متوسط قسط تأمين المنزل 650 ريالاً سنوياً بعمولة توزيع 10% · اشتراك مقدم الخدمة 3,000 ريال سنوياً · رسوم الاستضافة تُحتسب لدفعة الوحدات الحالية. الأرقام تقديرية ونسب الشراكة لم تُحدد بعد.</p>
     </div>
   </div>
 </div></section>
 
 <section class="s" id="arch"><div class="wrap">
-  <div class="s-head"><span class="tag">آلية التكامل</span><h2>من يدير ماذا؟ <span class="gt">أدوار واضحة بلا تعارض</span></h2><p>البيانات ملك NHC، وأهل يبقى الواجهة الوحيدة للساكن، والضامن يدير الخلفية التي لا يراها الساكن: حسابات المطورين ومقدمي الخدمات والأسر المنتجة.</p></div>
+  <div class="s-head"><span class="tag">آلية التكامل</span><h2>من يدير ماذا؟ <span class="gt">أدوار واضحة بلا تعارض</span></h2><p>البيانات ملك NHC، وأهل يبقى الواجهة الوحيدة للساكن، والضامن يدير الخلفية التي لا يراها الساكن: حسابات المطورين ومقدمي الخدمات وشركات التأمين.</p></div>
   <div class="arch">
-    <div class="an"><div class="ic" style="background:linear-gradient(135deg,#7B3FF2,#4F46E5)"><i class="fa-solid fa-laptop"></i></div><h4>موقع الضامن</h4><ul><li>حسابات المطورين ووحداتهم</li><li>حسابات مقدمي الخدمات</li><li>تسجيل الأسر المنتجة</li><li>ذكاء الجودة للإدارة</li></ul></div>
+    <div class="an"><div class="ic" style="background:linear-gradient(135deg,#7B3FF2,#4F46E5)"><i class="fa-solid fa-laptop"></i></div><h4>موقع الضامن</h4><ul><li>حسابات المطورين ووحداتهم</li><li>حسابات مقدمي الخدمات</li><li>حسابات شركات التأمين</li><li>ذكاء الجودة للإدارة</li></ul></div>
     <div class="ar"><i class="fa-solid fa-arrow-left"></i></div>
     <div class="an" style="border-color:var(--line)"><div class="ic" style="background:var(--grad)"><i class="fa-solid fa-plug-circle-bolt"></i></div><h4>بوابة التكامل</h4><ul><li>واجهات API موثقة</li><li>دخول موحد عبر نفاذ</li><li>تشفير وسجل تدقيق</li><li>استضافة داخل المملكة</li></ul></div>
     <div class="ar"><i class="fa-solid fa-arrow-left"></i></div>
     <div class="an"><div class="ic" style="background:linear-gradient(135deg,#C9A86A,#9C7B3D)"><i class="fa-solid fa-mobile-screen"></i></div><h4>تطبيق أهل</h4><ul><li>الواجهة الوحيدة للساكن</li><li>يعرض الوحدة والضمانات</li><li>الحجز والدفع والإعارة</li><li>الهوية والتصاريح كما هي</li></ul></div>
   </div>
   <div class="ops">
-    <div class="op rec"><span class="lbl">المقترح</span><h4>الضامن يشغّل الخلفية</h4><p>نبني ونشغّل بوابات المطورين ومقدمي الخدمات والأسر، ونربطها بأهل عبر API. فريق أهل يضيف الشاشات الجديدة.</p></div>
+    <div class="op rec"><span class="lbl">المقترح</span><h4>الضامن يشغّل الخلفية</h4><p>نبني ونشغّل بوابات المطورين ومقدمي الخدمات وشركات التأمين، ونربطها بأهل عبر API. فريق أهل يضيف الشاشات الجديدة.</p></div>
     <div class="op"><h4>تشغيل مشترك لأهل</h4><p>فريق مشترك يدير خارطة طريق أهل وتشغيله، والضامن مسؤول عن سوق الخدمات والمجتمع.</p></div>
-    <div class="op"><h4>وحدات جاهزة داخل أهل</h4><p>نسلّم شاشات «الجار للجار» و«الأسر المنتجة» و«الخدمات» كوحدات تُدمج في تطبيق أهل مباشرة.</p></div>
+    <div class="op"><h4>وحدات جاهزة داخل أهل</h4><p>نسلّم شاشات «الجار للجار» و«الخدمات» و«التأمين» كوحدات تُدمج في تطبيق أهل مباشرة.</p></div>
   </div>
   <div class="gov">
     <div class="gv"><i class="fa-solid fa-database"></i><div><b>البيانات لـ NHC</b><span>الضامن معالج بيانات بموجب اتفاقية، لا مالك لها.</span></div></div>
@@ -629,12 +646,10 @@ const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const S={prog:94,handed:false,deps:['منيرة (زوجة)','سارة (ابنة)','فهد (ابن)'],
  war:[['fa-building','الهيكل الإنشائي','10 سنوات',3600],['fa-bolt','التمديدات الكهربائية','سنتان',540]],
  svc:[['fa-clipboard-check','فحص هندسي قبل الاستلام','مكتب الفحص الهندسي الدقيق · ★ 4.9 · نفس اليوم',1450],['fa-broom','تنظيف ما بعد البناء','لمعة · ★ 4.8 · خلال 24 ساعة',690],['fa-couch','تأثيث وتركيب ستائر','دار الأناقة · ★ 4.6 · خلال 3 أيام',2400]],
- prod:[['ورق عنب','مطبخ أم سلطان · B-230','#7BA05B','fa-leaf',55],['مرقوق','بيت الجدة · B-118','#C2410C','fa-bowl-food',40],['حلا لقيمات','حلويات نورة · B-305','#C9A86A','fa-cookie',35],['خبز تنور','مخبز البيت · B-097','#9C7B3D','fa-bread-slice',20]],
- cart:{},orders:[],tickets:0,vorders:[],forders:[],loans:0,txv:0,
+ ins:[['fa-house-chimney','تأمين المنزل والمحتويات','رواسي للتأمين التعاوني · حريق، تسربات، سرقة',650],['fa-plug-circle-check','تأمين الأجهزة بعد انتهاء الضمان','وثاق للتأمين · مكيفات، سخانات، أجهزة',290]],pol:[],orders:[],tickets:0,vorders:[],loans:0,txv:0,
  jar:[{id:1,who:'أبو خالد · B-221',item:'مطرقة وعدة يدوية',ic:'fa-hammer',days:1,st:0},{id:2,who:'أم ريان · B-209',item:'سلّم ألمنيوم 3 أمتار',ic:'fa-ladder-water',days:2,st:0},{id:3,who:'فيصل · B-205',item:'دريل كهربائي',ic:'fa-screwdriver',days:1,st:0}],
  mine:[{id:9,item:'ماكينة قص العشب',ic:'fa-seedling',to:'أبو فهد · B-233',due:-2,st:1}],jarView:'req'};
 const SVC_LIB=[['fa-clipboard-check','فحص هندسي قبل الاستلام'],['fa-temperature-half','كشف تسربات بالأجهزة الحرارية'],['fa-snowflake','صيانة مكيفات دورية'],['fa-faucet-drip','سباكة طارئة خلال ساعتين']];
-const PROD_LIB=[['كليجا القصيم','#B07A3A','fa-cookie-bite'],['سمبوسة مجمدة','#D9822B','fa-pizza-slice'],['قهوة سعودية مُحمّصة','#6B4A2B','fa-mug-hot']];
 let nbell=0;
 function toast(m,ic){const t=$('toast');t.innerHTML=`<i class="fa-solid ${ic||'fa-circle-check'}"></i>${m}`;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2600)}
 function log(method,path,dir){const l=$('log'),t=new Date().toTimeString().slice(0,8);l.innerHTML+=`<div><span class="t">${t}</span> <span class="m">${method}</span> ${path} <span class="o">200 OK</span> <span class="t">${dir==='in'?'← ahel':'→ ahel'}</span></div>`;l.scrollTop=l.scrollHeight}
@@ -645,11 +660,11 @@ function send(method,path,title,body,ic){packet('out');if(innerWidth<=980)docume
 function recv(method,path){packet('in');if(innerWidth<=980)setTimeout(()=>document.querySelector('.console').scrollIntoView({behavior:'smooth',block:'start'}),900);log(method,path,'in');kpis()}
 function kpis(){$('k1').textContent=1;$('k2').textContent=S.svc.length;$('k3').textContent=S.loans;$('k4').textContent=S.orders.length;$('k5').textContent=fmt(S.txv);$('k6').textContent=S.tickets}
 /* console tabs */
-const URL={dev:'aldhamn.sa/developer/units/B-214',ven:'aldhamn.sa/vendor/services',fam:'aldhamn.sa/families/um-sultan',nhc:'aldhamn.sa/nhc/integration'};
+const URL={dev:'aldhamn.sa/developer/units/B-214',ven:'aldhamn.sa/vendor/services',ins:'aldhamn.sa/insurers/rawasi',nhc:'aldhamn.sa/nhc/integration'};
 function ctab(c){document.querySelectorAll('.ctabs button').forEach(b=>b.classList.toggle('on',b.dataset.c===c));document.querySelectorAll('.cp').forEach(p=>p.classList.toggle('on',p.id==='c-'+c));$('url').textContent=URL[c]}
 document.querySelectorAll('.ctabs button').forEach(b=>b.onclick=()=>ctab(b.dataset.c));
 /* phone tabs */
-function tab(t){const nv=(t==='fam')?'jar':t;document.querySelectorAll('.tb button').forEach(b=>b.classList.toggle('on',b.dataset.t===nv));document.querySelectorAll('.pg').forEach(p=>p.classList.toggle('on',p.id==='a-'+t));$('scr').scrollTop=0;if(t==='jar')renderJar();if(t==='ord')renderOrders()}
+function tab(t){const nv=t;document.querySelectorAll('.tb button').forEach(b=>b.classList.toggle('on',b.dataset.t===nv));document.querySelectorAll('.pg').forEach(p=>p.classList.toggle('on',p.id==='a-'+t));$('scr').scrollTop=0;if(t==='jar')renderJar();if(t==='ord')renderOrders()}
 document.querySelectorAll('.tb button').forEach(b=>b.onclick=()=>tab(b.dataset.t));
 /* render phone */
 function renderHome(){$('uBar').style.width=S.prog+'%';$('uPct').textContent=S.prog+'%';$('uStat').textContent=S.handed?'مستلمة · الضمانات سارية':(S.prog>=100?'جاهزة للتسليم':'قيد الإنشاء');
@@ -657,8 +672,6 @@ function renderHome(){$('uBar').style.width=S.prog+'%';$('uPct').textContent=S.p
  $('wCount').textContent=S.war.length+' بنود · من المطور عبر الضامن';
  $('flist').innerHTML=`<div class="wi"><span class="ic" style="background:#F0EBFE;color:#6D35E8"><i class="fa-solid fa-user"></i></span><div class="tx"><b>عبدالله العتيبي</b><small>المستفيد الرئيسي</small></div><span class="ap p">رئيسي</span></div>`+S.deps.map(d=>`<div class="wi"><span class="ic" style="background:#F3EEE4;color:#7a746a"><i class="fa-solid fa-user-group"></i></span><div class="tx"><b>${d}</b><small>تابع · له هوية رقمية في أهل</small></div></div>`).join('')}
 function renderSvc(fresh){$('svcList').innerHTML=S.svc.map((s,i)=>`<div class="svc ${fresh===i?'fresh':''}"><span class="ic"><i class="fa-solid ${s[0]}"></i></span><div><b>${s[1]}</b><small>${s[2]}</small></div><div><div class="pr2">${fmt(s[3])} ﷼</div><button class="mb" onclick="book(${i})">احجز</button></div></div>`).join('')}
-function renderProd(fresh){$('prodList').innerHTML=S.prod.map((p,i)=>`<div class="pd" ${fresh===i?'style="animation:fresh 2s"':''}><div class="im" style="background:${p[2]}"><i class="fa-solid ${p[3]}"></i></div><div class="bd"><b>${p[0]}</b><small>${p[1]}</small><div class="ft"><span>${p[4]} ﷼</span><button class="add" onclick="addCart(${i})">${S.cart[i]?S.cart[i]:'<i class="fa-solid fa-plus"></i>'}</button></div></div></div>`).join('');
- const n=Object.values(S.cart).reduce((a,b)=>a+b,0),t=Object.entries(S.cart).reduce((a,[i,q])=>a+S.prod[i][4]*q,0);$('cart').classList.toggle('on',n>0);$('cartT').innerHTML=`<b>${n}</b> منتج · <b>${t}</b> ﷼`}
 function renderJar(){document.querySelectorAll('#jseg button').forEach(b=>b.classList.toggle('on',b.dataset.j===S.jarView));
  if(S.jarView==='req'){$('jarBody').innerHTML=`<button class="mb d" style="width:100%;margin:0 0 10px;padding:9px" onclick="newReq()"><i class="fa-solid fa-plus"></i> اطلب شيئاً من جيرانك</button>`+S.jar.map(j=>`<div class="loan"><div class="t"><span class="ic"><i class="fa-solid ${j.ic}"></i></span><div class="tx"><b>${j.item}</b><small>${j.who} · لمدة ${j.days===1?'يوم':'يومين'}</small></div>${j.st?'<span class="ap g">تمت الإعارة</span>':''}</div>${j.st?'':`<div class="btns" style="margin-top:8px"><button class="mb" onclick="lend(${j.id})"><i class="fa-solid fa-hand-holding-heart"></i> أُعيره</button></div>`}</div>`).join('')}
  else{$('jarBody').innerHTML=S.mine.map(m=>{const late=m.st===1&&m.due<0;const steps=[1,m.st>=1,m.st>=2,m.st>=3];
@@ -678,10 +691,16 @@ function addWarranty(){const v=$('wItem').value,[n,y]=v.split(' · '),d=/10/.tes
 /* vendor */
 function pubService(){const i=+$('sName').value,p=+$('sPrice').value||0,l=SVC_LIB[i];S.svc.unshift([l[0],l[1],'مكتب الفحص الهندسي الدقيق · ★ 4.9 · '+$('sEta').value,p]);renderSvc(0);tab('svc');send('POST','/v1/services','خدمة جديدة في ضاحيتك',l[1]+' بـ '+fmt(p)+' ريال','fa-store')}
 $('sName').onchange=()=>{$('sPrice').value=[1450,950,350,250][+$('sName').value]};
-/* family */
-function pubProduct(){const i=+$('pName').value,l=PROD_LIB[i];S.prod.unshift([l[0],'مطبخ أم سلطان · B-230',l[1],l[2],+$('pPrice').value||0]);
- const c={};Object.entries(S.cart).forEach(([k,q])=>c[+k+1]=q);S.cart=c;renderProd(0);tab('fam');send('POST','/v1/marketplace/products','منتج جديد من جيرانك',l[0]+' من مطبخ أم سلطان','fa-basket-shopping')}
-$('pName').onchange=()=>{$('pPrice').value=[45,60,70][+$('pName').value]};
+/* insurance */
+const INS_LIB=[['fa-house-chimney','تأمين المنزل والمحتويات','سنوي · حريق، تسربات، سرقة'],['fa-plug-circle-check','تأمين الأجهزة بعد انتهاء الضمان','سنوي · مكيفات، سخانات، أجهزة'],['fa-people-group','تأمين المسؤولية تجاه الغير','سنوي · أضرار للجيران والزوار']];
+function renderIns(fresh){$('insList').innerHTML=S.ins.map((x,i)=>`<div class="svc ${fresh===i?'fresh':''}"><span class="ic" style="background:#E8EEFD;color:#2563EB"><i class="fa-solid ${x[0]}"></i></span><div><b>${x[1]}</b><small>${x[2]}</small></div><div><div class="pr2">${fmt(x[3])} ﷼</div><button class="mb" onclick="buyIns(${i})">اشترِ</button></div></div>`).join('')}
+function insGo(){tab('svc');setTimeout(()=>{const e=$('insSec');if(e)$('scr').scrollTo({top:e.offsetTop-10,behavior:RM?'auto':'smooth'})},120)}
+function pubIns(){const i=+$('iName').value,l=INS_LIB[i],p=+$('iPrice').value||0;S.ins.unshift([l[0],l[1],'رواسي للتأمين التعاوني · '+l[2],p]);renderIns(0);insGo();send('POST','/v1/insurance/products','منتج تأميني جديد في ضاحيتك',l[1]+' بـ '+fmt(p)+' ريال سنوياً','fa-umbrella')}
+function buyIns(i){const x=S.ins[i];paySheet(x[1]+' · '+x[2].split(' · ')[0],[['القسط السنوي',fmt(x[3])+' ﷼'],['الوحدة','فيلا B-214'],['يبدأ من','تاريخ الاستلام']],x[3],()=>{
+ const no='POL-'+(70000+Math.floor(Math.random()*9999));S.orders.unshift({t:x[1],s:'وثيقة '+no+' · '+x[2].split(' · ')[0],st:'وثيقة سارية',c:'g',ic:x[0]});S.txv+=x[3];S.pol.unshift({t:x[1],no,v:x[3]});
+ $('insOrders').innerHTML=S.pol.map(o=>`<div class="ord"><span class="pl ok">سارية</span><div class="tx"><b>${o.t}</b><small>عبدالله العتيبي · B-214 · ${o.no}</small></div><b>${fmt(o.v)} ﷼</b></div>`).join('');
+ recv('POST','/v1/insurance/policies  {unit:B-214, paid:true}');ctab('ins');toast('صدرت الوثيقة ووصلت لشركة التأمين في موقع الضامن','fa-file-contract')})}
+$('iName').onchange=()=>{$('iPrice').value=[650,290,180][+$('iName').value]};
 /* phone actions */
 function sheet(h){$('shBody').innerHTML=h;$('sheet').classList.add('on')}
 function closeSheet(){$('sheet').classList.remove('on')}
@@ -697,11 +716,7 @@ function warrantyTicket(){sheet(`<div class="hd"><b>بلاغ تحت الضمان
 function sendTicket(i){const w=S.war[i];closeSheet();S.tickets++;S.orders.unshift({t:'بلاغ ضمان: '+w[1],s:'موجَّه للمطور الثلاثي · مجاني',st:'لدى المطور',c:'p',ic:'fa-shield-halved'});
  const el=$('devTickets');if(S.tickets===1)el.innerHTML='';el.insertAdjacentHTML('afterbegin',`<div class="ord"><span class="pl rd">جديد</span><div class="tx"><b>${w[1]}</b><small>B-214 · ضمان ${w[2]} · المهلة النظامية تبدأ الآن</small></div><button class="wb o" onclick="this.outerHTML='<span class=&quot;pl ok&quot;>جُدول</span>';notify('ردّ المطور على بلاغك','تم جدولة زيارة فني لـ${w[1]}','fa-calendar-check')">جدولة زيارة</button></div>`);
  recv('POST','/v1/warranty-tickets  {unit:B-214}');ctab('dev');toast('البلاغ وصل للمطور في موقع الضامن','fa-shield-halved')}
-function addCart(i){S.cart[i]=(S.cart[i]||0)+1;renderProd()}
-function checkout(){const it=Object.entries(S.cart),t=it.reduce((a,[i,q])=>a+S.prod[i][4]*q,0);paySheet('سوق الأسر المنتجة',it.map(([i,q])=>[S.prod[i][0]+' ×'+q,S.prod[i][4]*q+' ﷼']),t,()=>{
- it.forEach(([i,q])=>{const p=S.prod[i];S.orders.unshift({t:p[0]+' ×'+q,s:p[1]+' · مدفوع إلكترونياً',st:'قيد التحضير',c:'a',ic:p[3]});S.forders.unshift({t:p[0]+' ×'+q,f:p[1],v:p[4]*q})});S.txv+=t;S.cart={};renderProd();
- $('famOrders').innerHTML=S.forders.map(o=>`<div class="ord"><span class="pl ok">مدفوع</span><div class="tx"><b>${o.t}</b><small>عبدالله العتيبي · B-214 · ${o.f.split(' · ')[0]}</small></div><b>${o.v} ﷼</b></div>`).join('');
- recv('POST','/v1/marketplace/orders  {paid:apple_pay}');ctab('fam');toast('الطلب وصل للأسرة المنتجة · مدفوع بالكامل','fa-basket-shopping')})}
+
 /* neighbor */
 function lend(id){const j=S.jar.find(x=>x.id===id);j.st=1;S.loans++;S.mine.unshift({id:100+id,item:j.item,ic:j.ic,to:j.who,due:j.days,st:1});S.jarView='mine';renderJar();recv('POST','/v1/neighbor/loans');notify('تم تسجيل الإعارة',j.item+' إلى '+j.who+' · سنذكّره قبل الموعد','fa-hand-holding-heart')}
 function markReturned(id){const m=S.mine.find(x=>x.id===id);m.st=2;renderJar();notify('أفاد جارك بالإرجاع',m.item+' · أكّد إذا استلمتها','fa-rotate-left')}
@@ -713,13 +728,13 @@ document.querySelectorAll('.sm2').forEach(b=>b.onclick=()=>{const f=b.dataset.f;
 /* calc */
 const COL=['#16D1C2','#7B3FF2','#C9A86A','#5FD3A5'];
 function calc(){const u=+$('u').value,h=+$('h').value,s=+$('s').value,f=+$('f').value,v=+$('v').value;
- $('uT').textContent=fmt(u)+' وحدة';$('hT').textContent=fmt(h)+' ريال';$('sT').textContent=fmt(s)+' ريال';$('fT').textContent=f+' طلب';$('vT').textContent=fmt(v)+' مقدم';
- const R=[['رسوم استضافة ملفات الوحدات',u*h],['عمولات سوق الخدمات',u*s*.12],['رسوم معاملات الأسر المنتجة',u*f*12*60*.08],['اشتراكات مقدمي الخدمات',v*3000]];
+ $('uT').textContent=fmt(u)+' وحدة';$('hT').textContent=fmt(h)+' ريال';$('sT').textContent=fmt(s)+' ريال';$('fT').textContent=f+'%';$('vT').textContent=fmt(v)+' مقدم';
+ const R=[['رسوم استضافة ملفات الوحدات',u*h],['عمولات سوق الخدمات',u*s*.12],['عمولات توزيع وثائق التأمين',u*f/100*650*.10],['اشتراكات مقدمي الخدمات',v*3000]];
  $('tot').textContent=fmt(R.reduce((a,r)=>a+r[1],0))+' ﷼';$('rows').innerHTML=R.map((r,i)=>`<div class="rr"><span><i class="sw" style="background:${COL[i]}"></i>${r[0]}</span><b>${fmt(r[1])}</b></div>`).join('');
  document.querySelectorAll('input.dk').forEach(el=>el.style.setProperty('--v',(el.value-el.min)/(el.max-el.min)*100+'%'))}
 ['u','h','s','f','v'].forEach(id=>$(id).addEventListener('input',calc));
 /* init */
-renderHome();renderSvc();renderProd();renderJar();kpis();calc();
+renderHome();renderSvc();renderIns();renderJar();kpis();calc();
 log('GET','/v1/units/B-214','out');log('GET','/v1/services?suburb=alkhuzam','out');
 $('prog').addEventListener('change',()=>{$('hoBtn').disabled=true});
 </script>

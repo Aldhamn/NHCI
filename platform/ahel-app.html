@@ -188,6 +188,12 @@ body:not(.hl) .is .wb{background:#E2F6EF}
 .empty{text-align:center;color:var(--mut);font-size:12.5px;padding:24px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (pointer:fine){.scr{cursor:grab;scrollbar-width:thin}.scr::-webkit-scrollbar{width:5px}.scr::-webkit-scrollbar-thumb{background:rgba(0,0,0,.2);border-radius:9px}}
+.futr{position:relative;border:2px dashed #E2C98F;background:#FFFBF1;border-radius:20px;padding:22px 16px 18px;text-align:center}
+.futr .fb{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-size:10.5px;font-weight:800;background:#E9C46A;color:#4A3519;padding:2px 12px;border-radius:99px;white-space:nowrap}
+.futr .fi{width:56px;height:56px;border-radius:18px;margin:4px auto 10px;display:grid;place-items:center;background:#F6E7C1;color:#8A6A3B;font-size:22px}
+.futr b{font-size:15px;display:block;margin-bottom:6px}.futr p{font-size:12.5px;color:var(--mut);line-height:1.8}
+.futr ul{list-style:none;text-align:start;display:grid;gap:8px;margin:14px 0 10px;font-size:12.5px}.futr li{display:flex;gap:8px}.futr li i{color:#2C8A5E;margin-top:4px}
+.futr small{font-size:11px;color:#8A6A3B;font-weight:700}
 </style>
 </head>
 <body class="hl">
@@ -204,7 +210,7 @@ body:not(.hl) .is .wb{background:#E2F6EF}
       <button onclick="go('mnt','wst')"><i class="fa-solid fa-shield-halved"></i><div>حالة الضمان لكل بند<small>الصيانة</small></div></button>
       <button onclick="go('mnt','svcSec')"><i class="fa-solid fa-clipboard-check"></i><div>مقدمو خدمات معتمدون وفحص قبل الاستلام<small>الصيانة</small></div></button>
       <button onclick="go('com');comTab('jar')"><i class="fa-solid fa-people-arrows"></i><div>الجار للجار<small>المجتمع</small></div></button>
-      <button onclick="go('com');comTab('fam')"><i class="fa-solid fa-basket-shopping"></i><div>سوق الأسر المنتجة<small>المجتمع</small></div></button>
+      <button onclick="go('mnt','insSec')"><i class="fa-solid fa-umbrella"></i><div>شركات التأمين كمقدمي خدمة<small>الصيانة</small></div></button>
       <button onclick="go('acc','deps')"><i class="fa-solid fa-user-group"></i><div>التابعون يضيفهم المطور<small>الحساب</small></div></button>
     </div>
   </aside>
@@ -235,10 +241,10 @@ body:not(.hl) .is .wb{background:#E2F6EF}
           <button class="tl dh" onclick="go('mnt','wst')"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span><i class="fa-solid fa-shield-halved"></i>ضماناتي</button>
           <button class="tl dh" onclick="go('mnt','svcSec')"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span><i class="fa-solid fa-clipboard-check"></i>فحص قبل الاستلام</button>
           <button class="tl dh" onclick="go('com');comTab('jar')"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span><i class="fa-solid fa-people-arrows"></i>الجار للجار</button>
-          <button class="tl dh" onclick="go('com');comTab('fam')"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span><i class="fa-solid fa-basket-shopping"></i>الأسر المنتجة</button>
+          <button class="tl dh" onclick="go('mnt','insSec')"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span><i class="fa-solid fa-umbrella"></i>التأمين</button>
           <div class="tl"><i class="fa-regular fa-calendar"></i>الفعاليات</div>
         </div>
-        <button class="ban dh" onclick="go('com');comTab('fam')" style="background:linear-gradient(120deg,#1F4D3B,#3E6B4A)"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span><span class="gi"><i class="fa-solid fa-utensils"></i></span><div><b>من مطابخ جيرانك</b><small>ورق عنب، مرقوق، حلا… والدفع إلكتروني</small></div><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="ban dh" onclick="go('mnt','insSec')" style="background:linear-gradient(120deg,#1E3A6B,#1F4D3B)"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span><span class="gi"><i class="fa-solid fa-umbrella"></i></span><div><b>أمّن منزلك من أول يوم</b><small>تأمين المنزل والمحتويات من شركات معتمدة</small></div><i class="fa-solid fa-chevron-left"></i></button>
         <div class="sec">أفضل العروض</div>
         <div class="offer"><b>عروض مميزة في انتظاركم</b><small>قريباً، لا تفوتوا الفرصة!</small><i class="fa-solid fa-gift big"></i></div>
         <div class="sec">الفعاليات <small>عرض الكل</small></div>
@@ -256,20 +262,24 @@ body:not(.hl) .is .wb{background:#E2F6EF}
         <div class="svc"><span class="ic"><i class="fa-solid fa-car"></i></span><div><b>غسيل سيارات داخلي وخارجي</b><small>زيارة فورية · 45 دقيقة</small></div><div><div class="pr2">34.5 ﷼</div><button class="mb o" onclick="book('غسيل سيارات داخلي وخارجي',34.5,'fa-car',false)">اطلب</button></div></div>
         <div class="sec dh" id="svcSec" style="padding-top:6px"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span>مقدمو خدمات معتمدون <small>أسعار ثابتة وتقييم</small></div>
         <div id="svcList"></div>
+        <div class="sec dh" id="insSec" style="padding-top:6px"><span class="dhb"><img src="dhamn-icon.png" alt="">الضامن</span>التأمين <small>شركات تأمين معتمدة</small></div>
+        <div id="insList"></div>
       </section>
 
       <!-- COMMUNITY -->
       <section class="pg" id="p-com">
-        <div class="big-seg"><button class="on" id="bs-jar" onclick="comTab('jar')"><i class="fa-solid fa-people-arrows"></i>الجار للجار</button><button id="bs-fam" onclick="comTab('fam')"><i class="fa-solid fa-basket-shopping"></i>الأسر المنتجة</button></div>
+        <div class="big-seg"><button class="on" id="bs-jar" onclick="comTab('jar')"><i class="fa-solid fa-people-arrows"></i>الجار للجار</button><button id="bs-fam" onclick="comTab('fam')"><i class="fa-solid fa-seedling"></i>سوق الجيران · قريباً</button></div>
         <div id="c-jar" class="dh" style="border-radius:18px;padding:2px"><span class="dhb"><img src="dhamn-icon.png" alt="">ميزة جديدة من الضامن</span>
           <p class="hint" style="margin-top:12px">استعِر وأعِر من جيرانك بسجل واضح. الإعارة لا تُغلق إلا بتأكيد صاحبها.</p>
           <div class="seg" id="jseg"><button class="on" data-j="req">طلبات الجيران</button><button data-j="mine">إعاراتي</button></div>
           <div id="jarBody"></div>
         </div>
-        <div id="c-fam" class="dh" style="display:none;border-radius:18px;padding:2px"><span class="dhb"><img src="dhamn-icon.png" alt="">ميزة جديدة من الضامن</span>
-          <p class="hint" style="margin-top:12px">أسر منتجة موثقة من سكان الضاحية · الدفع إلكتروني فقط</p>
-          <div class="prod" id="prodList"></div>
-          <div class="cart" id="cart"><span id="cartT"></span><button class="pay" onclick="checkout()"><i class="fa-brands fa-apple-pay"></i></button></div>
+        <div id="c-fam" class="futr" style="display:none"><span class="fb">مقترح مستقبلي</span>
+          <div class="fi"><i class="fa-solid fa-store"></i></div>
+          <b>سوق الأسر المنتجة بين الجيران</b>
+          <p>جيران يطبخون ويبيعون من بيوتهم، ويحتاجون متجراً ودفعاً إلكترونياً بدل الكاش والواتساب والطلبات التي تُلغى في آخر لحظة.</p>
+          <ul><li><i class="fa-solid fa-check"></i>متجر لكل أسرة موثقة خلال دقائق</li><li><i class="fa-solid fa-check"></i>دفع مسبق بـ Apple Pay ومدى، فالإلغاء لا يضر الأسرة</li><li><i class="fa-solid fa-check"></i>تتبّع الطلب والتقييم داخل الضاحية</li></ul>
+          <small>يُطلق في مرحلة لاحقة من التحالف</small>
         </div>
       </section>
 
@@ -311,7 +321,7 @@ body:not(.hl) .is .wb{background:#E2F6EF}
       <div class="st"><b>1</b><span>الصيانة ← اختر «تسرب مياه»: يظهر أنه تحت الضمان ويُوجَّه للمطور مجاناً.</span></div>
       <div class="st"><b>2</b><span>الصيانة ← «فحص هندسي قبل الاستلام» ← ادفع بـ Apple Pay.</span></div>
       <div class="st"><b>3</b><span>المجتمع ← الجار للجار ← «أُعيره»، ثم «إعاراتي» وأكمل دورة الإرجاع.</span></div>
-      <div class="st"><b>4</b><span>المجتمع ← الأسر المنتجة ← أضف منتجين وادفع.</span></div>
+      <div class="st"><b>4</b><span>الصيانة ← التأمين ← اشترِ وثيقة تأمين المنزل وادفع.</span></div>
       <div class="st"><b>5</b><span>الطلبات: كل ما سبق في مكان واحد.</span></div>
     </div>
     <div class="links"><a href="ahel.html"><i class="fa-solid fa-arrow-right"></i>مقترح التحالف</a><a href="index.html"><i class="fa-solid fa-right-to-bracket"></i>بوابات المنصة</a><a href="../index.html"><i class="fa-solid fa-house"></i>الرئيسية</a></div>
@@ -329,8 +339,7 @@ const S={
  iss:{civil:['تشقق الجدار','بلاط / نعلة مكسور','مشكلة في الأرضيات','سقف تالف'],plumb:['تسرب مياه','انقطاع المياه','روائح كريهة بالصرف','مشكلة في دورة المياه'],elec:['انقطاع كهرباء جزئي','مفاتيح تالفة','مشكلة في الإنارة','قاطع يفصل'],ac:['المكيف لا يبرد','تسرب ماء من المكيف','صوت مرتفع','عطل الريموت'],carp:['باب لا يغلق','خزانة تالفة','نافذة عالقة','مقابض تالفة']},
  cat:'plumb',
  svc:[['fa-clipboard-check','فحص هندسي قبل الاستلام','مكتب الفحص الهندسي الدقيق · ★ 4.9 · تقرير موثق',1450],['fa-temperature-half','كشف تسربات بالأجهزة الحرارية','مؤسسة الكشف الحراري · ★ 4.8',950],['fa-broom','تنظيف ما بعد البناء','لمعة · ★ 4.8 · خلال 24 ساعة',690],['fa-couch','تأثيث وتركيب ستائر','دار الأناقة · ★ 4.6',2400]],
- prod:[['ورق عنب','مطبخ أم سلطان · B-230','#6E9A52','fa-leaf',55],['مرقوق','بيت الجدة · B-118','#B5562A','fa-bowl-food',40],['حلا لقيمات','حلويات نورة · B-305','#C9A86A','fa-cookie',35],['خبز تنور','مخبز البيت · B-097','#9C7B3D','fa-bread-slice',20],['كليجا القصيم','مطبخ أم سلطان · B-230','#A0703A','fa-cookie-bite',45],['قهوة سعودية','محمصة الحي · B-150','#6B4A2B','fa-mug-hot',70]],
- cart:{},
+ ins:[['fa-house-chimney','تأمين المنزل والمحتويات','رواسي للتأمين التعاوني · حريق، تسربات، سرقة · سنوي',650],['fa-plug-circle-check','تأمين الأجهزة بعد انتهاء الضمان','وثاق للتأمين · مكيفات، سخانات، أجهزة · سنوي',290],['fa-people-group','تأمين المسؤولية تجاه الغير','رواسي للتأمين التعاوني · أضرار للجيران والزوار · سنوي',180]],
  jar:[{id:1,who:'أبو خالد · B-221',item:'مطرقة وعدة يدوية',ic:'fa-hammer',days:1,st:0},{id:2,who:'أم ريان · B-209',item:'سلّم ألمنيوم 3 أمتار',ic:'fa-ladder-water',days:2,st:0},{id:3,who:'جار · B-205',item:'دريل كهربائي',ic:'fa-screwdriver',days:1,st:0}],
  mine:[{id:9,item:'ماكينة قص العشب',ic:'fa-seedling',to:'أبو فهد · B-233',due:-2,st:1}],jv:'req',
  orders:[{t:'غسيل سيارات (سيارة صغيرة)',s:'سهل · الأسبوع الماضي',st:'مكتمل',c:'g',ic:'fa-car'}],
@@ -380,15 +389,11 @@ function markRet(id){S.mine.find(x=>x.id===id).st=2;renderJar();notify('أفاد
 function confirmRet(id){S.mine.find(x=>x.id===id).st=3;renderJar();notify('أُغلقت الإعارة','شكراً لتعاونك مع جيرانك','fa-circle-check')}
 function notRet(id){const m=S.mine.find(x=>x.id===id);m.st=1;m.due=Math.min(m.due,-1);renderJar();notify('أُعيدت الإعارة مفتوحة','وصل المستعير تنبيه بأن الغرض لم يصل','fa-triangle-exclamation')}
 function newReq(){S.jar.unshift({id:Date.now()%1e4,who:'أنت · B-214',item:'شنطة عدة سباكة',ic:'fa-toolbox',days:1,st:0,own:true});renderJar();notify('نُشر طلبك','يظهر لجيران الضاحية فقط','fa-bullhorn')}
-function renderProd(){$('prodList').innerHTML=S.prod.map((p,i)=>`<div class="pd"><div class="im" style="background:${p[2]}"><i class="fa-solid ${p[3]}"></i></div><div class="bd"><b>${p[0]}</b><small>${p[1]}</small><div class="ft"><span>${p[4]} ﷼</span><button class="add" onclick="addCart(${i})">${S.cart[i]||'<i class="fa-solid fa-plus"></i>'}</button></div></div></div>`).join('');
- const n=Object.values(S.cart).reduce((a,b)=>a+b,0),t=Object.entries(S.cart).reduce((a,[i,q])=>a+S.prod[i][4]*q,0);$('cart').classList.toggle('on',n>0);$('cartT').innerHTML=`<b>${n}</b> منتج · <b>${t}</b> ﷼`}
-function addCart(i){S.cart[i]=(S.cart[i]||0)+1;renderProd()}
-function checkout(){const it=Object.entries(S.cart),t=it.reduce((a,[i,q])=>a+S.prod[i][4]*q,0);paySheet('سوق الأسر المنتجة',it.map(([i,q])=>[S.prod[i][0]+' ×'+q,S.prod[i][4]*q+' ﷼']),t,()=>{
- it.forEach(([i,q])=>{const p=S.prod[i];S.orders.unshift({t:p[0]+' ×'+q,s:p[1]+' · مدفوع إلكترونياً',st:'قيد التحضير',c:'a',ic:p[3]})});S.cart={};renderProd();notify('وصل طلبك للأسرة المنتجة','قيد التحضير · سيصلك إشعار عند الجاهزية','fa-utensils')})}
-/* orders & account */
+function renderIns(){$('insList').innerHTML=S.ins.map((x,i)=>`<div class="svc"><span class="ic" style="background:#E8EEFD;color:#2563EB"><i class="fa-solid ${x[0]}"></i></span><div><b>${x[1]}</b><small>${x[2]}</small></div><div><div class="pr2">${fmt(x[3])} ﷼</div><button class="mb" onclick="buyIns(${i})">اشترِ</button></div></div>`).join('')}
+function buyIns(i){const x=S.ins[i];paySheet(x[1]+' · '+x[2].split(' · ')[0],[['القسط السنوي',fmt(x[3])+' ﷼'],['الوحدة','فيلا B-214'],['يبدأ من','تاريخ الاستلام']],x[3],()=>{const no='POL-'+(70000+Math.floor(Math.random()*9999));S.orders.unshift({t:x[1],s:'وثيقة '+no+' · '+x[2].split(' · ')[0],st:'وثيقة سارية',c:'g',ic:x[0]});notify('صدرت وثيقتك',x[1]+' · '+no,'fa-file-contract')})}
 function renderOrders(){$('ordList').innerHTML=S.orders.map(o=>`<div class="li"><span class="ic"><i class="fa-solid ${o.ic}"></i></span><div class="tx"><b>${o.t}</b><small>${o.s}</small></div><span class="ap ${o.c}">${o.st}</span></div>`).join('')||'<div class="empty">لا توجد طلبات</div>'}
 function renderDeps(){$('depList').innerHTML=S.deps.map(d=>`<div class="li"><span class="ic"><i class="fa-solid ${d[1]}"></i></span><div class="tx"><b>تابع · ${d[0]}</b><small>أضافه المطور عند توقيع العقد · له هوية رقمية</small></div><span class="ap g">مفعّل</span></div>`).join('')}
-renderCats();renderIss();renderWar();renderSvc();renderJar();renderProd();renderOrders();renderDeps();
+renderCats();renderIss();renderWar();renderSvc();renderJar();renderIns();renderOrders();renderDeps();
 setTimeout(()=>notify('تحديث من المطور الثلاثي','نسبة إنجاز فيلتك B-214 أصبحت 94%','fa-building'),RM?0:1200);
 </script>
 <script>/* desktop drag-to-scroll for phone simulations */
