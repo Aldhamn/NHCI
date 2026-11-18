@@ -408,6 +408,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 .prog{position:fixed;top:0;inset-inline-start:0;height:3px;background:var(--grad);z-index:70;width:0}
 @media(max-width:600px){.btn{white-space:normal;justify-content:center;text-align:center;width:100%}.nav .btn,.float-cta{width:auto}.stat b{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}#intro{display:none}.rv,.fade-in,.hero h1 .ln>span{opacity:1!important;transform:none!important}}
+.ahx{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:30px;border-radius:28px;color:inherit;text-decoration:none;background:linear-gradient(120deg,rgba(126,217,160,.12),rgba(123,63,242,.12) 55%,rgba(22,209,194,.08));border:1.5px dashed rgba(126,217,160,.5);transition:transform .3s,border-color .3s}
+.ahx:hover{transform:translateY(-4px);border-style:solid;border-color:#7ED9A0}
+.ahx-l{display:flex;align-items:center;gap:10px}.ahx-l img{height:54px}.ahx-l img.al{border-radius:14px}.ahx-l img.nw{height:36px}.ahx-l .x{color:var(--dim,#6F6C99);font-size:12px}
+.ahx-b{display:inline-block;font-size:12px;font-weight:800;color:#BFF0D0;background:rgba(126,217,160,.14);padding:4px 12px;border-radius:99px;margin-bottom:8px}
+.ahx h2{font-size:clamp(22px,2.8vw,32px);margin-bottom:8px}.ahx p{color:var(--muted,#A3A1C6);font-size:15px;line-height:1.85}
+.ahx-c{margin-top:16px}
+.ahx-2{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+@media(max-width:820px){.ahx{grid-template-columns:1fr;text-align:center;padding:24px 18px}.ahx-l{justify-content:center}.ahx-l img{height:44px}.ahx-l img.nw{height:30px}.ahx-c .btn{white-space:normal}}
 </style>
 </head>
 <body>
@@ -434,8 +442,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       <a href="#gap">الفجوة</a><a href="#solution">الحل</a><a href="#workflow">آلية العمل</a><a href="#quality">ذكاء الجودة</a><a href="#revenue">الإيراد المشترك</a><a href="#phase2">المرحلة الثانية</a><a href="#why">لماذا الآن</a><a href="#pilot">التجربة</a>
     </nav>
     <div class="nav-acts">
-      <a href="admin.html" class="btn btn-g btn-sm"><i class="fa-solid fa-chart-pie"></i><span>لوحة NHC</span></a>
-      <a href="app.html" class="btn btn-p btn-sm"><i class="fa-solid fa-mobile-screen-button"></i><span>جرّب المنصة</span></a>
+      <a href="platform/ahel.html" class="btn btn-g btn-sm"><i class="fa-solid fa-puzzle-piece"></i><span>التكامل مع أهل</span></a><a href="admin.html" class="btn btn-g btn-sm"><i class="fa-solid fa-chart-pie"></i><span>لوحة NHC</span></a>
+      <a href="platform/index.html" class="btn btn-p btn-sm"><i class="fa-solid fa-mobile-screen-button"></i><span>جرّب المنصة</span></a>
     </div>
   </div>
 </header>
@@ -448,8 +456,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       <h1><span class="ln"><span>كل وحدة تُباع على الخريطة</span></span><span class="ln"><span>تتحول إلى <span class="gtxt">أصل رقمي يدرّ دخلاً</span></span></span><span class="ln"><span>ويحوكم الجودة</span></span></h1>
       <p class="lead fade-in d1">منصة الضامن تمنح الشركة الوطنية للإسكان ما لا تمنحه الفسوح والرخص: دخلاً إضافياً ومتكرراً من كل وحدة، وبيانات موثقة ومحدثة طوال عمرها، وصوتاً مسموعاً للمستفيد يرفع جودة المطورين — <b style="color:var(--text)">دون أي تكلفة رأسمالية على NHC</b>.</p>
       <div class="ctas fade-in d2">
-        <a href="app.html" class="btn btn-p"><i class="fa-solid fa-mobile-screen-button"></i>الانتقال إلى المنصة التجريبية لتجربة رحلة العميل</a>
+        <a href="platform/index.html" class="btn btn-p"><i class="fa-solid fa-mobile-screen-button"></i>الانتقال إلى المنصة التجريبية لتجربة رحلة العميل</a>
         <a href="admin.html" class="btn btn-g"><i class="fa-solid fa-chart-pie"></i>لوحة تحكم NHC</a>
+        <a href="platform/ahel.html" class="btn btn-g"><i class="fa-solid fa-puzzle-piece"></i>مقترح التكامل مع أهل</a>
       </div>
       <div class="stats fade-in d3">
         <div class="stat"><b data-count="0" data-suf=" ﷼">0 ﷼</b><span>تكلفة رأسمالية على NHC</span></div>
@@ -554,7 +563,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     </div>
     <div class="wf-cta rv">
       <a href="developer.html" class="btn btn-p"><i class="fa-solid fa-building"></i>جرّب بوابة المطور</a>
-      <a href="app.html" class="btn btn-g"><i class="fa-solid fa-mobile-screen-button"></i>تطبيق المستفيد</a>
+      <a href="platform/index.html" class="btn btn-g"><i class="fa-solid fa-mobile-screen-button"></i>تطبيق المستفيد</a>
       <a href="admin.html" class="btn btn-g"><i class="fa-solid fa-chart-pie"></i>لوحة NHC</a>
     </div>
   </div>
@@ -744,6 +753,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   </div>
 </section>
 
+<section class="s" id="ahel" style="padding-top:20px">
+  <div class="wrap">
+    <a href="platform/ahel.html" class="ahx rv">
+      <div class="ahx-l"><img src="dhamn-icon.png" alt="الضامن"><span class="x">✕</span><img src="platform/ahel-logo.png" alt="أهل" class="al"><span class="x">✕</span><img src="nhc-logo-white.png" alt="NHC" class="nw"></div>
+      <div class="ahx-t"><span class="ahx-b"><i class="fa-solid fa-puzzle-piece"></i> مقترح إضافي</span><h2>التكامل مع تطبيق أهل</h2><p>أهل يبقى واجهة الساكن، والضامن يغذّيه ببيانات المطورين ومقدمي الخدمات: حالة الضمان، نسبة الإنجاز، التابعون، سوق خدمات معتمد، و«الجار للجار» و«سوق الأسر المنتجة». جدول مقارنة لما هو موجود وما ينقص، وشكل التحالف، ومحاكي تفاعلي.</p>
+        <div class="ahx-c"><span class="btn btn-p"><i class="fa-solid fa-table-list"></i>افتح المقترح وجدول المقارنة</span></div></div>
+    </a>
+    <div class="ahx-2 rv"><a href="platform/ahel-app.html" class="btn btn-n"><i class="fa-solid fa-mobile-screen-button"></i>محاكاة تطبيق أهل كاملة</a><a href="platform/index.html" class="btn btn-g"><i class="fa-solid fa-right-to-bracket"></i>بوابات المنصة الأربع</a></div>
+  </div>
+</section>
+
 <section class="s" style="padding-top:20px">
   <div class="wrap">
     <div class="final rv">
@@ -751,7 +771,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       <h2>جرّب المنصة بعين المستفيد… وبعين صانع القرار<br><span class="gtxt">ثم لنوقّع التجربة</span></h2>
       <p>محاكاة كاملة لرحلة مالك وحدة في ضاحية إسكانية (المثال في العرض: ضاحية الخزام)، ولوحة تحكم إدارية تعرض لـ NHC كل وحدة ومطور وبلاغ وضمان، وتدير مقدمي الخدمة في السوق.</p>
       <div class="ctas">
-        <a href="app.html" class="btn btn-p"><i class="fa-solid fa-mobile-screen-button"></i>الانتقال إلى المنصة التجريبية لتجربة رحلة العميل</a>
+        <a href="platform/index.html" class="btn btn-p"><i class="fa-solid fa-mobile-screen-button"></i>الانتقال إلى المنصة التجريبية لتجربة رحلة العميل</a>
         <a href="admin.html" class="btn btn-n"><i class="fa-solid fa-chart-pie"></i>لوحة تحكم NHC الإدارية</a>
         <a href="developer.html" class="btn btn-g"><i class="fa-solid fa-building"></i>بوابة المطور</a>
       </div>
@@ -767,7 +787,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   </div>
 </footer>
 
-<a href="app.html" class="btn btn-p btn-sm float-cta" id="floatCta"><i class="fa-solid fa-mobile-screen-button"></i>جرّب المنصة</a>
+<a href="platform/index.html" class="btn btn-p btn-sm float-cta" id="floatCta"><i class="fa-solid fa-mobile-screen-button"></i>جرّب المنصة</a>
 
 <script>
 const $=id=>document.getElementById(id);
