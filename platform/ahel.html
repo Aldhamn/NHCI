@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مقترح التكامل | الضامن × أهل × NHC</title>
+<meta name="description" content="مقترح تكامل منصة الضامن مع تطبيق أهل: قاعدة بيانات المطورين، شبكة مقدمي الخدمات، الجار للجار، وسوق الأسر المنتجة.">
+<meta name="author" content="SULAIMAN O. ALKHATEEB">
+<meta name="theme-color" content="#08071C">
+<link rel="icon" href="dhamn-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#08071C;--bg2:#0E0C2A;--card:rgba(255,255,255,.04);--card2:rgba(255,255,255,.07);--line:rgba(140,118,255,.24);--line2:rgba(255,255,255,.09);
+  --p:#7B3FF2;--p2:#A88BFF;--t:#16D1C2;--t2:#8BF5EA;--nhc:#1F4537;--mint:#5FD3A5;--amber:#FFC066;--red:#FF7A8A;--text:#EEEDFB;--muted:#A3A1C6;--dim:#6F6C99;
+  --grad:linear-gradient(120deg,#7B3FF2,#4F46E5 45%,#16D1C2);--ahel:#C9A86A}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,.kufi{font-family:'Noto Kufi Arabic',sans-serif;line-height:1.45}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select{font-family:inherit}
+.wrap{max-width:1220px;margin:0 auto;padding:0 20px}
+.aura{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(1000px 600px at 90% -10%,rgba(123,63,242,.26),transparent 60%),radial-gradient(800px 600px at -10% 40%,rgba(22,209,194,.12),transparent 60%),radial-gradient(700px 500px at 50% 115%,rgba(31,69,55,.55),transparent 60%)}
+header,main,footer{position:relative;z-index:2}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(8,7,28,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.trio{display:flex;align-items:center;gap:10px}
+.trio .x{color:var(--dim);font-size:12px}
+.lg{height:34px;display:flex;align-items:center}
+.lg img{height:100%;display:block}
+.ahel-lg{display:inline-flex;align-items:center;justify-content:center;height:34px;min-width:34px}
+.ahel-lg img{height:34px;display:block}
+.ahel-lg .tx{display:none;font-family:'Noto Kufi Arabic';font-weight:800;font-size:15px;padding:2px 12px;border-radius:10px;border:1.5px solid rgba(201,168,106,.55);color:#E9D6AE;background:rgba(201,168,106,.1)}
+.ahel-lg.fb img{display:none}.ahel-lg.fb .tx{display:inline-block}
+.navlinks{display:flex;gap:2px}
+.navlinks a{font-size:13px;color:var(--muted);padding:7px 11px;border-radius:9px}
+.navlinks a:hover{color:var(--text);background:var(--card2)}
+.pillk{font-size:12.5px;padding:8px 13px;border-radius:11px;border:1px solid var(--line2);display:inline-flex;gap:7px;align-items:center;color:#d6d4f0;white-space:nowrap}
+.pillk:hover{border-color:var(--t);color:#fff}
+@media(max-width:1100px){.navlinks{display:none}}
+@media(max-width:560px){.pillk span{display:none}.lg,.ahel-lg,.ahel-lg img{height:28px}}
+/* hero */
+.hero{padding:70px 0 40px;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;color:var(--t2);border:1px solid rgba(22,209,194,.3);background:rgba(22,209,194,.07);padding:7px 14px;border-radius:99px}
+.eyebrow i{color:var(--t)}
+.hero h1{font-size:clamp(28px,4.3vw,52px);font-weight:900;margin:22px auto 14px;max-width:980px}
+.gt{background:linear-gradient(100deg,#C2A8FF,#7B8CFF 35%,#16D1C2 70%,#C2A8FF);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 8s linear infinite}
+@keyframes flow{to{background-position:-220% 0}}
+.lead{font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:780px;margin:0 auto}
+.lockup{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,34px);margin:34px auto 10px;flex-wrap:wrap}
+.lu{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 22px;border-radius:22px;background:var(--card);border:1px solid var(--line2);min-width:150px}
+.lu .im{height:54px;display:flex;align-items:center}
+.lu .im img{height:54px}
+.lu .ahel-lg,.lu .ahel-lg img{height:54px}.lu .ahel-lg .tx{font-size:26px;padding:4px 20px}
+.lu small{font-size:12px;color:var(--muted)}
+.lu b{font-size:13.5px}
+.plus{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:15px;box-shadow:0 10px 30px -10px rgba(123,63,242,.9)}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:14px;font-weight:700;font-size:15px;transition:transform .25s,box-shadow .25s,border-color .25s;white-space:nowrap}
+.btn-p{background:var(--grad);color:#fff;box-shadow:0 12px 34px -12px rgba(123,63,242,.9)}
+.btn-p:hover{transform:translateY(-2px)}
+.btn-g{background:var(--card2);color:var(--text);border:1px solid var(--line2)}
+.btn-g:hover{border-color:var(--t);transform:translateY(-2px)}
+.thanks{margin:30px auto 0;max-width:820px;padding:16px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(201,168,106,.1),rgba(22,209,194,.05));border:1px solid rgba(201,168,106,.3);font-size:14.5px;color:#e8e2d2;display:flex;gap:14px;align-items:center;text-align:start}
+.thanks i{font-size:22px;color:var(--ahel)}
+/* sections */
+section.s{padding:80px 0}
+.s-head{max-width:820px;margin-bottom:34px}
+.s-head.c{text-align:center;margin-inline:auto}
+.tag{font-size:12px;font-weight:700;color:var(--t2);display:inline-flex;align-items:center;gap:8px;margin-bottom:10px}
+.tag::before{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+h2{font-size:clamp(24px,3.1vw,38px);font-weight:900;margin-bottom:10px}
+.s-head p{color:var(--muted);font-size:15.5px}
+.card{background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:22px}
+/* have vs add */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col{border-radius:24px;padding:24px;border:1.5px solid var(--line2)}
+.col.have{background:linear-gradient(160deg,rgba(201,168,106,.09),rgba(255,255,255,.02));border-color:rgba(201,168,106,.3)}
+.col.add{background:linear-gradient(160deg,rgba(123,63,242,.13),rgba(22,209,194,.05));border-color:var(--line)}
+.col h3{font-size:18px;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.col>p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.it{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;padding:11px 0;border-bottom:1px dashed var(--line2)}
+.it:last-child{border:0}
+.it .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:15px}
+.have .it .ic{background:rgba(201,168,106,.14);color:#E9D6AE}
+.add .it .ic{background:var(--grad);color:#fff}
+.it b{font-size:14px;display:block}.it span{font-size:12.5px;color:var(--muted);line-height:1.65;display:block}
+.it .nw{font-size:10.5px;font-weight:800;padding:1px 7px;border-radius:6px;background:rgba(22,209,194,.15);color:var(--t2);margin-inline-start:6px;vertical-align:middle}
+.src{font-size:11.5px;color:var(--dim);margin-top:12px}
+@media(max-width:900px){.cmp{grid-template-columns:1fr}}
+/* comparison */
+.sum{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.sm2{padding:14px;border-radius:16px;background:var(--card);border:1.5px solid var(--line2);text-align:start;transition:.2s}
+.sm2 b{font-family:'Noto Kufi Arabic';font-size:24px;display:block;line-height:1.3}.sm2 span{font-size:12px;color:var(--muted)}
+.sm2.on{border-color:var(--t);background:var(--card2)}
+.sm2.y b{color:#5FD3A5}.sm2.p b{color:#FFC066}.sm2.n b{color:#FF7A8A}
+@media(max-width:700px){.sum{grid-template-columns:1fr 1fr}}
+.ctw{overflow-x:auto;border-radius:20px;border:1px solid var(--line2);background:rgba(255,255,255,.02)}
+.ctb{width:100%;border-collapse:collapse;min-width:980px;font-size:13px}
+.ctb th{background:rgba(255,255,255,.05);color:var(--muted);font-weight:600;font-size:12px;text-align:start;padding:12px 14px;white-space:nowrap}
+.ctb td{padding:13px 14px;border-top:1px solid var(--line2);vertical-align:top;line-height:1.7;color:#d6d4f0}
+.ctb td:first-child{width:190px}.ctb td:first-child b{display:block;font-size:13.5px;color:var(--text)}
+.ctb .ct{font-size:10.5px;color:var(--dim);display:block}
+.ctb small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.ctb .gp{color:#F2B8C0}.ctb .ad{color:var(--t2)}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:99px}
+.sy{background:rgba(95,211,165,.14);color:#5FD3A5}.sp2{background:rgba(255,192,102,.14);color:#FFC066}.sn{background:rgba(255,122,138,.14);color:#FF7A8A}
+.ow{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:7px}
+.ctb td:last-child .ow{display:table}
+.oa{background:rgba(201,168,106,.16);color:#E9D6AE}.od{background:rgba(123,63,242,.2);color:#C9B8FF}.ob{background:rgba(22,209,194,.14);color:var(--t2)}
+.ctb tr.hid{display:none}
+.ctb tbody tr:hover{background:rgba(255,255,255,.03)}
+.call{display:flex;gap:16px;align-items:flex-start;margin-top:18px;padding:20px 22px;border-radius:20px;background:linear-gradient(135deg,rgba(255,122,138,.1),rgba(22,209,194,.06));border:1px solid rgba(255,122,138,.3)}
+.call .ci{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(255,122,138,.15);color:#FF7A8A;font-size:20px;flex-shrink:0}
+.call b{font-size:16px;display:block;margin-bottom:4px}.call p{font-size:13.5px;color:#d6d4f0}
+.raci{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rc{border-radius:22px;padding:22px;border:1.5px solid var(--line2);background:var(--card)}
+.rc.ra{border-color:rgba(201,168,106,.35)}.rc.rd{border-color:var(--line);background:linear-gradient(160deg,rgba(123,63,242,.12),rgba(22,209,194,.04))}.rc.rn{border-color:rgba(95,211,165,.3)}
+.rh{display:flex;align-items:center;gap:10px;margin-bottom:12px}.rh img{height:34px}.rh b{font-size:15px;font-family:'Noto Kufi Arabic'}
+.rc ul{list-style:none;display:grid;gap:8px;font-size:13px;color:#d6d4f0}
+.rc li{display:flex;gap:8px}.rc li::before{content:"\f00c";font-family:'Font Awesome 6 Free';font-weight:900;color:var(--t);font-size:11px;margin-top:5px}
+.phs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.ph2{padding:18px;border-radius:18px;background:var(--card);border:1px dashed var(--line)}
+.ph2 .pn{font-size:11px;font-weight:800;color:var(--t2)}.ph2 b{display:block;font-size:15px;margin:2px 0 4px}.ph2 p{font-size:12.8px;color:var(--muted)}
+@media(max-width:900px){.raci,.phs{grid-template-columns:1fr}}
+/* simulator */
+.sim{display:grid;grid-template-columns:1fr 120px 390px;gap:0;align-items:start}
+.sim>*{min-width:0}
+@media(max-width:1180px){.sim{grid-template-columns:1fr 70px 370px}}
+@media(max-width:980px){.sim{grid-template-columns:1fr;gap:16px}.bus{display:none!important}.phone-wrap{justify-self:center}}
+.console{border-radius:22px;overflow:hidden;background:#F3F4FA;color:#1A1838;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.1)}
+.cbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#E7E8F2;border-bottom:1px solid #DCDCEA}
+.cbar i.d{width:10px;height:10px;border-radius:50%;background:#FF5F57;display:inline-block}.cbar i.d:nth-child(2){background:#FEBC2E}.cbar i.d:nth-child(3){background:#28C840}
+.cbar .url{flex:1;margin-inline-start:10px;background:#fff;border-radius:8px;padding:4px 10px;font-size:11.5px;color:#6B6A8C;direction:ltr;text-align:left;font-family:monospace;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ctabs{display:flex;gap:4px;padding:10px 12px 0;background:#120F33;overflow-x:auto}
+.ctabs::-webkit-scrollbar{height:0}
+.ctabs button{color:#C9C7EA;font-size:13px;padding:10px 14px;border-radius:12px 12px 0 0;display:flex;gap:8px;align-items:center;white-space:nowrap}
+.ctabs button.on{background:#F3F4FA;color:#1A1838;font-weight:700}
+.cbody{padding:18px;min-height:540px}
+.cp{display:none}.cp.on{display:block;animation:fi .35s}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}}
+.wh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.wh .av{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;font-size:17px}
+.wh b{font-size:15px;display:block;font-family:'Noto Kufi Arabic'}.wh small{font-size:12px;color:#6B6A8C}
+.wc{background:#fff;border:1px solid #E8E7F3;border-radius:16px;padding:16px;margin-bottom:12px}
+.wc h4{font-size:13.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.wc h4 i{color:#6D35E8}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;padding:7px 0;border-bottom:1px solid #F0F0F7}
+.row:last-child{border:0}.row span{color:#6B6A8C}
+.rng{display:flex;align-items:center;gap:12px}
+.rng input{flex:1;accent-color:#6D35E8}
+.rng b{font-family:'Noto Kufi Arabic';font-size:18px;min-width:52px;text-align:center}
+.wb{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:11px;font-size:13px;font-weight:700;background:linear-gradient(120deg,#6D35E8,#4F46E5 55%,#0FB3A6);color:#fff;transition:.2s}
+.wb:hover{transform:translateY(-1px)}
+.wb.o{background:#fff;border:1px solid #E8E7F3;color:#1A1838}
+.wb[disabled]{opacity:.45;pointer-events:none}
+.wbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.fm{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fm label{font-size:11.5px;font-weight:700;color:#6B6A8C;display:block;margin-bottom:4px}
+.fm select,.fm input{width:100%;background:#F8F8FD;border:1.5px solid #E8E7F3;border-radius:10px;padding:9px 10px;font-size:13px;outline:none;color:#1A1838}
+.fm .full{grid-column:1/-1}
+@media(max-width:560px){.fm{grid-template-columns:1fr}}
+.pl{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap;display:inline-flex;gap:5px;align-items:center}
+.pl.ok{background:#E2F6EF;color:#12A37F}.pl.am{background:#FDF3E3;color:#C77A12}.pl.pu{background:#F0EBFE;color:#6D35E8}.pl.rd{background:#FDECEC;color:#E5484D}.pl.bl{background:#E8EDFE;color:#3F63F0}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.kp div{background:#fff;border:1px solid #E8E7F3;border-radius:14px;padding:12px}
+.kp b{font-family:'Noto Kufi Arabic';font-size:20px;display:block;line-height:1.3}.kp span{font-size:11.5px;color:#6B6A8C}
+@media(max-width:560px){.kp{grid-template-columns:1fr 1fr}}
+.log{background:#0E0C2A;color:#B9F5EE;border-radius:14px;padding:12px;font-family:monospace;font-size:11.5px;direction:ltr;text-align:left;height:170px;overflow-y:auto;line-height:1.8}
+.log .m{color:#A88BFF}.log .o{color:#5FD3A5}.log .t{color:#6F6C99}
+.ord{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #F0F0F7;font-size:13px}
+.ord:last-child{border:0}.ord .tx{flex:1;min-width:0}.ord .tx small{display:block;color:#6B6A8C;font-size:11.5px}
+.empty{text-align:center;color:#A3A2BC;font-size:12.5px;padding:16px}
+/* bus */
+.bus{position:relative;align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.bus .ln{position:absolute;top:50%;left:6px;right:6px;height:2px;background:repeating-linear-gradient(90deg,rgba(140,118,255,.6) 0 6px,transparent 6px 12px)}
+.bus .hubi{position:relative;z-index:2;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:20px;box-shadow:0 0 0 6px rgba(123,63,242,.15),0 14px 40px -10px rgba(123,63,242,.9)}
+.bus .lb{position:relative;z-index:2;font-size:10.5px;color:var(--muted);text-align:center;background:var(--bg);padding:2px 6px;border-radius:6px}
+.pk{position:absolute;top:calc(50% - 6px);width:12px;height:12px;border-radius:50%;background:var(--t);box-shadow:0 0 14px var(--t);z-index:3;right:0;opacity:0}
+.pk.go{animation:pk .9s cubic-bezier(.5,0,.5,1) forwards}
+.pk.back{background:var(--amber);box-shadow:0 0 14px var(--amber);animation:pkb .9s cubic-bezier(.5,0,.5,1) forwards}
+@keyframes pk{0%{right:0;opacity:1}100%{right:calc(100% - 12px);opacity:1}}
+@keyframes pkb{0%{right:calc(100% - 12px);opacity:1}100%{right:0;opacity:1}}
+/* phone */
+.phone-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cap{font-size:11.5px;color:var(--dim);text-align:center}
+.phone{width:370px;max-width:100%;height:760px;border-radius:48px;border:11px solid #17142f;background:#F6F4EF;position:relative;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.8),0 0 0 1px rgba(140,118,255,.3),0 0 80px -30px rgba(22,209,194,.5);color:#1E1B16}
+@media(max-width:400px){.phone{height:700px}}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:104px;height:26px;background:#17142f;border-radius:20px;z-index:9}
+.sbar{height:42px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 6px;font-size:12px;font-weight:700;background:#fff}
+.ahd{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 10px;background:#fff;border-bottom:1px solid #EEE9DF}
+.ahd .ahel-lg,.ahd .ahel-lg img{height:28px}
+.ahd .ahel-lg .tx{font-size:14px;color:#7A5E2B;background:#F7EEDB;border-color:#E2CFA4}
+.ahd .r{display:flex;gap:12px;color:#7a746a;font-size:16px;position:relative}
+.ahd .dot{position:absolute;top:-3px;left:-4px;min-width:16px;height:16px;border-radius:99px;background:#E5484D;color:#fff;font-size:9.5px;display:grid;place-items:center;font-weight:800;padding:0 4px}
+.scr{position:absolute;top:96px;bottom:66px;left:0;right:0;overflow-y:auto;padding:14px}
+.scr::-webkit-scrollbar{width:0}
+.pg{display:none}.pg.on{display:block;animation:fi .3s}
+.tb{position:absolute;bottom:0;left:0;right:0;height:66px;background:#fff;border-top:1px solid #EEE9DF;display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:6px}
+.tb button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;color:#9a9385}
+.tb button i{font-size:17px}
+.tb button.on{color:#0E7C72;font-weight:700}
+.tb button .nb{font-size:8.5px;font-weight:800;color:#fff;background:#7B3FF2;border-radius:5px;padding:0 4px;line-height:1.5}
+.hi{font-size:12.5px;color:#7a746a}.hn{font-family:'Noto Kufi Arabic';font-size:17px;font-weight:800;margin-bottom:10px}
+.ucard{border-radius:20px;padding:16px;color:#fff;background:linear-gradient(135deg,#1F4537,#2F7A5B 60%,#0FB3A6);position:relative;overflow:hidden;margin-bottom:12px}
+.ucard::after{content:"";position:absolute;width:150px;height:150px;left:-40px;bottom:-60px;background:url(dhamn-icon.png) no-repeat center/contain;opacity:.13}
+.ucard small{opacity:.8;font-size:11.5px}.ucard h4{font-size:16px}
+.ucard .pr{height:8px;border-radius:9px;background:rgba(255,255,255,.2);margin:10px 0 6px;overflow:hidden}
+.ucard .pr i{display:block;height:100%;background:#fff;border-radius:9px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.ucard .meta{display:flex;justify-content:space-between;font-size:11.5px}
+.ucard .src2{position:absolute;top:12px;left:12px;font-size:9.5px;background:rgba(255,255,255,.18);padding:2px 8px;border-radius:99px;display:flex;gap:5px;align-items:center}
+.sec{font-size:12.5px;font-weight:800;margin:14px 0 8px;display:flex;justify-content:space-between;align-items:center}
+.sec small{font-weight:500;color:#9a9385;font-size:11px}
+.exist{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ex{background:#fff;border:1px solid #EEE9DF;border-radius:14px;padding:10px 4px;text-align:center;font-size:10.5px;color:#5c564b;position:relative}
+.ex i{font-size:17px;color:#9C7B3D;display:block;margin-bottom:4px}
+.ex em{position:absolute;top:-6px;inset-inline-start:-4px;font-style:normal;font-size:8.5px;background:#EFE6D2;color:#7A5E2B;border-radius:5px;padding:0 4px;font-weight:700}
+.newt{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nt{background:#fff;border:1.5px solid #E4DCFB;border-radius:16px;padding:12px;text-align:start;position:relative;transition:.2s}
+.nt:hover{border-color:#7B3FF2}
+.nt i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#7B3FF2,#16D1C2);color:#fff;font-size:14px;margin-bottom:6px}
+.nt b{font-size:12.5px;display:block}.nt small{font-size:10.5px;color:#7a746a;line-height:1.5;display:block}
+.nt em{position:absolute;top:8px;left:8px;font-style:normal;font-size:8.5px;background:#EEE6FF;color:#6D35E8;border-radius:5px;padding:0 5px;font-weight:800}
+.wl{background:#fff;border:1px solid #EEE9DF;border-radius:14px;padding:4px 12px}
+.wi{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #F3EEE4;font-size:12px}
+.wi:last-child{border:0}.wi .tx{flex:1}.wi .tx small{display:block;color:#9a9385;font-size:10.5px}
+.wi .ic{width:30px;height:30px;border-radius:9px;background:#EAF7F4;color:#0E7C72;display:grid;place-items:center;font-size:13px}
+.ap{font-size:10px;font-weight:800;padding:2px 7px;border-radius:99px}
+.ap.g{background:#E2F6EF;color:#12A37F}.ap.a{background:#FDF3E3;color:#C77A12}.ap.r{background:#FDECEC;color:#E5484D}.ap.p{background:#F0EBFE;color:#6D35E8}.ap.b{background:#E8EDFE;color:#3F63F0}
+.svc{background:#fff;border:1px solid #EEE9DF;border-radius:16px;padding:12px;margin-bottom:8px;display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center}
+.svc.fresh{animation:fresh 2s}
+@keyframes fresh{0%{box-shadow:0 0 0 3px #16D1C2;background:#E9FBF8}100%{box-shadow:none}}
+.svc .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#F7EEDB;color:#9C7B3D;font-size:16px}
+.svc b{font-size:12.5px;display:block}.svc small{font-size:10.5px;color:#7a746a;display:block;line-height:1.5}
+.svc .pr2{font-family:'Noto Kufi Arabic';font-weight:800;font-size:12.5px;text-align:center}
+.mb{font-size:11px;font-weight:700;padding:6px 10px;border-radius:9px;background:#0E7C72;color:#fff;margin-top:4px;display:block}
+.mb.d{background:#1E1B16}.mb.o{background:#fff;color:#1E1B16;border:1px solid #DDD5C6}
+.mb[disabled]{opacity:.4;pointer-events:none}
+.seg{display:flex;background:#EEE9DF;border-radius:12px;padding:3px;margin-bottom:10px}
+.seg button{flex:1;padding:7px;font-size:11.5px;border-radius:9px;color:#7a746a}
+.seg button.on{background:#fff;color:#1E1B16;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.loan{background:#fff;border:1px solid #EEE9DF;border-radius:16px;padding:12px;margin-bottom:8px}
+.loan .t{display:flex;gap:10px;align-items:center}
+.loan .t .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#F0EBFE;color:#6D35E8;font-size:15px}
+.loan .t .tx{flex:1}.loan .t b{font-size:12.5px;display:block}.loan .t small{font-size:10.5px;color:#7a746a}
+.steps{display:flex;gap:4px;margin:10px 0 8px}
+.steps i{flex:1;height:5px;border-radius:9px;background:#EEE9DF}
+.steps i.on{background:linear-gradient(90deg,#7B3FF2,#16D1C2)}
+.steps i.late{background:#E5484D}
+.loan .note{font-size:10.5px;color:#7a746a;margin-bottom:6px}
+.btns{display:flex;gap:6px}
+.btns .mb{flex:1;text-align:center}
+.prod{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pd{background:#fff;border:1px solid #EEE9DF;border-radius:16px;overflow:hidden}
+.pd .im{height:76px;display:grid;place-items:center;font-size:30px;color:#fff}
+.pd .bd{padding:8px 10px}
+.pd b{font-size:12px;display:block}.pd small{font-size:10px;color:#7a746a;display:block}
+.pd .ft{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.pd .ft span{font-family:'Noto Kufi Arabic';font-weight:800;font-size:12px}
+.pd .add{width:26px;height:26px;border-radius:8px;background:#0E7C72;color:#fff;font-size:12px}
+.cart{position:sticky;bottom:0;margin-top:10px;background:#1E1B16;color:#fff;border-radius:14px;padding:10px 12px;display:none;align-items:center;justify-content:space-between;font-size:12px}
+.cart.on{display:flex}
+.cart .mb{margin:0;background:#fff;color:#000;display:flex;gap:5px;align-items:center}
+.ntf{position:absolute;top:50px;left:10px;right:10px;z-index:8;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-radius:16px;padding:10px 12px;box-shadow:0 14px 40px -10px rgba(0,0,0,.35);display:flex;gap:10px;align-items:center;transform:translateY(-130%);transition:transform .45s cubic-bezier(.2,.9,.3,1.2);font-size:11.5px}
+.ntf.on{transform:none}
+.ntf .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#7B3FF2,#16D1C2);color:#fff;flex-shrink:0}
+.ntf b{display:block;font-size:12px}
+.sheet{position:absolute;inset:0;z-index:7;background:rgba(0,0,0,.4);display:none;align-items:flex-end}
+.sheet.on{display:flex}
+.sh{background:#fff;width:100%;border-radius:22px 22px 0 0;padding:16px 16px 22px;animation:up .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(100%)}}
+.sh .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.sh .hd b{font-size:15px;display:flex;align-items:center;gap:6px}
+.sh .ln2{display:flex;justify-content:space-between;font-size:12.5px;padding:8px 0;border-bottom:1px solid #F0F0F0}
+.sh .tot{font-family:'Noto Kufi Arabic';font-weight:800;font-size:16px}
+.payb{width:100%;margin-top:12px;background:#000;color:#fff;border-radius:12px;padding:12px;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+.payb i{font-size:18px}
+.done{text-align:center;padding:10px 0}
+.done i{font-size:44px;color:#12A37F}
+/* Ahel-aligned phone skin */
+.phone{background:#F7F8F7;color:#1D2A24}
+.ahd{display:flex;align-items:center;gap:10px;padding:8px 14px 10px;background:#fff;border-bottom:1px solid #EDF0EE}
+.ahd .cb{width:34px;height:34px;border-radius:50%;border:1px solid #E3E8E5;display:grid;place-items:center;color:#1F4D3B;font-size:14px;position:relative;flex-shrink:0}
+.ahd .bl{margin-inline-start:auto}
+.ahd .gr b{font-size:13px;display:block;color:#1F4D3B}.ahd .gr small{font-size:10.5px;color:#7B8A83}
+.ahd .dot{position:absolute;top:-4px;left:-4px;min-width:16px;height:16px;border-radius:99px;background:#E5484D;color:#fff;font-size:9.5px;display:grid;place-items:center;font-weight:800;padding:0 4px}
+.ucard{background:linear-gradient(135deg,#173C2E,#1F4D3B 60%,#2C6A50)}
+.sec{color:#1D2A24}.sec small{color:#7B8A83}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tl{position:relative;background:#F1F3F2;border:1px solid #E6EAE8;border-radius:16px;aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:10.5px;color:#3F4D46;text-align:center;padding:6px;overflow:hidden}
+.tl i{font-size:20px;color:#1F4D3B}
+.tl.nw{background:#fff;border-color:#CFE3D8}
+.tl em{position:absolute;top:7px;inset-inline-end:-18px;transform:rotate(-40deg);font-style:normal;font-size:8.5px;background:#7ED9A0;color:#0F3D2A;padding:1px 20px;font-weight:800}
+[dir=rtl] .tl em{transform:rotate(40deg)}
+.gbn{display:flex;align-items:center;gap:10px;width:100%;margin-top:12px;background:#1F4D3B;color:#fff;border-radius:16px;padding:12px 14px;text-align:start}
+.gbn .gi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;flex-shrink:0}
+.gbn div{flex:1}.gbn b{font-size:12.5px;display:block}.gbn small{font-size:10.5px;opacity:.8}
+.evc{background:#fff;border:1px solid #E6EAE8;border-radius:16px;padding:12px}
+.evc b{font-size:13px;display:block}.evc small{font-size:10.5px;color:#7B8A83}
+.wst{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #CFE3D8;border-radius:14px;padding:10px 12px;margin-bottom:10px}
+.wst .ok{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#E2F6EF;color:#12A37F}
+.wst div{flex:1}.wst b{font-size:12.5px;display:block}.wst small{font-size:10.5px;color:#7B8A83}
+.wst .was{font-size:9.5px;color:#C0392B;background:#FDECEC;padding:2px 7px;border-radius:99px;text-decoration:line-through}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}.chips::-webkit-scrollbar{height:0}
+.chips span{font-size:10.5px;padding:6px 11px;border-radius:99px;background:#fff;border:1px solid #E3E8E5;white-space:nowrap}
+.chips span.on{background:#1F4D3B;color:#fff;border-color:#1F4D3B}
+.cseg{display:flex;gap:6px;margin-bottom:10px}
+.cseg button{flex:1;padding:9px;border-radius:12px;font-size:12px;font-weight:700;background:#fff;border:1px solid #E3E8E5;color:#3F4D46}
+.cseg button.on{background:#1F4D3B;color:#fff;border-color:#1F4D3B}
+.tb{border-top:1px solid #EDF0EE}
+.tb button{color:#A3ADA8}.tb button.on{color:#1F4D3B}
+.tb button .nb{background:#2C8A5E}
+.mb{background:#1F4D3B}.pd .add{background:#1F4D3B}
+.wi .ic{background:#EAF2EE;color:#1F4D3B}
+.svc .ic{background:#EAF2EE;color:#1F4D3B}
+.ntf .ic{background:#1F4D3B}
+.seg{background:#EDF0EE}
+.scr{top:106px}
+.ntf{transform:translateY(-220%)}.ntf.on{transform:none}
+/* story strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.sp{padding:18px 16px;border-radius:18px;background:var(--card);border:1px solid var(--line2);position:relative}
+.sp .n{font-family:'Noto Kufi Arabic';font-weight:900;font-size:13px;color:var(--t2);margin-bottom:4px}
+.sp b{font-size:14.5px;display:block;margin-bottom:4px}.sp p{font-size:12.5px;color:var(--muted);line-height:1.7}
+@media(max-width:900px){.strip{grid-template-columns:1fr 1fr}}@media(max-width:520px){.strip{grid-template-columns:1fr}}
+/* value */
+.pil{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+.pi{padding:24px}
+.pi .ic{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:21px;color:#fff;margin-bottom:14px}
+.pi h3{font-size:18px;margin-bottom:6px}
+.pi ul{list-style:none;display:grid;gap:7px;font-size:13.5px;color:#d6d4f0}
+.pi li{display:flex;gap:9px}.pi li i{color:var(--t);margin-top:6px;font-size:11px}
+@media(max-width:900px){.pil{grid-template-columns:1fr}}
+.calc{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}
+.ctrl{margin-bottom:15px}
+.ctrl .lb{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;margin-bottom:7px}
+.ctrl .lb b{color:var(--t2);font-family:'Noto Kufi Arabic';font-size:14px;white-space:nowrap}
+input[type=range].dk{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9px;outline:none;background:linear-gradient(270deg,var(--t) 0,var(--p) var(--v,50%),rgba(255,255,255,.09) var(--v,50%))}
+input[type=range].dk::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--p);cursor:pointer}
+input[type=range].dk::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:5px solid var(--p);cursor:pointer}
+.total{padding:20px;border-radius:18px;background:linear-gradient(150deg,rgba(123,63,242,.22),rgba(22,209,194,.08));border:1px solid var(--line);margin-bottom:12px}
+.total small{font-size:12.5px;color:var(--muted);display:block}
+.total b{font-family:'Noto Kufi Arabic';font-size:clamp(24px,3vw,36px);font-weight:900;display:block;line-height:1.5}
+.total em{font-style:normal;font-size:12px;color:var(--muted)}
+.rr{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;padding:9px 12px;border-radius:11px;background:rgba(255,255,255,.03);margin-bottom:7px}
+.rr span{display:flex;gap:9px;align-items:center}.rr .sw{width:10px;height:10px;border-radius:3px}
+.assume{font-size:11.5px;color:var(--dim);margin-top:10px;line-height:1.8}
+/* arch */
+.arch{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center}
+.an{padding:20px;border-radius:20px;background:var(--card);border:1px solid var(--line2);text-align:center}
+.an .ic{width:50px;height:50px;border-radius:15px;margin:0 auto 10px;display:grid;place-items:center;font-size:20px;color:#fff}
+.an h4{font-size:15px;margin-bottom:6px}
+.an ul{list-style:none;font-size:12.5px;color:var(--muted);display:grid;gap:4px}
+.ar{color:var(--p2);font-size:20px;text-align:center}
+@media(max-width:900px){.arch{grid-template-columns:1fr}.ar{transform:rotate(-90deg)}}
+.ops{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.op{padding:20px;border-radius:20px;border:1.5px solid var(--line2);background:var(--card)}
+.op.rec{border-color:rgba(22,209,194,.5);background:linear-gradient(160deg,rgba(22,209,194,.08),rgba(255,255,255,.02))}
+.op .lbl{font-size:11px;font-weight:800;padding:2px 9px;border-radius:99px;background:rgba(22,209,194,.15);color:var(--t2);display:inline-block;margin-bottom:8px}
+.op h4{font-size:16px;margin-bottom:6px}.op p{font-size:13px;color:var(--muted)}
+@media(max-width:900px){.ops{grid-template-columns:1fr}}
+.gov{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.gv{display:flex;gap:12px;padding:16px;border-radius:16px;background:var(--card);border:1px solid var(--line2)}
+.gv i{color:var(--t);font-size:18px;margin-top:4px}
+.gv b{font-size:13.5px;display:block}.gv span{font-size:12px;color:var(--muted);line-height:1.6;display:block}
+@media(max-width:1000px){.gov{grid-template-columns:1fr 1fr}}@media(max-width:560px){.gov{grid-template-columns:1fr}}
+.final{border-radius:30px;padding:50px 26px;text-align:center;background:radial-gradient(600px 300px at 50% 0%,rgba(123,63,242,.32),transparent 70%),radial-gradient(500px 300px at 50% 110%,rgba(22,209,194,.18),transparent 70%),#0E0C2A;border:1px solid var(--line)}
+.final p{color:#d6d4f0;max-width:680px;margin:0 auto 24px}
+footer{padding:28px 0;border-top:1px solid var(--line2);margin-top:50px;font-size:12.5px;color:var(--dim);text-align:center}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#fff;color:#14112f;padding:11px 18px;border-radius:13px;font-size:13px;z-index:99;opacity:0;transition:.3s;pointer-events:none;display:flex;gap:8px;align-items:center;max-width:92vw;font-weight:600}
+.toast.on{opacity:1;transform:translate(-50%,0)}.toast i{color:#0FB3A6}
+@media(max-width:600px){.btn{white-space:normal;justify-content:center;width:100%}.hero{padding-top:44px}.cbody{padding:12px;min-height:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="aura"></div>
+<header class="nav"><div class="wrap">
+  <div class="trio"><span class="lg"><img src="dhamn-icon.png" alt="الضامن"></span><span class="x">×</span><span class="ahel-lg"><img src="ahel-logo.png" alt="أهل" onerror="this.parentNode.classList.add('fb')"><span class="tx">أهل</span></span><span class="x">×</span><span class="lg"><img src="nhc-logo-white.png" alt="NHC"></span></div>
+  <nav class="navlinks"><a href="#gap">جدول المقارنة</a><a href="#alliance">شكل التحالف</a><a href="#sim">المحاكي</a><a href="#value">القيمة</a><a href="#arch">آلية التكامل</a></nav>
+  <div style="display:flex;gap:8px"><a class="pillk" href="index.html"><i class="fa-solid fa-right-to-bracket"></i><span>بوابات المنصة</span></a><a class="pillk" href="../index.html"><i class="fa-solid fa-house"></i><span>العرض الرئيسي</span></a></div>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <span class="eyebrow"><i class="fa-solid fa-puzzle-piece"></i>مقترح إضافي · تكامل لا ازدواجية</span>
+  <h1>أهل يبقى واجهة الساكن…<br><span class="gt">والضامن يغذّيه بالمطورين ومقدمي الخدمات</span></h1>
+  <p class="lead">لا نبني تطبيقاً منافساً. نربط منصة الضامن الإلكترونية بتطبيق أهل: المطور يحدّث وحداته من موقعنا، ومقدم الخدمة ينشر خدماته من موقعنا، وكل ذلك يظهر للساكن داخل أهل. ونضيف لمجتمع الضاحية «الجار للجار» و«سوق الأسر المنتجة» بدفع إلكتروني موثّق.</p>
+  <div class="lockup">
+    <div class="lu"><div class="im"><img src="dhamn-icon.png" alt=""></div><b>الضامن</b><small>منصة المطورين ومقدمي الخدمات</small></div>
+    <span class="plus"><i class="fa-solid fa-link"></i></span>
+    <div class="lu"><div class="im"><span class="ahel-lg"><img src="ahel-logo.png" alt="أهل" onerror="this.parentNode.classList.add('fb')"><span class="tx">أهل</span></span></div><b>تطبيق أهل</b><small>واجهة الساكن في الضاحية</small></div>
+    <span class="plus"><i class="fa-solid fa-link"></i></span>
+    <div class="lu"><div class="im"><img src="nhc-logo-white.png" alt="NHC"></div><b>الشركة الوطنية للإسكان</b><small>المالك والمشغّل</small></div>
+  </div>
+  <div class="ctas"><a href="#sim" class="btn btn-p"><i class="fa-solid fa-play"></i>جرّب المحاكي المترابط</a><a href="ahel-app.html" class="btn btn-g"><i class="fa-solid fa-mobile-screen-button"></i>محاكاة تطبيق أهل كاملة</a><a href="index.html" class="btn btn-g"><i class="fa-solid fa-right-to-bracket"></i>بوابات منصة الضامن</a></div>
+  <div class="thanks"><i class="fa-solid fa-handshake-angle"></i><span>أهل أسّس القناة الرقمية للمجتمع: الهوية الرقمية، الفعاليات، الخريطة والمرافق، وصيانة سهل. هذا المقترح يبني فوق ما أُنجز ويكمله، ولا يكرره.</span></div>
+</div></section>
+
+<section class="s" id="gap"><div class="wrap">
+  <div class="s-head"><span class="tag">جدول المقارنة</span><h2>ما الموجود في أهل؟ ما الناقص؟ <span class="gt">وكيف يكمله التحالف؟</span></h2><p>بنيت المقارنة على تجربة فعلية لتطبيق أهل بنسخته الحالية. كل ما يعمل في أهل يبقى كما هو، والتحالف يملأ ما ينقصه فقط.</p></div>
+  <div class="sum">
+    <button class="sm2 on" data-f="all"><b>16</b><span>قدرة تمت مقارنتها</span></button>
+    <button class="sm2 y" data-f="y"><b>6</b><span>موجودة في أهل</span></button>
+    <button class="sm2 p" data-f="p"><b>3</b><span>موجودة جزئياً</span></button>
+    <button class="sm2 n" data-f="n"><b>7</b><span>غير موجودة</span></button>
+  </div>
+  <div class="ctw"><table class="ctb"><thead><tr><th>القدرة</th><th>أهل اليوم</th><th>ما الناقص</th><th>ما يضيفه الضامن</th><th>بعد التحالف · من يتولى</th></tr></thead><tbody id="ctBody">
+<tr data-s="y"><td><span class="ct">الأساس</span><b>الهوية الرقمية وبيانات الوحدة</b></td><td><span class="st sy"><i class="fa-solid fa-circle-check"></i>موجود</span><small>الوحدة تظهر في الحساب مع الهوية الرقمية</small></td><td class="gp">—</td><td class="ad">—</td><td>يبقى كما هو في أهل<span class="ow oa">أهل</span></td></tr>
+<tr data-s="y"><td><span class="ct">الأساس</span><b>الأخبار والعروض والفعاليات</b></td><td><span class="st sy"><i class="fa-solid fa-circle-check"></i>موجود</span><small>أخبار NHC، عروض، فعاليات مع التسجيل</small></td><td class="gp">—</td><td class="ad">—</td><td>يبقى كما هو في أهل<span class="ow oa">أهل</span></td></tr>
+<tr data-s="y"><td><span class="ct">الأساس</span><b>الخريطة التفاعلية والمرافق</b></td><td><span class="st sy"><i class="fa-solid fa-circle-check"></i>موجود</span><small>حدائق، مساجد، مراكز تجارية، حجز المرافق</small></td><td class="gp">—</td><td class="ad">—</td><td>يبقى كما هو في أهل<span class="ow oa">أهل</span></td></tr>
+<tr data-s="y"><td><span class="ct">الأساس</span><b>ترشيح مهتم وإعادة البيع</b></td><td><span class="st sy"><i class="fa-solid fa-circle-check"></i>موجود</span><small>ترشيح الأصدقاء لشراء وحدة، وعرض الوحدة للبيع</small></td><td class="gp">—</td><td class="ad">—</td><td>يبقى كما هو في أهل<span class="ow oa">أهل</span></td></tr>
+<tr data-s="y"><td><span class="ct">الأساس</span><b>المحفظة والاشتراكات</b></td><td><span class="st sy"><i class="fa-solid fa-circle-check"></i>موجود</span><small>محفظة واشتراكات داخل التطبيق</small></td><td class="gp">لا يوجد ما يُدفع عليه بانتظام</td><td class="ad">السوق والخدمات تمر عبر المحفظة</td><td>المحفظة تصبح قناة دخل نشطة<span class="ow ob">أهل + الضامن</span></td></tr>
+<tr data-s="p"><td><span class="ct">بيانات الوحدة</span><b>التابعون</b></td><td><span class="st sp2"><i class="fa-solid fa-circle-half-stroke"></i>جزئي</span><small>إضافة التابعين من الساكن نفسه</small></td><td class="gp">إدخال يدوي، ويشتكي منه بعض المستخدمين</td><td class="ad">المطور يسجّل الأسرة عند توقيع العقد</td><td>حساب الأسرة جاهز من أول يوم<span class="ow ob">أهل + الضامن</span></td></tr>
+<tr data-s="p"><td><span class="ct">بيانات الوحدة</span><b>نسبة الإنجاز وتاريخ التسليم</b></td><td><span class="st sp2"><i class="fa-solid fa-circle-half-stroke"></i>جزئي</span><small>تُطلب كاستفسار من «الدعم والمساعدة»</small></td><td class="gp">لا عرض حي ولا تحديث تلقائي</td><td class="ad">المطور يحدّث الإنجاز من بوابته</td><td>تظهر للساكن تلقائياً مع إشعار<span class="ow ob">أهل + الضامن</span></td></tr>
+<tr data-s="n"><td><span class="ct">بيانات الوحدة</span><b>حالة الضمان</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>تظهر «الضمان غير معروف»: لا تتوفر بيانات الضمان</small></td><td class="gp">بيانات الضمان لا تصل من المطور</td><td class="ad">رادار الضمانات: البنود، المدد، الموردون، التنبيهات</td><td>«الضمان ساري» لكل بند مع تنبيه قبل الانتهاء<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+<tr data-s="y"><td><span class="ct">الخدمات</span><b>بلاغات الصيانة</b></td><td><span class="st sy"><i class="fa-solid fa-circle-check"></i>موجود</span><small>تصنيفات: مدنية، سباكة، كهرباء، تكييف، نجارة…</small></td><td class="gp">البلاغ لا يُعرف إن كان تحت الضمان، ولا تُقاس الجهة المسؤولة</td><td class="ad">توجيه آلي: للمطور إن كان تحت الضمان، ولمقدم الخدمة إن انتهى</td><td>استجابة أسرع وتكلفة أقل على NHC<span class="ow ob">أهل + الضامن</span></td></tr>
+<tr data-s="p"><td><span class="ct">الخدمات</span><b>خدمات سهل</b></td><td><span class="st sp2"><i class="fa-solid fa-circle-half-stroke"></i>جزئي</span><small>زيارات فورية (غسيل سيارات)، والباقات غير متاحة حالياً</small></td><td class="gp">تنوع محدود ومزودون قليلون</td><td class="ad">سوق مقدمي خدمات معتمدين بحسابات مستقلة</td><td>خدمات أكثر داخل «سهل» دون تطوير إضافي على أهل<span class="ow ob">أهل + الضامن</span></td></tr>
+<tr data-s="n"><td><span class="ct">الخدمات</span><b>فحص قبل الاستلام</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">الساكن يستلم دون فحص هندسي</td><td class="ad">مكاتب فحص معتمدة بتقرير موثق</td><td>زر «افحص قبل الاستلام» قبل تسليم المفتاح<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+<tr data-s="n"><td><span class="ct">الخدمات</span><b>بوابة المطورين</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">لا قناة للمطور لتحديث بيانات وحداته</td><td class="ad">بوابة الضامن للمطورين</td><td>بيانات الوحدات من مصدرها مباشرة<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+<tr data-s="n"><td><span class="ct">الخدمات</span><b>بوابة مقدمي الخدمات</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">لا يستطيع المزود إدارة خدماته وأسعاره بنفسه</td><td class="ad">بوابة الضامن لمقدمي الخدمة</td><td>خدماتهم تنعكس في أهل تلقائياً<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+<tr data-s="n"><td><span class="ct">الخدمات</span><b>ذكاء جودة المطورين</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">البلاغات لا تتحول إلى مؤشر لأداء المطور</td><td class="ad">مؤشر جودة من بلاغات الضمان الفعلية</td><td>ورقة ضغط لـ NHC في تخصيص المشاريع<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+<tr data-s="n"><td><span class="ct">المجتمع</span><b>الجار للجار</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">الإعارة على الواتساب والحرج من المطالبة</td><td class="ad">طلب وإعارة بسجل وتذكير وتأكيد إرجاع</td><td>مجتمع منظم داخل أهل<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+<tr data-s="n"><td><span class="ct">المجتمع</span><b>سوق الأسر المنتجة</b></td><td><span class="st sn"><i class="fa-solid fa-circle-xmark"></i>غير موجود</span><small>—</small></td><td class="gp">البيع على الواتساب والدفع كاش أو تحويل</td><td class="ad">سوق موثق ودفع Apple Pay ومدى</td><td>رسوم معاملات وحوكمة للأسر المنتجة<span class="ow od">الضامن يغذّي أهل</span></td></tr>
+</tbody></table></div>
+  <div class="call"><span class="ci"><i class="fa-solid fa-circle-exclamation"></i></span><div><b>المثال الأوضح: «حالة الضمان غير معروفة»</b><p>عند رفع بلاغ صيانة في أهل اليوم تظهر رسالة بأن بيانات الضمان غير مكتملة. السبب أن بيانات الضمان عند المطور ولا تصل للتطبيق. بوابة المطورين في الضامن تنقلها مباشرة، فتصبح الرسالة: «الضمان ساري · المكيفات حتى 2031» ويُوجَّه البلاغ للمطور تلقائياً.</p></div></div>
+</div></section>
+
+<section class="s" id="alliance" style="padding-top:20px"><div class="wrap">
+  <div class="s-head"><span class="tag">شكل التحالف</span><h2>أهل الواجهة، والضامن المحرّك، <span class="gt">وNHC صاحبة القرار</span></h2><p>تقسيم واضح للأدوار يمنع الازدواجية: الساكن لا يرى إلا أهل، والمطور ومقدم الخدمة والأسرة المنتجة يعملون من موقع الضامن.</p></div>
+  <div class="raci">
+    <div class="rc ra"><div class="rh"><span class="ahel-lg"><img src="ahel-logo.png" alt="أهل" onerror="this.parentNode.classList.add('fb')"><span class="tx">أهل</span></span><b>واجهة الساكن</b></div><ul><li>الهوية الرقمية والتصاريح</li><li>الفعاليات والأخبار والعروض</li><li>الخريطة والمرافق</li><li>عرض الوحدة والضمانات والخدمات</li><li>المحفظة والدفع</li></ul></div>
+    <div class="rc rd"><div class="rh"><img src="dhamn-icon.png" alt=""><b>محرّك البيانات والخدمات</b></div><ul><li>بوابة المطورين: الوحدات، الإنجاز، التابعون، الضمانات</li><li>بوابة مقدمي الخدمة والفحص</li><li>تسجيل الأسر المنتجة وحوكمتها</li><li>توجيه البلاغات وقياس الاستجابة</li><li>تشغيل ودعم المزودين</li></ul></div>
+    <div class="rc rn"><div class="rh"><img src="nhc-logo-white.png" alt="NHC" style="height:26px"><b>المالك وصاحب القرار</b></div><ul><li>ملكية البيانات والعلامة</li><li>اعتماد المطورين والمزودين</li><li>السياسات والأسعار والرسوم</li><li>لوحة ذكاء الجودة</li><li>الإيراد المشترك</li></ul></div>
+  </div>
+  <div class="phs">
+    <div class="ph2"><span class="pn">المرحلة 1</span><b>ربط بيانات الوحدات والضمانات</b><p>بوابة المطورين تغذي أهل: الإنجاز، التابعون، الضمانات. تنتهي رسالة «الضمان غير معروف».</p></div>
+    <div class="ph2"><span class="pn">المرحلة 2</span><b>سوق الخدمات المعتمدة</b><p>مقدمو الخدمة والفحص ينشرون من الضامن، والحجز والدفع داخل «سهل» في أهل.</p></div>
+    <div class="ph2"><span class="pn">المرحلة 3</span><b>المجتمع</b><p>«الجار للجار» و«سوق الأسر المنتجة» كأقسام جديدة في أهل بدفع إلكتروني.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="sim" style="padding-top:30px"><div class="wrap">
+  <div class="s-head"><span class="tag">المحاكي المترابط</span><h2>نفّذ إجراءً في موقع الضامن… <span class="gt">وشاهده يظهر في أهل</span></h2><p>موقع الضامن كما يراه المطور ومقدم الخدمة والأسرة المنتجة وإدارة NHC، وبجانبه تصوّر لتطبيق أهل بعد التكامل. كل زر هنا يرسل بيانات بين الطرفين داخل العرض.</p></div>
+  <div class="sim">
+    <div class="console">
+      <div class="cbar"><i class="d"></i><i class="d"></i><i class="d"></i><span class="url" id="url">aldhamn.sa/developer</span></div>
+      <div class="ctabs"><button class="on" data-c="dev"><i class="fa-solid fa-building"></i>المطور العقاري</button><button data-c="ven"><i class="fa-solid fa-store"></i>مقدم الخدمة</button><button data-c="fam"><i class="fa-solid fa-basket-shopping"></i>الأسرة المنتجة</button><button data-c="nhc"><i class="fa-solid fa-building-columns"></i>إدارة NHC</button></div>
+      <div class="cbody">
+        <div class="cp on" id="c-dev">
+          <div class="wh"><span class="av" style="background:linear-gradient(135deg,#7B3FF2,#4F46E5)"><i class="fa-solid fa-building"></i></span><div><b>المطور الثلاثي</b><small>ضاحية الخزام · المرحلة B · حساب مطور</small></div></div>
+          <div class="wc"><h4><i class="fa-solid fa-house"></i>الوحدة B-214 · عبدالله العتيبي</h4>
+            <div class="row"><span>المستفيد وعائلته</span><b id="famCount">المستفيد + 3 تابعين</b></div>
+            <div class="row"><span>الحالة في أهل</span><b id="devSync"><span class="pl ok"><i class="fa-solid fa-link"></i>متزامنة</span></b></div>
+            <div style="margin-top:12px"><label style="font-size:12px;color:#6B6A8C;font-weight:700">نسبة الإنجاز</label><div class="rng"><input type="range" id="prog" min="60" max="100" value="94"><b id="progT">94%</b></div></div>
+            <div class="wbs"><button class="wb" onclick="pushProg()"><i class="fa-solid fa-arrows-rotate"></i>تحديث الإنجاز</button><button class="wb o" onclick="addDep()"><i class="fa-solid fa-user-plus"></i>إضافة تابع</button><button class="wb o" id="hoBtn" onclick="handover()" disabled><i class="fa-solid fa-key"></i>تسليم المفتاح</button></div>
+          </div>
+          <div class="wc"><h4><i class="fa-solid fa-shield-halved"></i>ضمانات الوحدة</h4>
+            <div class="fm"><div><label>البند</label><select id="wItem"><option>المكيفات · 5 سنوات</option><option>السخانات · سنتان</option><option>العزل المائي · 10 سنوات</option><option>الأبواب والنوافذ · سنتان</option></select></div><div style="display:flex;align-items:flex-end"><button class="wb" style="width:100%;justify-content:center" onclick="addWarranty()"><i class="fa-solid fa-plus"></i>إضافة ونشر</button></div></div>
+          </div>
+          <div class="wc" style="margin:0"><h4><i class="fa-solid fa-triangle-exclamation"></i>بلاغات الضمان الواردة من أهل</h4><div id="devTickets"><div class="empty">لا توجد بلاغات. جرّب «بلاغ تحت الضمان» من التطبيق.</div></div></div>
+        </div>
+        <div class="cp" id="c-ven">
+          <div class="wh"><span class="av" style="background:linear-gradient(135deg,#E8962A,#C2410C)"><i class="fa-solid fa-store"></i></span><div><b>مكتب الفحص الهندسي الدقيق</b><small>مقدم خدمة معتمد · ★ 4.9</small></div></div>
+          <div class="wc"><h4><i class="fa-solid fa-bullhorn"></i>نشر خدمة جديدة في أهل</h4>
+            <div class="fm"><div class="full"><label>الخدمة</label><select id="sName"><option value="0">فحص هندسي قبل الاستلام</option><option value="1">كشف تسربات بالأجهزة الحرارية</option><option value="2">صيانة مكيفات دورية</option><option value="3">سباكة طارئة خلال ساعتين</option></select></div><div><label>السعر (ريال)</label><input id="sPrice" type="number" value="1450"></div><div><label>زمن الاستجابة</label><select id="sEta"><option>نفس اليوم</option><option>خلال 24 ساعة</option><option>خلال ساعتين</option></select></div></div>
+            <div class="wbs"><button class="wb" onclick="pubService()"><i class="fa-solid fa-paper-plane"></i>نشر في أهل</button></div>
+          </div>
+          <div class="wc" style="margin:0"><h4><i class="fa-solid fa-inbox"></i>الطلبات الواردة من أهل</h4><div id="venOrders"><div class="empty">لا توجد طلبات بعد. احجز خدمة من التطبيق.</div></div></div>
+        </div>
+        <div class="cp" id="c-fam">
+          <div class="wh"><span class="av" style="background:linear-gradient(135deg,#C9A86A,#9C7B3D)"><i class="fa-solid fa-kitchen-set"></i></span><div><b>مطبخ أم سلطان</b><small>أسرة منتجة موثقة · الوحدة B-230</small></div></div>
+          <div class="wc"><h4><i class="fa-solid fa-plus"></i>إضافة منتج</h4>
+            <div class="fm"><div><label>المنتج</label><select id="pName"><option value="0">كليجا القصيم · علبة</option><option value="1">سمبوسة مجمدة · 30 حبة</option><option value="2">قهوة سعودية مُحمّصة · نصف كيلو</option></select></div><div><label>السعر</label><input id="pPrice" type="number" value="45"></div></div>
+            <div class="wbs"><button class="wb" onclick="pubProduct()"><i class="fa-solid fa-paper-plane"></i>نشر في السوق</button></div>
+          </div>
+          <div class="wc" style="margin:0"><h4><i class="fa-solid fa-receipt"></i>الطلبات المدفوعة</h4><div id="famOrders"><div class="empty">لا توجد طلبات. اطلب من «الأسر المنتجة» في التطبيق.</div></div></div>
+        </div>
+        <div class="cp" id="c-nhc">
+          <div class="wh"><span class="av" style="background:linear-gradient(135deg,#2F7A5B,#1F4537)"><i class="fa-solid fa-building-columns"></i></span><div><b>إدارة الضاحية · NHC</b><small>ضاحية الخزام · لوحة التكامل</small></div></div>
+          <div class="kp"><div><b id="k1">1</b><span>وحدة متزامنة مع أهل</span></div><div><b id="k2">3</b><span>خدمة منشورة</span></div><div><b id="k3">0</b><span>إعارة بين الجيران</span></div><div><b id="k4">0</b><span>طلب مدفوع إلكترونياً</span></div><div><b id="k5">0</b><span>قيمة المعاملات (ريال)</span></div><div><b id="k6">0</b><span>بلاغ ضمان موجَّه للمطور</span></div></div>
+          <div class="wc"><h4><i class="fa-solid fa-terminal"></i>سجل التكامل (API)</h4><div class="log" id="log"></div></div>
+          <div class="wc" style="margin:0"><h4><i class="fa-solid fa-chart-simple"></i>ما تحصل عليه NHC</h4><div style="font-size:12.5px;color:#6B6A8C;line-height:1.9">• بيانات الوحدات والضمانات من المطور مباشرة، بلا إدخال يدوي.<br>• كل معاملة دفع داخل أهل تولّد دخلاً وسجلاً قابلاً للتدقيق.<br>• مؤشرات جودة المطورين من بلاغات الضمان الفعلية.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="bus" id="bus"><span class="ln"></span><span class="pk" id="pk"></span><span class="hubi"><i class="fa-solid fa-plug-circle-bolt"></i></span><span class="lb">بوابة التكامل<br>API آمن</span></div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="sbar"><span>9:41</span><span><i class="fa-solid fa-signal"></i> <i class="fa-solid fa-wifi"></i> <i class="fa-solid fa-battery-three-quarters"></i></span></div>
+        <div class="ahd"><span class="cb"><i class="fa-solid fa-bars"></i></span><div class="gr"><b>مرحباً، عبدالله 👋</b><small><i class="fa-regular fa-building"></i> وحدة B-214 · ضاحية الخزام</small></div><span class="cb bl"><i class="fa-regular fa-bell"></i><span class="dot" id="bell" style="display:none">0</span></span></div>
+        <div class="ntf" id="ntf"><span class="ic"><i class="fa-solid fa-bell" id="ntfI"></i></span><div><b id="ntfT"></b><span id="ntfB"></span></div></div>
+        <div class="scr" id="scr">
+          <!-- HOME -->
+          <div class="pg on" id="a-home">
+            <div class="ucard"><span class="src2"><i class="fa-solid fa-link"></i>من المطور عبر الضامن</span><small>المطور الثلاثي · ضاحية الخزام</small><h4>فيلا B-214</h4><div class="pr"><i id="uBar" style="width:94%"></i></div><div class="meta"><span id="uStat">قيد الإنشاء</span><b id="uPct">94%</b></div></div>
+            <div class="sec">الخدمات</div>
+            <div class="tiles">
+              <div class="tl"><i class="fa-regular fa-map"></i>الخريطة التفاعلية</div>
+              <div class="tl"><i class="fa-regular fa-circle-question"></i>الدعم والمساعدة</div>
+              <div class="tl"><i class="fa-solid fa-screwdriver-wrench"></i>صيانة سهل</div>
+              <div class="tl"><i class="fa-solid fa-person-swimming"></i>المرافق</div>
+              <button class="tl nw" onclick="tab('svc')"><em>جديد</em><i class="fa-solid fa-shield-halved"></i>ضماناتي</button>
+              <button class="tl nw" onclick="tab('svc')"><em>جديد</em><i class="fa-solid fa-clipboard-check"></i>خدمات معتمدة</button>
+              <button class="tl nw" onclick="tab('jar')"><em>جديد</em><i class="fa-solid fa-people-arrows"></i>الجار للجار</button>
+              <button class="tl nw" onclick="tab('fam')"><em>جديد</em><i class="fa-solid fa-basket-shopping"></i>الأسر المنتجة</button>
+              <div class="tl"><i class="fa-regular fa-calendar"></i>الفعاليات</div>
+            </div>
+            <button class="gbn" onclick="tab('fam')"><span class="gi"><i class="fa-solid fa-basket-shopping"></i></span><div><b>من مطابخ جيرانك</b><small>ورق عنب، مرقوق، حلا… بدفع إلكتروني</small></div><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="sec">الفعاليات <small>عرض الكل</small></div>
+            <div class="evc"><b>أمسية الحي الشتوية</b><small>فعالية مجتمعية · الخميس 7:00 م · الساحة المركزية</small></div>
+          </div>
+          <!-- MAINTENANCE -->
+          <div class="pg" id="a-svc">
+            <div class="wst"><span class="ok"><i class="fa-solid fa-circle-check"></i></span><div><b>الضمان ساري</b><small id="wCount">2 بنود · من المطور عبر الضامن</small></div><span class="was">كان: غير معروف</span></div>
+            <div class="chips"><span class="on">الأعمال المدنية</span><span>السباكة</span><span>الكهرباء</span><span>التكييف</span></div>
+            <div class="wl" id="wlist"></div>
+            <button class="gbn" style="margin-top:10px" onclick="warrantyTicket()"><span class="gi"><i class="fa-solid fa-shield-halved"></i></span><div><b>بلاغ تحت الضمان</b><small>يُوجَّه تلقائياً للمطور المسؤول · مجاناً</small></div><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="sec">خدمات معتمدة <small>من مقدمي الخدمة عبر الضامن</small></div>
+            <div id="svcList"></div>
+          </div>
+          <!-- COMMUNITY: NEIGHBOR -->
+          <div class="pg" id="a-jar">
+            <div class="cseg"><button class="on" onclick="tab('jar')">الجار للجار</button><button onclick="tab('fam')">الأسر المنتجة</button></div>
+            <div class="seg" id="jseg"><button class="on" data-j="req">طلبات الجيران</button><button data-j="mine">إعاراتي</button></div>
+            <div id="jarBody"></div>
+          </div>
+          <!-- COMMUNITY: FAMILY -->
+          <div class="pg" id="a-fam">
+            <div class="cseg"><button onclick="tab('jar')">الجار للجار</button><button class="on" onclick="tab('fam')">الأسر المنتجة</button></div>
+            <div class="hi" style="margin:0 0 10px">أسر موثقة من سكان الضاحية · دفع إلكتروني فقط</div>
+            <div class="prod" id="prodList"></div>
+            <div class="cart" id="cart"><span id="cartT"></span><button class="mb" onclick="checkout()"><i class="fa-brands fa-apple-pay" style="font-size:22px"></i></button></div>
+          </div>
+          <!-- ORDERS -->
+          <div class="pg" id="a-ord">
+            <div class="hn">الطلبات</div>
+            <div class="wl" id="ordList"><div class="hi" style="padding:14px;text-align:center">لا توجد طلبات بعد</div></div>
+          </div>
+          <!-- ACCOUNT -->
+          <div class="pg" id="a-acc">
+            <div class="hn">الحساب</div>
+            <div class="sec">وحداتي</div>
+            <div class="wl"><div class="wi"><span class="ic"><i class="fa-solid fa-house"></i></span><div class="tx"><b>فيلا B-214</b><small>ضاحية الخزام · المطور الثلاثي</small></div></div></div>
+            <div class="sec">التابعون <small>يضيفهم المطور عند العقد</small></div>
+            <div class="wl" id="flist"></div>
+          </div>
+        </div>
+        <div class="sheet" id="sheet"><div class="sh" id="shBody"></div></div>
+        <div class="tb"><button class="on" data-t="home"><i class="fa-solid fa-house"></i>الرئيسية</button><button data-t="svc"><i class="fa-solid fa-screwdriver-wrench"></i>الصيانة</button><button data-t="jar" data-g="com"><i class="fa-solid fa-people-roof"></i>المجتمع<span class="nb">جديد</span></button><button data-t="ord"><i class="fa-regular fa-file-lines"></i>الطلبات</button><button data-t="acc"><i class="fa-regular fa-user"></i>الحساب</button></div>
+      </div>
+      <div class="cap">تصوّر مقترح لشاشات أهل بعد التكامل · ليس التطبيق الفعلي</div>
+      <a href="ahel-app.html" class="btn btn-g" style="font-size:13px;padding:10px 16px"><i class="fa-solid fa-expand"></i>افتح التطبيق كاملاً</a>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="sp"><div class="n">الجار للجار · 1</div><b>الجار يطلب</b><p>«أحتاج مطرقة ليوم واحد» يظهر لجيران الضاحية فقط، باسم الوحدة.</p></div>
+    <div class="sp"><div class="n">2</div><b>جار يُعير</b><p>تُسجَّل الإعارة: من أعار، لمن، ماذا، وموعد الإرجاع.</p></div>
+    <div class="sp"><div class="n">3</div><b>تذكير تلقائي</b><p>التطبيق يذكّر المستعير بدلاً من أن يحرج المعير نفسه بالسؤال.</p></div>
+    <div class="sp"><div class="n">4</div><b>لا تُغلق إلا بتأكيد المعير</b><p>المستعير يضغط «أرجعتها»، والإعارة تبقى مفتوحة حتى يؤكد صاحبها الاستلام.</p></div>
+  </div>
+</div></section>
+
+<section class="s" id="value"><div class="wrap">
+  <div class="s-head c"><span class="tag">القيمة</span><h2>لماذا التكامل أفضل <span class="gt">من تطبيق جديد؟</span></h2><p>تطبيق ثانٍ للساكن يعني تعارضاً وتكلفة مكررة وتشتيتاً. التكامل يجعل أهل أقوى، والضامن يعمل خلفه.</p></div>
+  <div class="pil">
+    <div class="card pi"><div class="ic" style="background:linear-gradient(135deg,#2F7A5B,#1F4537)"><i class="fa-solid fa-coins"></i></div><h3>خفض التكلفة</h3><ul><li><i class="fa-solid fa-check"></i>لا تطبيق مكرر ولا تسويق لتطبيق جديد</li><li><i class="fa-solid fa-check"></i>المطور يُدخل بياناته بنفسه بدل فرق الإدخال</li><li><i class="fa-solid fa-check"></i>بلاغات الضمان تُحمَّل على المطور لا على NHC</li></ul></div>
+    <div class="card pi"><div class="ic" style="background:linear-gradient(135deg,#7B3FF2,#4F46E5)"><i class="fa-solid fa-bolt"></i></div><h3>استجابة أسرع</h3><ul><li><i class="fa-solid fa-check"></i>البلاغ يذهب مباشرة لجهة مسؤولة وتقاس سرعتها</li><li><i class="fa-solid fa-check"></i>حساب الساكن مكتمل من يوم توقيع العقد</li><li><i class="fa-solid fa-check"></i>أشهر تطوير أقل لأن الواجهة قائمة</li></ul></div>
+    <div class="card pi"><div class="ic" style="background:linear-gradient(135deg,#16D1C2,#4F46E5)"><i class="fa-solid fa-chart-line"></i></div><h3>دخل إضافي</h3><ul><li><i class="fa-solid fa-check"></i>رسوم استضافة ملفات الوحدات من المطورين</li><li><i class="fa-solid fa-check"></i>عمولات واشتراكات مقدمي الخدمات</li><li><i class="fa-solid fa-check"></i>رسوم معاملات سوق الأسر المنتجة</li></ul></div>
+  </div>
+  <div class="calc">
+    <div class="card">
+      <h3 style="font-size:16px;margin-bottom:14px"><i class="fa-solid fa-sliders" style="color:var(--t)"></i> حرّك الافتراضات</h3>
+      <div class="ctrl"><div class="lb"><span>عدد الوحدات في الضواحي المتكاملة</span><b id="uT"></b></div><input class="dk" type="range" id="u" min="5000" max="100000" step="5000" value="20000"></div>
+      <div class="ctrl"><div class="lb"><span>رسوم استضافة ملف الوحدة (مرة واحدة)</span><b id="hT"></b></div><input class="dk" type="range" id="h" min="100" max="1000" step="50" value="350"></div>
+      <div class="ctrl"><div class="lb"><span>إنفاق الوحدة على الخدمات سنوياً</span><b id="sT"></b></div><input class="dk" type="range" id="s" min="200" max="3000" step="100" value="800"></div>
+      <div class="ctrl"><div class="lb"><span>طلبات الأسر المنتجة لكل وحدة شهرياً</span><b id="fT"></b></div><input class="dk" type="range" id="f" min="0" max="6" step="0.5" value="1.5"></div>
+      <div class="ctrl" style="margin:0"><div class="lb"><span>مقدمو خدمات مشتركون</span><b id="vT"></b></div><input class="dk" type="range" id="v" min="20" max="1000" step="20" value="200"></div>
+    </div>
+    <div class="card" style="border-color:var(--line)">
+      <div class="total"><small>إجمالي الدخل السنوي التقديري</small><b id="tot"></b><em>ريال سعودي · قبل أي تقسيم بين الأطراف</em></div>
+      <div id="rows"></div>
+      <p class="assume">افتراضات ثابتة للعرض: عمولة الخدمات 12% · متوسط طلب الأسر المنتجة 60 ريالاً برسوم معاملة 8% · اشتراك مقدم الخدمة 3,000 ريال سنوياً · رسوم الاستضافة تُحتسب لدفعة الوحدات الحالية. الأرقام تقديرية ونسب الشراكة لم تُحدد بعد.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="s" id="arch"><div class="wrap">
+  <div class="s-head"><span class="tag">آلية التكامل</span><h2>من يدير ماذا؟ <span class="gt">أدوار واضحة بلا تعارض</span></h2><p>البيانات ملك NHC، وأهل يبقى الواجهة الوحيدة للساكن، والضامن يدير الخلفية التي لا يراها الساكن: حسابات المطورين ومقدمي الخدمات والأسر المنتجة.</p></div>
+  <div class="arch">
+    <div class="an"><div class="ic" style="background:linear-gradient(135deg,#7B3FF2,#4F46E5)"><i class="fa-solid fa-laptop"></i></div><h4>موقع الضامن</h4><ul><li>حسابات المطورين ووحداتهم</li><li>حسابات مقدمي الخدمات</li><li>تسجيل الأسر المنتجة</li><li>ذكاء الجودة للإدارة</li></ul></div>
+    <div class="ar"><i class="fa-solid fa-arrow-left"></i></div>
+    <div class="an" style="border-color:var(--line)"><div class="ic" style="background:var(--grad)"><i class="fa-solid fa-plug-circle-bolt"></i></div><h4>بوابة التكامل</h4><ul><li>واجهات API موثقة</li><li>دخول موحد عبر نفاذ</li><li>تشفير وسجل تدقيق</li><li>استضافة داخل المملكة</li></ul></div>
+    <div class="ar"><i class="fa-solid fa-arrow-left"></i></div>
+    <div class="an"><div class="ic" style="background:linear-gradient(135deg,#C9A86A,#9C7B3D)"><i class="fa-solid fa-mobile-screen"></i></div><h4>تطبيق أهل</h4><ul><li>الواجهة الوحيدة للساكن</li><li>يعرض الوحدة والضمانات</li><li>الحجز والدفع والإعارة</li><li>الهوية والتصاريح كما هي</li></ul></div>
+  </div>
+  <div class="ops">
+    <div class="op rec"><span class="lbl">المقترح</span><h4>الضامن يشغّل الخلفية</h4><p>نبني ونشغّل بوابات المطورين ومقدمي الخدمات والأسر، ونربطها بأهل عبر API. فريق أهل يضيف الشاشات الجديدة.</p></div>
+    <div class="op"><h4>تشغيل مشترك لأهل</h4><p>فريق مشترك يدير خارطة طريق أهل وتشغيله، والضامن مسؤول عن سوق الخدمات والمجتمع.</p></div>
+    <div class="op"><h4>وحدات جاهزة داخل أهل</h4><p>نسلّم شاشات «الجار للجار» و«الأسر المنتجة» و«الخدمات» كوحدات تُدمج في تطبيق أهل مباشرة.</p></div>
+  </div>
+  <div class="gov">
+    <div class="gv"><i class="fa-solid fa-database"></i><div><b>البيانات لـ NHC</b><span>الضامن معالج بيانات بموجب اتفاقية، لا مالك لها.</span></div></div>
+    <div class="gv"><i class="fa-solid fa-fingerprint"></i><div><b>نفاذ</b><span>دخول موحد للمطورين والمستفيدين.</span></div></div>
+    <div class="gv"><i class="fa-solid fa-credit-card"></i><div><b>دفع مرخّص</b><span>Apple Pay ومدى عبر بوابة دفع مرخصة، بلا كاش أو تحويل.</span></div></div>
+    <div class="gv"><i class="fa-solid fa-user-shield"></i><div><b>حماية البيانات</b><span>متوافق مع نظام حماية البيانات الشخصية.</span></div></div>
+  </div>
+</div></section>
+
+<section class="s" style="padding-top:10px"><div class="wrap">
+  <div class="final"><span class="tag" style="justify-content:center">الخطوة التالية</span><h2>أهل أنجز الأساس… <span class="gt">ونكمله معاً</span></h2><p>منصة الضامن بأدوارها الأربعة جاهزة للتجربة الآن: المطور العقاري، ومقدم الخدمة، والمستفيد، وإدارة NHC. والتكامل مع أهل يجعلها تصل للساكن من التطبيق الذي يعرفه.</p>
+    <div class="ctas" style="margin:0"><a href="index.html" class="btn btn-p"><i class="fa-solid fa-right-to-bracket"></i>جرّب بوابات المنصة</a><a href="#sim" class="btn btn-g"><i class="fa-solid fa-rotate-left"></i>عُد للمحاكي</a></div></div>
+</div></section>
+</main>
+<footer>تم تطوير هذه المنصة بواسطة سليمان الخطيب · 0559965929 · مقترح سري · الأسماء والأرقام توضيحية · شاشات أهل تصوّر مقترح</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id),fmt=n=>Math.round(n).toLocaleString('en-US');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const S={prog:94,handed:false,deps:['منيرة (زوجة)','سارة (ابنة)','فهد (ابن)'],
+ war:[['fa-building','الهيكل الإنشائي','10 سنوات',3600],['fa-bolt','التمديدات الكهربائية','سنتان',540]],
+ svc:[['fa-clipboard-check','فحص هندسي قبل الاستلام','مكتب الفحص الهندسي الدقيق · ★ 4.9 · نفس اليوم',1450],['fa-broom','تنظيف ما بعد البناء','لمعة · ★ 4.8 · خلال 24 ساعة',690],['fa-couch','تأثيث وتركيب ستائر','دار الأناقة · ★ 4.6 · خلال 3 أيام',2400]],
+ prod:[['ورق عنب','مطبخ أم سلطان · B-230','#7BA05B','fa-leaf',55],['مرقوق','بيت الجدة · B-118','#C2410C','fa-bowl-food',40],['حلا لقيمات','حلويات نورة · B-305','#C9A86A','fa-cookie',35],['خبز تنور','مخبز البيت · B-097','#9C7B3D','fa-bread-slice',20]],
+ cart:{},orders:[],tickets:0,vorders:[],forders:[],loans:0,txv:0,
+ jar:[{id:1,who:'أبو خالد · B-221',item:'مطرقة وعدة يدوية',ic:'fa-hammer',days:1,st:0},{id:2,who:'أم ريان · B-209',item:'سلّم ألمنيوم 3 أمتار',ic:'fa-ladder-water',days:2,st:0},{id:3,who:'فيصل · B-205',item:'دريل كهربائي',ic:'fa-screwdriver',days:1,st:0}],
+ mine:[{id:9,item:'ماكينة قص العشب',ic:'fa-seedling',to:'أبو فهد · B-233',due:-2,st:1}],jarView:'req'};
+const SVC_LIB=[['fa-clipboard-check','فحص هندسي قبل الاستلام'],['fa-temperature-half','كشف تسربات بالأجهزة الحرارية'],['fa-snowflake','صيانة مكيفات دورية'],['fa-faucet-drip','سباكة طارئة خلال ساعتين']];
+const PROD_LIB=[['كليجا القصيم','#B07A3A','fa-cookie-bite'],['سمبوسة مجمدة','#D9822B','fa-pizza-slice'],['قهوة سعودية مُحمّصة','#6B4A2B','fa-mug-hot']];
+let nbell=0;
+function toast(m,ic){const t=$('toast');t.innerHTML=`<i class="fa-solid ${ic||'fa-circle-check'}"></i>${m}`;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2600)}
+function log(method,path,dir){const l=$('log'),t=new Date().toTimeString().slice(0,8);l.innerHTML+=`<div><span class="t">${t}</span> <span class="m">${method}</span> ${path} <span class="o">200 OK</span> <span class="t">${dir==='in'?'← ahel':'→ ahel'}</span></div>`;l.scrollTop=l.scrollHeight}
+function packet(dir){const p=$('pk');p.className='pk';void p.offsetWidth;p.className='pk '+(dir==='in'?'back':'go')}
+let ntfH;function notify(t,b,ic){nbell++;$('bell').style.display='grid';$('bell').textContent=nbell;$('ntfT').textContent=t;$('ntfB').textContent=b;$('ntfI').className='fa-solid '+(ic||'fa-bell');
+ const n=$('ntf');setTimeout(()=>{n.classList.add('on');clearTimeout(ntfH);ntfH=setTimeout(()=>n.classList.remove('on'),3200)},RM?0:650)}
+function send(method,path,title,body,ic){packet('out');if(innerWidth<=980)document.querySelector('.phone').scrollIntoView({behavior:'smooth',block:'center'});log(method,path,'out');notify(title,body,ic);kpis()}
+function recv(method,path){packet('in');if(innerWidth<=980)setTimeout(()=>document.querySelector('.console').scrollIntoView({behavior:'smooth',block:'start'}),900);log(method,path,'in');kpis()}
+function kpis(){$('k1').textContent=1;$('k2').textContent=S.svc.length;$('k3').textContent=S.loans;$('k4').textContent=S.orders.length;$('k5').textContent=fmt(S.txv);$('k6').textContent=S.tickets}
+/* console tabs */
+const URL={dev:'aldhamn.sa/developer/units/B-214',ven:'aldhamn.sa/vendor/services',fam:'aldhamn.sa/families/um-sultan',nhc:'aldhamn.sa/nhc/integration'};
+function ctab(c){document.querySelectorAll('.ctabs button').forEach(b=>b.classList.toggle('on',b.dataset.c===c));document.querySelectorAll('.cp').forEach(p=>p.classList.toggle('on',p.id==='c-'+c));$('url').textContent=URL[c]}
+document.querySelectorAll('.ctabs button').forEach(b=>b.onclick=()=>ctab(b.dataset.c));
+/* phone tabs */
+function tab(t){const nv=(t==='fam')?'jar':t;document.querySelectorAll('.tb button').forEach(b=>b.classList.toggle('on',b.dataset.t===nv));document.querySelectorAll('.pg').forEach(p=>p.classList.toggle('on',p.id==='a-'+t));$('scr').scrollTop=0;if(t==='jar')renderJar();if(t==='ord')renderOrders()}
+document.querySelectorAll('.tb button').forEach(b=>b.onclick=()=>tab(b.dataset.t));
+/* render phone */
+function renderHome(){$('uBar').style.width=S.prog+'%';$('uPct').textContent=S.prog+'%';$('uStat').textContent=S.handed?'مستلمة · الضمانات سارية':(S.prog>=100?'جاهزة للتسليم':'قيد الإنشاء');
+ $('wlist').innerHTML=S.war.map(w=>`<div class="wi"><span class="ic"><i class="fa-solid ${w[0]}"></i></span><div class="tx"><b>${w[1]}</b><small>${w[2]} · ${S.handed?'يبدأ من التسليم':'يبدأ عند التسليم'}</small></div><span class="ap g">${fmt(w[3])} يوم</span></div>`).join('');
+ $('wCount').textContent=S.war.length+' بنود · من المطور عبر الضامن';
+ $('flist').innerHTML=`<div class="wi"><span class="ic" style="background:#F0EBFE;color:#6D35E8"><i class="fa-solid fa-user"></i></span><div class="tx"><b>عبدالله العتيبي</b><small>المستفيد الرئيسي</small></div><span class="ap p">رئيسي</span></div>`+S.deps.map(d=>`<div class="wi"><span class="ic" style="background:#F3EEE4;color:#7a746a"><i class="fa-solid fa-user-group"></i></span><div class="tx"><b>${d}</b><small>تابع · له هوية رقمية في أهل</small></div></div>`).join('')}
+function renderSvc(fresh){$('svcList').innerHTML=S.svc.map((s,i)=>`<div class="svc ${fresh===i?'fresh':''}"><span class="ic"><i class="fa-solid ${s[0]}"></i></span><div><b>${s[1]}</b><small>${s[2]}</small></div><div><div class="pr2">${fmt(s[3])} ﷼</div><button class="mb" onclick="book(${i})">احجز</button></div></div>`).join('')}
+function renderProd(fresh){$('prodList').innerHTML=S.prod.map((p,i)=>`<div class="pd" ${fresh===i?'style="animation:fresh 2s"':''}><div class="im" style="background:${p[2]}"><i class="fa-solid ${p[3]}"></i></div><div class="bd"><b>${p[0]}</b><small>${p[1]}</small><div class="ft"><span>${p[4]} ﷼</span><button class="add" onclick="addCart(${i})">${S.cart[i]?S.cart[i]:'<i class="fa-solid fa-plus"></i>'}</button></div></div></div>`).join('');
+ const n=Object.values(S.cart).reduce((a,b)=>a+b,0),t=Object.entries(S.cart).reduce((a,[i,q])=>a+S.prod[i][4]*q,0);$('cart').classList.toggle('on',n>0);$('cartT').innerHTML=`<b>${n}</b> منتج · <b>${t}</b> ﷼`}
+function renderJar(){document.querySelectorAll('#jseg button').forEach(b=>b.classList.toggle('on',b.dataset.j===S.jarView));
+ if(S.jarView==='req'){$('jarBody').innerHTML=`<button class="mb d" style="width:100%;margin:0 0 10px;padding:9px" onclick="newReq()"><i class="fa-solid fa-plus"></i> اطلب شيئاً من جيرانك</button>`+S.jar.map(j=>`<div class="loan"><div class="t"><span class="ic"><i class="fa-solid ${j.ic}"></i></span><div class="tx"><b>${j.item}</b><small>${j.who} · لمدة ${j.days===1?'يوم':'يومين'}</small></div>${j.st?'<span class="ap g">تمت الإعارة</span>':''}</div>${j.st?'':`<div class="btns" style="margin-top:8px"><button class="mb" onclick="lend(${j.id})"><i class="fa-solid fa-hand-holding-heart"></i> أُعيره</button></div>`}</div>`).join('')}
+ else{$('jarBody').innerHTML=S.mine.map(m=>{const late=m.st===1&&m.due<0;const steps=[1,m.st>=1,m.st>=2,m.st>=3];
+  const lab=m.st===1?(late?`<span class="ap r">متأخر ${-m.due} يوم</span>`:`<span class="ap a">مُعار حتى ${m.due===0?'اليوم':'بعد '+m.due+' يوم'}</span>`):m.st===2?'<span class="ap b">بانتظار تأكيدك</span>':'<span class="ap g">أُغلقت</span>';
+  return `<div class="loan"><div class="t"><span class="ic"><i class="fa-solid ${m.ic}"></i></span><div class="tx"><b>${m.item}</b><small>أعرتَه إلى ${m.to}</small></div>${lab}</div><div class="steps">${steps.map((s,i)=>`<i class="${s?(late&&i===1?'late':'on'):''}"></i>`).join('')}</div>
+  <div class="note">${m.st===1?(late?'وصل تذكير تلقائي للمستعير. لا داعي للإحراج.':'سيصل المستعير تذكير قبل الموعد.'):m.st===2?'المستعير أفاد بالإرجاع. أكّد إذا استلمتها فعلاً.':'تم الاسترجاع وتأكيده من صاحبها.'}</div>
+  <div class="btns">${m.st===1?`<button class="mb o" onclick="markReturned(${m.id})">محاكاة: المستعير ضغط «أرجعتها»</button>`:m.st===2?`<button class="mb" onclick="confirmRet(${m.id})"><i class="fa-solid fa-check"></i> تأكيد الاستلام</button><button class="mb o" onclick="notRet(${m.id})">لم تصلني</button>`:''}</div></div>`}).join('')||'<div class="hi">لا توجد إعارات</div>'}}
+document.querySelectorAll('#jseg button').forEach(b=>b.onclick=()=>{S.jarView=b.dataset.j;renderJar()});
+function renderOrders(){$('ordList').innerHTML=S.orders.length?S.orders.map(o=>`<div class="wi"><span class="ic"><i class="fa-solid ${o.ic}"></i></span><div class="tx"><b>${o.t}</b><small>${o.s}</small></div><span class="ap ${o.c}">${o.st}</span></div>`).join(''):'<div class="hi" style="padding:14px;text-align:center">لا توجد طلبات بعد</div>'}
+/* developer actions */
+$('prog').oninput=e=>{$('progT').textContent=e.target.value+'%'};
+function pushProg(){S.prog=+$('prog').value;renderHome();$('hoBtn').disabled=!(S.prog>=100)||S.handed;tab('home');send('PATCH','/v1/units/B-214 {progress:'+S.prog+'}','تحديث من المطور الثلاثي','نسبة إنجاز فيلتك B-214 أصبحت '+S.prog+'%','fa-building')}
+function addDep(){const n=['ريم (ابنة)','عبدالعزيز (ابن)','لطيفة (والدة)'],x=n[(S.deps.length-3)%3];S.deps.push(x);$('famCount').textContent='المستفيد + '+S.deps.length+' تابعين';renderHome();tab('acc');send('POST','/v1/units/B-214/dependents','أُضيف تابع لحسابك',x+' أصبح له حساب وهوية رقمية في أهل','fa-user-plus')}
+function handover(){S.handed=true;$('hoBtn').disabled=true;renderHome();tab('home');send('POST','/v1/units/B-214/handover','مبروك! استلمت مفتاح فيلتك','بدأ احتساب ضماناتك اليوم، وستصلك تنبيهات قبل انتهائها','fa-key')}
+function addWarranty(){const v=$('wItem').value,[n,y]=v.split(' · '),d=/10/.test(y)?3650:/5/.test(y)?1825:730;if(S.war.find(w=>w[1]===n)){toast('البند مضاف مسبقاً','fa-circle-info');return}
+ S.war.push([{'المكيفات':'fa-snowflake','السخانات':'fa-fire-flame-simple','العزل المائي':'fa-droplet','الأبواب والنوافذ':'fa-door-open'}[n]||'fa-shield-halved',n,y,d]);renderHome();tab('svc');send('POST','/v1/units/B-214/warranties','ضمان جديد على وحدتك',n+' · '+y+' من المطور الثلاثي','fa-shield-halved')}
+/* vendor */
+function pubService(){const i=+$('sName').value,p=+$('sPrice').value||0,l=SVC_LIB[i];S.svc.unshift([l[0],l[1],'مكتب الفحص الهندسي الدقيق · ★ 4.9 · '+$('sEta').value,p]);renderSvc(0);tab('svc');send('POST','/v1/services','خدمة جديدة في ضاحيتك',l[1]+' بـ '+fmt(p)+' ريال','fa-store')}
+$('sName').onchange=()=>{$('sPrice').value=[1450,950,350,250][+$('sName').value]};
+/* family */
+function pubProduct(){const i=+$('pName').value,l=PROD_LIB[i];S.prod.unshift([l[0],'مطبخ أم سلطان · B-230',l[1],l[2],+$('pPrice').value||0]);
+ const c={};Object.entries(S.cart).forEach(([k,q])=>c[+k+1]=q);S.cart=c;renderProd(0);tab('fam');send('POST','/v1/marketplace/products','منتج جديد من جيرانك',l[0]+' من مطبخ أم سلطان','fa-basket-shopping')}
+$('pName').onchange=()=>{$('pPrice').value=[45,60,70][+$('pName').value]};
+/* phone actions */
+function sheet(h){$('shBody').innerHTML=h;$('sheet').classList.add('on')}
+function closeSheet(){$('sheet').classList.remove('on')}
+$('sheet').onclick=e=>{if(e.target.id==='sheet')closeSheet()};
+function paySheet(title,lines,total,cb){window._pay=cb;sheet(`<div class="hd"><b><i class="fa-brands fa-apple" style="font-size:18px"></i>Pay</b><button onclick="closeSheet()" style="color:#7B3FF2;font-size:13px">إلغاء</button></div><div style="font-size:12px;color:#7a746a;margin-bottom:6px">${title}</div>${lines.map(l=>`<div class="ln2"><span>${l[0]}</span><b>${l[1]}</b></div>`).join('')}<div class="ln2" style="border:0"><span>الإجمالي</span><span class="tot">${fmt(total)} ﷼</span></div><button class="payb" onclick="doPay()"><i class="fa-brands fa-apple"></i>الدفع بـ Apple Pay</button><div style="text-align:center;font-size:10.5px;color:#9a9385;margin-top:8px">عبر بوابة دفع مرخّصة · محاكاة</div>`)}
+function doPay(){sheet(`<div class="done"><i class="fa-solid fa-circle-check"></i><div style="font-family:'Noto Kufi Arabic';font-weight:800;margin-top:6px">تم الدفع</div></div>`);setTimeout(()=>{closeSheet();window._pay&&window._pay()},RM?0:900)}
+function book(i){const s=S.svc[i];paySheet(s[1]+' · '+s[2].split(' · ')[0],[['الخدمة',fmt(s[3])+' ﷼'],['الموعد','غداً 10:00 ص']],s[3],()=>{
+ S.orders.unshift({t:s[1],s:'غداً 10:00 ص · '+s[2].split(' · ')[0],st:'بانتظار القبول',c:'a',ic:s[0],v:true,ref:S.vorders.length});S.txv+=s[3];
+ S.vorders.unshift({t:s[1],p:s[3],st:0});renderVen();recv('POST','/v1/bookings  {unit:B-214, paid:true}');ctab('ven');toast('وصل الطلب لمقدم الخدمة في موقع الضامن','fa-inbox')})}
+function renderVen(){$('venOrders').innerHTML=S.vorders.length?S.vorders.map((o,i)=>`<div class="ord"><span class="pl ${o.st?'ok':'am'}">${o.st?'مقبول':'جديد'}</span><div class="tx"><b>${o.t}</b><small>عبدالله العتيبي · B-214 · مدفوع ${fmt(o.p)} ريال</small></div>${o.st?'':`<button class="wb" onclick="accept(${i})">قبول</button>`}</div>`).join(''):'<div class="empty">لا توجد طلبات بعد.</div>'}
+function accept(i){S.vorders[i].st=1;const o=S.orders.find(x=>x.v&&x.t===S.vorders[i].t&&x.st==='بانتظار القبول');if(o){o.st='مؤكد';o.c='g'}renderVen();renderOrders();tab('ord');send('PATCH','/v1/bookings/'+(1040+i)+' {status:accepted}','تأكيد الحجز',S.vorders[i].t+' · الفني في الموعد','fa-calendar-check')}
+function warrantyTicket(){sheet(`<div class="hd"><b>بلاغ تحت الضمان</b><button onclick="closeSheet()" style="color:#7B3FF2;font-size:13px">إغلاق</button></div><div style="font-size:12px;color:#7a746a;margin-bottom:10px">اختر البند، وسيُوجَّه للمطور المسؤول مجاناً.</div>${S.war.map((w,i)=>`<button class="svc" style="width:100%;text-align:start;grid-template-columns:36px 1fr" onclick="sendTicket(${i})"><span class="ic" style="width:36px;height:36px;background:#EAF7F4;color:#0E7C72"><i class="fa-solid ${w[0]}"></i></span><div><b>${w[1]}</b><small>ضمان ${w[2]}</small></div></button>`).join('')}`)}
+function sendTicket(i){const w=S.war[i];closeSheet();S.tickets++;S.orders.unshift({t:'بلاغ ضمان: '+w[1],s:'موجَّه للمطور الثلاثي · مجاني',st:'لدى المطور',c:'p',ic:'fa-shield-halved'});
+ const el=$('devTickets');if(S.tickets===1)el.innerHTML='';el.insertAdjacentHTML('afterbegin',`<div class="ord"><span class="pl rd">جديد</span><div class="tx"><b>${w[1]}</b><small>B-214 · ضمان ${w[2]} · المهلة النظامية تبدأ الآن</small></div><button class="wb o" onclick="this.outerHTML='<span class=&quot;pl ok&quot;>جُدول</span>';notify('ردّ المطور على بلاغك','تم جدولة زيارة فني لـ${w[1]}','fa-calendar-check')">جدولة زيارة</button></div>`);
+ recv('POST','/v1/warranty-tickets  {unit:B-214}');ctab('dev');toast('البلاغ وصل للمطور في موقع الضامن','fa-shield-halved')}
+function addCart(i){S.cart[i]=(S.cart[i]||0)+1;renderProd()}
+function checkout(){const it=Object.entries(S.cart),t=it.reduce((a,[i,q])=>a+S.prod[i][4]*q,0);paySheet('سوق الأسر المنتجة',it.map(([i,q])=>[S.prod[i][0]+' ×'+q,S.prod[i][4]*q+' ﷼']),t,()=>{
+ it.forEach(([i,q])=>{const p=S.prod[i];S.orders.unshift({t:p[0]+' ×'+q,s:p[1]+' · مدفوع إلكترونياً',st:'قيد التحضير',c:'a',ic:p[3]});S.forders.unshift({t:p[0]+' ×'+q,f:p[1],v:p[4]*q})});S.txv+=t;S.cart={};renderProd();
+ $('famOrders').innerHTML=S.forders.map(o=>`<div class="ord"><span class="pl ok">مدفوع</span><div class="tx"><b>${o.t}</b><small>عبدالله العتيبي · B-214 · ${o.f.split(' · ')[0]}</small></div><b>${o.v} ﷼</b></div>`).join('');
+ recv('POST','/v1/marketplace/orders  {paid:apple_pay}');ctab('fam');toast('الطلب وصل للأسرة المنتجة · مدفوع بالكامل','fa-basket-shopping')})}
+/* neighbor */
+function lend(id){const j=S.jar.find(x=>x.id===id);j.st=1;S.loans++;S.mine.unshift({id:100+id,item:j.item,ic:j.ic,to:j.who,due:j.days,st:1});S.jarView='mine';renderJar();recv('POST','/v1/neighbor/loans');notify('تم تسجيل الإعارة',j.item+' إلى '+j.who+' · سنذكّره قبل الموعد','fa-hand-holding-heart')}
+function markReturned(id){const m=S.mine.find(x=>x.id===id);m.st=2;renderJar();notify('أفاد جارك بالإرجاع',m.item+' · أكّد إذا استلمتها','fa-rotate-left')}
+function confirmRet(id){const m=S.mine.find(x=>x.id===id);m.st=3;renderJar();recv('PATCH','/v1/neighbor/loans/'+id+' {returned:confirmed}');toast('أُغلقت الإعارة بتأكيد صاحبها')}
+function notRet(id){const m=S.mine.find(x=>x.id===id);m.st=1;m.due=Math.min(m.due,-1);renderJar();notify('أُعيدت الإعارة مفتوحة','وصل المستعير تنبيه بأن '+m.item+' لم تُستلم','fa-triangle-exclamation')}
+function newReq(){S.jar.unshift({id:Date.now()%1e4,who:'أنت · B-214',item:'شنطة عدة سباكة',ic:'fa-toolbox',days:1,st:0});renderJar();recv('POST','/v1/neighbor/requests');toast('طلبك ظهر لجيران الضاحية فقط')}
+/* comparison filter */
+document.querySelectorAll('.sm2').forEach(b=>b.onclick=()=>{const f=b.dataset.f;document.querySelectorAll('.sm2').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('#ctBody tr').forEach(r=>r.classList.toggle('hid',f!=='all'&&r.dataset.s!==f))});
+/* calc */
+const COL=['#16D1C2','#7B3FF2','#C9A86A','#5FD3A5'];
+function calc(){const u=+$('u').value,h=+$('h').value,s=+$('s').value,f=+$('f').value,v=+$('v').value;
+ $('uT').textContent=fmt(u)+' وحدة';$('hT').textContent=fmt(h)+' ريال';$('sT').textContent=fmt(s)+' ريال';$('fT').textContent=f+' طلب';$('vT').textContent=fmt(v)+' مقدم';
+ const R=[['رسوم استضافة ملفات الوحدات',u*h],['عمولات سوق الخدمات',u*s*.12],['رسوم معاملات الأسر المنتجة',u*f*12*60*.08],['اشتراكات مقدمي الخدمات',v*3000]];
+ $('tot').textContent=fmt(R.reduce((a,r)=>a+r[1],0))+' ﷼';$('rows').innerHTML=R.map((r,i)=>`<div class="rr"><span><i class="sw" style="background:${COL[i]}"></i>${r[0]}</span><b>${fmt(r[1])}</b></div>`).join('');
+ document.querySelectorAll('input.dk').forEach(el=>el.style.setProperty('--v',(el.value-el.min)/(el.max-el.min)*100+'%'))}
+['u','h','s','f','v'].forEach(id=>$(id).addEventListener('input',calc));
+/* init */
+renderHome();renderSvc();renderProd();renderJar();kpis();calc();
+log('GET','/v1/units/B-214','out');log('GET','/v1/services?suburb=alkhuzam','out');
+$('prog').addEventListener('change',()=>{$('hoBtn').disabled=true});
+</script>
+</body>
+</html>
