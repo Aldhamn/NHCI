@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الضامن | بوابة التاجر</title>
+<meta name="author" content="SULAIMAN O. ALKHATEEB">
+<link rel="icon" href="dhamn-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="portal.css">
+<script src="core.js"></script>
+<script>DZ_GUARD('merchant')</script>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="logo"><img src="dhamn-icon.png" alt=""><div><b>الضامن</b><small>بوابة التاجر</small></div></div>
+  <div class="devcard"><div class="r"><span class="lg"><i class="fa-solid fa-store"></i></span><div><b id="sName"></b><small id="sAct"></small></div></div><div class="zone"><i class="fa-solid fa-location-dot"></i><span id="sDist"></span></div></div>
+  <button class="nav-i" data-p="home"><i class="fa-solid fa-gauge-high"></i>لوحة الامتثال</button>
+  <button class="nav-i" data-p="assets"><i class="fa-solid fa-list-check"></i>الاشتراطات والفواتير<span class="cnt" id="cA"></span></button>
+  <button class="nav-i" data-p="eye"><i class="fa-solid fa-eye"></i>عين الضامن</button>
+  <button class="nav-i" data-p="market"><i class="fa-solid fa-screwdriver-wrench"></i>خدمات السلامة</button>
+  <button class="nav-i" data-p="lic"><i class="fa-solid fa-id-badge"></i>الرخصة والتجديد</button>
+  <button class="nav-i" data-p="alerts"><i class="fa-solid fa-bell"></i>التنبيهات<span class="cnt" id="cN"></span></button>
+  <div class="sep">العرض</div>
+  <div class="acts"><button onclick="dzView('mobile')"><i class="fa-solid fa-mobile-screen"></i>عرض تطبيق الجوال</button><a href="../index.html"><i class="fa-solid fa-table-cells-large"></i>كل البوابات</a><button onclick="dzLogout()"><i class="fa-solid fa-right-from-bracket"></i>تسجيل الخروج</button></div>
+  <div class="foot"><img src="dhamn-icon.png" alt=""><span>نسخة تجريبية</span></div>
+</aside>
+<div class="main">
+  <nav class="mnav"><button data-p="home"><i class="fa-solid fa-gauge-high"></i>الامتثال</button><button data-p="assets"><i class="fa-solid fa-list-check"></i>الاشتراطات</button><button data-p="eye"><i class="fa-solid fa-eye"></i>عين الضامن</button><button data-p="market"><i class="fa-solid fa-screwdriver-wrench"></i>الخدمات</button><button data-p="lic"><i class="fa-solid fa-id-badge"></i>الرخصة</button><button data-p="alerts"><i class="fa-solid fa-bell"></i>التنبيهات</button><button onclick="dzLogout()" class="x"><i class="fa-solid fa-right-from-bracket"></i>خروج</button></nav>
+  <header class="top"><div><h1 id="ttl"></h1><div class="sub" id="sub"></div></div><div class="sp"></div><div class="user"><div><b id="uName"></b><small>مالك المنشأة</small></div><span class="av" id="uAv"></span></div></header>
+  <div class="content">
+    <section class="page" id="pg-home"></section>
+    <section class="page" id="pg-assets"></section>
+    <section class="page" id="pg-eye"></section>
+    <section class="page" id="pg-market"></section>
+    <section class="page" id="pg-lic"></section>
+    <section class="page" id="pg-alerts"></section>
+    <div class="credit">بيانات توضيحية</div>
+  </div>
+</div>
+</div>
+<script>
+const S=window.DZ_SESSION||{acc:'m1'};const ID=S.acc||'m1';
+let SH,EV;function load(){SH=DZ.shops()[ID];EV=DZ.eval(SH)}load();
+const $=id=>document.getElementById(id);
+$('sName').textContent=SH.name;$('sAct').textContent=SH.act+' · رخصة '+SH.lic;$('sDist').textContent='حي '+SH.dist+' · الرياض';$('uName').textContent=SH.owner;$('uAv').textContent=SH.owner[0];
+const LVN={done:['مكتمل','c-o','fa-circle-check'],fail:['غير مكتمل','c-r','fa-circle-xmark'],locked:['مقفل','c-n','fa-lock'],warn:['يحتاج تحسين','c-a','fa-triangle-exclamation'],off:['غير مفعّل','c-a','fa-power-off']};
+function alerts(){const a=[];
+  EV.bad1.forEach(x=>a.push({lv:1,c:'c-r',ic:'fa-circle-exclamation',t:x.a.name,d:x.s.t+(x.a.note?' · '+x.a.note:''),act:x.a.id}));
+  EV.bad2.forEach(x=>a.push({lv:2,c:EV.st[2]==='locked'?'c-n':'c-r',ic:'fa-triangle-exclamation',t:x.a.name,d:x.s.t+(x.a.note?' · '+x.a.note:''),act:x.a.id}));
+  EV.due.forEach(x=>a.push({lv:x.a.lvl,c:'c-a',ic:'fa-clock',t:x.a.name,d:x.s.t+(x.a.note?' · '+x.a.note:''),act:x.a.id}));
+  const ld=DZ.days(SH.licExp);if(ld<=45)a.push({lv:0,c:EV.ready?'c-b':'c-r',ic:'fa-id-badge',t:'الرخصة تنتهي خلال '+ld+' يوم',d:EV.ready?'سجلك جاهز للتجديد':'لا يمكن التجديد قبل إكمال الاشتراطات',go:'lic'});
+  return a}
+function counters(){const a=alerts();$('cN').textContent=a.length||'';$('cA').textContent=(EV.bad1.length+EV.bad2.length)||''}
+
+const RENDER={
+home(){load();counters();const e=EV,sc=e.score;
+ const lv=[1,2,3].map(l=>{const st=e.st[l],m=LVN[st];let d='';
+   if(l===1)d=st==='done'?'كل أصول السلامة موثقة بفواتير مزودين معتمدين':e.bad1.length+' اشتراط ناقص — هذا المستوى بوابة كل شيء';
+   if(l===2)d=st==='locked'?'مقفل حتى يكتمل المستوى 1 (سلامة المنشأة)':st==='done'?'الشهادات الصحية والتعقيم والتبريد سليمة':e.bad2.length+' اشتراط ناقص';
+   if(l===3)d=st==='locked'?'يحتاج كاميرات سليمة وعاملين بشهادات سارية أولاً':st==='off'?'جاهز للتفعيل على كاميراتك الحالية':'مؤشر السلوك اليوم '+SH.visionScore+'%';
+   return `<div class="lvc ${st}"><span class="n" style="background:${DZ.LV[l].c}"><i class="fa-solid ${st==='locked'?'fa-lock':DZ.LV[l].ic}"></i></span><div><b>المستوى ${l} · ${DZ.LV[l].n}</b><small>${d}</small></div><span class="pill ${m[1]}"><i class="fa-solid ${m[2]}"></i>${m[0]}</span></div>`}).join('');
+ const al=alerts().slice(0,4);
+ $('pg-home').innerHTML=`
+ <div class="card hero-s">${DZ.ring(sc,128,DZ.scol(sc))}<div><h2>مؤشر امتثال ${SH.name}</h2><p>${!e.st||e.st[1]!=='done'?'<b style="color:var(--red)">المؤشر محدود بسقف 40% لأن أساسيات السلامة غير مكتملة.</b> لا نستطيع ضمان المطبخ قبل ضمان الطفاية والكاميرا والإنذار.':e.badge?'محلك يحمل شارة «مطبخ آمن» — الأساسيات وصحة المنشأة وسلوك المطبخ كلها مكتملة.':'الأساسيات مكتملة. أكمل المستويات التالية للحصول على شارة «مطبخ آمن».'}</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><span class="pill ${DZ.RISK[e.risk][1]}">مستوى الخطورة لدى البلدية: ${DZ.RISK[e.risk][0]}</span><span class="pill ${e.ready?'c-o':'c-r'}"><i class="fa-solid ${e.ready?'fa-check':'fa-xmark'}"></i>${e.ready?'جاهز لتجديد الرخصة':'غير جاهز للتجديد'}</span>${e.badge?'<span class="pill c-t"><i class="fa-solid fa-shield-heart"></i>مطبخ آمن</span>':''}</div></div>
+  <div style="text-align:center">${e.badge?`<div style="width:96px;height:96px;margin:0 auto">${DZ.qr(SH.id+'safe')}</div><small style="font-size:11px;color:var(--muted)">رمز الشارة لباب المحل</small>`:`<button class="btn btn-p" onclick="GO('assets')"><i class="fa-solid fa-wrench"></i>أكمل الناقص</button>`}</div></div>
+ <div class="grid g-2"><div class="card"><div class="ch"><h3><i class="fa-solid fa-stairs"></i>سُلّم الامتثال</h3><span class="note">لا ينتقل المحل لمستوى قبل اكتمال الذي قبله</span></div><div class="lad">${lv}</div></div>
+  <div class="card"><div class="ch"><h3><i class="fa-solid fa-bell"></i>يحتاج انتباهك</h3><button class="btn btn-o btn-x" onclick="GO('alerts')">الكل</button></div>${al.length?al.map(x=>`<div class="li"><span class="ic pill ${x.c}" style="width:38px;height:38px;justify-content:center"><i class="fa-solid ${x.ic}"></i></span><div class="tx"><b>${x.t}</b><span>${x.d}</span></div></div>`).join(''):'<div class="empty"><i class="fa-solid fa-circle-check" style="color:var(--ok);font-size:26px"></i><br>لا توجد تنبيهات</div>'}</div></div>
+ <div class="grid g-k" style="margin-top:16px">
+  <div class="card kpi"><div class="ic c-r pill" style="width:38px;height:38px;justify-content:center"><i class="fa-solid fa-fire-extinguisher"></i></div><b>${e.L[1].filter(x=>x.s.ok).length}/${e.L[1].length}</b><span>أصول السلامة السليمة</span></div>
+  <div class="card kpi"><div class="ic c-a pill" style="width:38px;height:38px;justify-content:center"><i class="fa-solid fa-notes-medical"></i></div><b>${e.L[2].filter(x=>x.s.ok).length}/${e.L[2].length}</b><span>اشتراطات صحة المنشأة</span></div>
+  <div class="card kpi"><div class="ic c-t pill" style="width:38px;height:38px;justify-content:center"><i class="fa-solid fa-video"></i></div><b>${SH.cams.filter(c=>c.on).length}/${SH.cams.length}</b><span>كاميرات تعمل</span></div>
+  <div class="card kpi"><div class="ic c-b pill" style="width:38px;height:38px;justify-content:center"><i class="fa-solid fa-id-badge"></i></div><b>${DZ.days(SH.licExp)}</b><span>يوماً على انتهاء الرخصة</span></div></div>`},
+assets(){load();counters();const e=EV;
+ const row=x=>{const a=x.a,s=x.s,cls=s.ok?(s.k==='due'?'due':'ok'):'bad',p=a.prov?DZ.prov(a.prov):null,locked=a.lvl===2&&e.st[2]==='locked';
+  return `<div class="asset ${cls}"><span class="ic"><i class="fa-solid ${a.ic}"></i></span><div class="tx"><b>${a.name}</b><span>${a.last?'آخر صيانة '+DZ.date(a.last)+' · '+(p?p.name:'—'):'لا يوجد سجل صيانة'}${a.inv&&a.verified===true?' · <i class="fa-solid fa-qrcode" style="color:var(--ok)"></i> '+a.inv:''}${a.note?' · <b style="color:var(--red);display:inline">'+a.note+'</b>':''}${a.temp?' · الحرارة الآن '+a.temp:''}</span></div>
+  <div class="ac"><span class="pill ${s.c}">${s.t}</span>${a.camAsset&&!s.ok?`<button class="btn btn-o btn-x" onclick="GO('eye')">الكاميرات</button>`:''}<button class="btn btn-o btn-x" onclick="upInv('${a.id}')"><i class="fa-solid fa-file-arrow-up"></i>رفع فاتورة</button><button class="btn ${s.ok?'btn-o':'btn-p'} btn-x" onclick="book('${a.id}')"><i class="fa-solid fa-calendar-plus"></i>طلب صيانة</button></div></div>`};
+ $('pg-assets').innerHTML=`<div class="hint" style="margin:0 0 14px"><i class="fa-solid fa-circle-info"></i><span>أي ملصق صيانة بدون فاتورة من مزود معتمد لا يُحتسب. الفاتورة المرفوعة تُرسل للمزود ليتحقق منها، والشهادة الصادرة من المزود عبر المنصة تُعتمد فوراً برمز QR.</span></div>
+ ${[1,2].map(l=>`<div class="card" style="margin-bottom:16px"><div class="ch"><div class="lvh"><i style="background:${DZ.LV[l].c}" class="fa-solid ${DZ.LV[l].ic}"></i>المستوى ${l} · ${DZ.LV[l].n}</div><span class="pill ${LVN[e.st[l]][1]}"><i class="fa-solid ${LVN[e.st[l]][2]}"></i>${LVN[e.st[l]][0]}</span></div>
+  ${l===2&&e.st[2]==='locked'?'<div class="hint" style="margin-bottom:8px;background:var(--redl)"><i class="fa-solid fa-lock" style="color:var(--red)"></i><span>هذا المستوى لا يُحتسب حتى تكتمل سلامة المنشأة. يمكنك تحديثه الآن، لكنه لن يرفع مؤشرك قبل إكمال المستوى 1.</span></div>':''}
+  ${e.L[l].map(row).join('')}</div>`).join('')}`},
+eye(){load();const e=EV;
+ if(e.st[3]==='locked'){const why=[];if(e.st[1]!=='done')why.push(...e.bad1.map(x=>`<div class="chk"><i class="fa-solid fa-circle-xmark" style="color:var(--red)"></i><div>${x.a.name}<small>${x.s.t}</small></div></div>`));
+  if(e.st[2]==='fail')why.push(...e.bad2.map(x=>`<div class="chk"><i class="fa-solid fa-circle-xmark" style="color:var(--amber)"></i><div>${x.a.name}<small>${x.s.t}</small></div></div>`));
+  $('pg-eye').innerHTML=`<div class="card lockbox"><div class="big"><i class="fa-solid fa-lock"></i></div><h3>عين الضامن مقفلة حتى تكتمل الأساسيات</h3><p>لا يمكن ضمان سلوك المطبخ في محل كاميرته متوقفة أو طفايته منتهية. عين الضامن تعمل على كاميراتك، وتفترض أن أساسيات السلامة وصحة العاملين سليمة.</p><div style="max-width:460px;margin:0 auto;text-align:start">${why.join('')}</div><button class="btn btn-p" style="margin-top:16px" onclick="GO('assets')"><i class="fa-solid fa-wrench"></i>أكمل الاشتراطات</button></div>
+   <div class="card" style="margin-top:16px"><div class="ch"><h3><i class="fa-solid fa-video"></i>حالة الكاميرات</h3><span class="note">تُراقب حتى قبل تفعيل عين الضامن</span></div><div class="camg">${cams()}</div></div>`;return}
+ if(!SH.vision){$('pg-eye').innerHTML=`<div class="card lockbox"><div class="big" style="background:var(--tl);color:var(--t)"><i class="fa-solid fa-eye"></i></div><h3>محلك جاهز لعين الضامن</h3><p>الأساسيات وصحة المنشأة مكتملة. فعّل عين الضامن على ${SH.cams.length} كاميرات موجودة لرصد القفازات وغطاء الشعر وغسل اليدين، واستلم التقارير على الواتساب.</p><button class="btn btn-p" onclick="activate()"><i class="fa-solid fa-power-off"></i>تفعيل تجريبي 30 يوماً</button></div><div class="card" style="margin-top:16px"><div class="camg">${cams()}</div></div>`;return}
+ const evs=[['13:42','fa-mitten','c-r','انتقال من الكاشير إلى التحضير دون تغيير القفاز','CAM-02 · عامل 2'],['13:18','fa-hat-cowboy-side','c-r','العمل بدون غطاء شعر','CAM-03 · عامل 4'],['12:55','fa-hands-bubbles','c-o','غسل يدين مكتمل قبل التحضير','CAM-02 · عامل 1'],['12:31','fa-mitten','c-r','لمس النقود ثم تجهيز طلب بنفس القفاز','CAM-01 · عامل 2'],['11:10','fa-drumstick-bite','c-o','فصل صحيح بين النيء والمطهو','CAM-03'],['10:02','fa-broom','c-o','تعقيم الأسطح في بداية الوردية','CAM-02']];
+ const wk=[46,38,31,22,14,9];
+ $('pg-eye').innerHTML=`<div class="grid g-k"><div class="card kpi"><b style="color:${DZ.scol(SH.visionScore)}">${SH.visionScore}%</b><span>مؤشر سلوك اليوم</span></div><div class="card kpi"><b>5</b><span>مخالفات اليوم</span></div><div class="card kpi"><b style="color:var(--ok)">▼ 36%</b><span>تحسن عن الأسبوع الماضي</span></div><div class="card kpi"><b>${SH.cams.filter(c=>c.on).length}/${SH.cams.length}</b><span>كاميرات متصلة</span></div></div>
+ <div class="grid g-2"><div class="card"><div class="ch"><h3><i class="fa-solid fa-list"></i>أحداث اليوم</h3><span class="note">بدون تعرّف على الوجوه · العاملون برموز</span></div>${evs.map(x=>`<div class="ev2"><span class="tm">${x[0]}</span><div><b style="font-size:13px;display:block"><i class="fa-solid ${x[1]}" style="color:var(--muted)"></i> ${x[3]}</b><small style="color:var(--muted)">${x[4]}</small></div><span class="pill ${x[2]}">${x[2]==='c-r'?'مخالفة':'سليم'}</span></div>`).join('')}</div>
+  <div class="card"><div class="ch"><h3><i class="fa-brands fa-whatsapp" style="color:#25D366"></i>تقرير الواتساب</h3></div><div class="wa"><div class="hd"><img src="dhamn-icon.png" alt=""><b>عين الضامن</b></div><div class="bd"><div class="m"><b>📋 التقرير اليومي · ${SH.name}</b><br>مؤشر اليوم: <b>${SH.visionScore}%</b> ▲ 5<br>• 3 عدم تغيير القفاز بعد الكاشير<br>• 2 بدون غطاء شعر<br>💡 ضع محطة قفازات بجانب الكاشير<small>8:00 م</small></div></div></div>
+   <div class="f" style="margin-top:12px"><label>رقم استلام التقارير</label><input value="05•• ••• 412" readonly></div><div class="ms" style="margin-top:10px" id="waP"><button class="on">تنبيه فوري</button><button class="on">يومي 8 م</button><button class="on">أسبوعي</button></div></div></div>
+ <div class="grid g-h" style="margin-top:16px"><div class="card"><div class="ch"><h3><i class="fa-solid fa-chart-column"></i>المخالفات أسبوعياً</h3><span class="note">منذ التفعيل</span></div><div class="bars">${wk.map((v,i)=>`<div class="${i>3?'g':''}"><b>${v}</b><i style="height:${v/46*110}px"></i>أ${i+1}</div>`).join('')}</div></div>
+  <div class="card"><div class="ch"><h3><i class="fa-solid fa-video"></i>الكاميرات</h3></div><div class="camg">${cams()}</div></div></div>`;
+ document.querySelectorAll('#waP button').forEach(b=>b.onclick=()=>b.classList.toggle('on'))},
+market(){load();const need=[...EV.bad1,...EV.bad2,...EV.due].map(x=>x.a.cat);
+ $('pg-market').innerHTML=`<div class="card"><div class="ch"><h3><i class="fa-solid fa-certificate"></i>مزودو سلامة معتمدون</h3><span class="note">الشهادة الصادرة منهم تُرفق بسجلك تلقائياً</span></div>${DZ.PROV.map(p=>`<div class="prov"><span class="lg"><i class="fa-solid ${{fire:'fa-fire-extinguisher',cam:'fa-video',pest:'fa-bug-slash',health:'fa-id-card',clean:'fa-droplet',cold:'fa-temperature-low'}[p.cat]}"></i></span><div><b>${p.name} <i class="fa-solid fa-circle-check" style="color:var(--t);font-size:12px"></i></b><span>${DZ.CAT[p.cat]} · ★ ${p.rate} · ${DZ.fmt(p.jobs)} طلب · ترخيص ${p.lic}</span></div><div style="display:flex;gap:6px;align-items:center">${need.includes(p.cat)?'<span class="pill c-r">تحتاجه الآن</span>':''}<button class="btn btn-o btn-x" onclick="bookCat('${p.id}')">احجز</button></div></div>`).join('')}</div>`},
+lic(){load();const e=EV,ld=DZ.days(SH.licExp);
+ const ck=[[e.st[1]==='done','المستوى 1 · سلامة المنشأة مكتمل','شرط إلزامي لكل الأنشطة'],[!SH.food||e.st[2]==='done','المستوى 2 · صحة المنشأة والعاملين'+(SH.food?'':' (غير مطلوب)'),'إلزامي للأنشطة الغذائية'],[SH.cams.every(c=>c.on),'كل الكاميرات تعمل وتسجّل','جزء من المستوى 1'],[true,'لا توجد مخالفات بلدية مفتوحة','من سجل البلدية']];
+ $('pg-lic').innerHTML=`<div class="lic"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div><small style="opacity:.8">رخصة نشاط تجاري · محاكاة تكامل مع بلدي</small><h3 style="font-size:19px">${SH.name}</h3></div><span class="pill" style="background:rgba(255,255,255,.18);color:#fff;align-self:flex-start">${ld>0?'سارية':'منتهية'}</span></div>
+  <div class="r"><div><span>رقم الرخصة</span><b>${SH.lic}</b></div><div><span>النشاط</span><b>${SH.act}</b></div><div><span>تاريخ الانتهاء</span><b>${DZ.date(SH.licExp)}</b></div><div><span>السجل التجاري</span><b>${SH.cr}</b></div><div><span>الحي</span><b>${SH.dist}</b></div><div><span>مؤشر الامتثال</span><b>${e.score}%</b></div></div></div>
+ <div class="grid g-h" style="margin-top:16px"><div class="card"><div class="ch"><h3><i class="fa-solid fa-clipboard-check"></i>جاهزية التجديد</h3><span class="pill ${e.ready?'c-o':'c-r'}">${e.ready?'جاهز':'غير جاهز'}</span></div>${ck.map(c=>`<div class="chk"><i class="fa-solid ${c[0]?'fa-circle-check':'fa-circle-xmark'}" style="color:${c[0]?'var(--ok)':'var(--red)'}"></i><div>${c[1]}<small>${c[2]}</small></div></div>`).join('')}
+  <button class="btn btn-p" style="width:100%;margin-top:14px" ${e.ready?'':'disabled'} onclick="renew()"><i class="fa-solid fa-rotate"></i>تجديد الرخصة مع إرفاق سجل الامتثال</button>${e.ready?'':'<div class="hint"><i class="fa-solid fa-lock"></i><span>زر التجديد يُفتح تلقائياً بعد اكتمال الاشتراطات.</span></div>'}</div>
+  <div class="card"><div class="ch"><h3><i class="fa-solid fa-route"></i>كيف يرتبط الضامن بالتجديد</h3></div>${[['fa-bell','قبل 60 يوماً','تنبيه بالاشتراطات الناقصة وحجز مباشر من المزودين'],['fa-file-shield','قبل 30 يوماً','مراجعة سجل الامتثال وتحديث مؤشر الخطورة لدى البلدية'],['fa-rotate','عند التجديد','يُرفق السجل الموثق مع الطلب بدل المستندات الورقية'],['fa-user-check','بعد التجديد','المحل منخفض الخطورة يحصل على زيارات تفتيش أقل']].map(x=>`<div class="li"><span class="ic pill c-p" style="width:38px;height:38px;justify-content:center"><i class="fa-solid ${x[0]}"></i></span><div class="tx"><b>${x[1]}</b><span>${x[2]}</span></div></div>`).join('')}</div></div>`},
+alerts(){load();counters();const a=alerts();
+ $('pg-alerts').innerHTML=`<div class="card"><div class="ch"><h3><i class="fa-solid fa-bell"></i>كل التنبيهات</h3><span class="note">تصل أيضاً على الواتساب</span></div>${a.length?a.map(x=>`<div class="li"><span class="ic pill ${x.c}" style="width:38px;height:38px;justify-content:center"><i class="fa-solid ${x.ic}"></i></span><div class="tx"><b>${x.t}${x.lv?' <span class="pill c-n" style="font-size:10px">المستوى '+x.lv+'</span>':''}</b><span>${x.d}</span></div>${x.go?`<button class="btn btn-o btn-x" onclick="GO('${x.go}')">عرض</button>`:`<button class="btn btn-p btn-x" onclick="book('${x.act}')">احجز صيانة</button>`}</div>`).join(''):'<div class="empty">لا توجد تنبيهات</div>'}</div>
+ <div style="text-align:center;margin-top:16px"><button class="btn btn-o btn-x" onclick="if(confirmReset())location.reload()"><i class="fa-solid fa-rotate-left"></i>إعادة بيانات العرض</button></div>`}};
+function confirmReset(){DZ.reset();return true}
+function cams(){return SH.cams.map((c,i)=>`<div class="camt ${c.on?'':'off'}"><span class="lb"><i></i>${c.id} · ${c.n}</span>${c.on?`<span class="pp" style="right:${20+i*12}%"></span><span class="pp" style="right:${55+i*5}%;height:40%"></span>`:`<div class="mid"><div><i class="fa-solid fa-video-slash" style="font-size:22px;color:#FF6B7D"></i><br>متوقفة عن البث<br><button class="btn btn-o btn-x" style="margin-top:8px" onclick="book('cams')">طلب إصلاح</button></div></div>`}</div>`).join('')}
+function book(aid){const a=SH.assets.find(x=>x.id===aid);if(!a)return;const ps=DZ.PROV.filter(p=>p.cat===a.cat);
+ DZ.modal(`<h3>طلب صيانة · ${a.name}</h3><p class="sub">اختر مزوداً معتمداً، وسيصدر الشهادة رقمياً بعد التنفيذ فتُرفق بسجلك تلقائياً.</p><div class="form"><div class="f full"><label>المزود</label><select id="bP">${ps.map(p=>`<option value="${p.id}">${p.name} · ★ ${p.rate}</option>`).join('')}</select></div><div class="f"><label>الموعد</label><input type="date" id="bD" value="${DZ.d(2)}"></div><div class="f"><label>الوقت</label><select><option>صباحاً قبل الافتتاح</option><option>بعد الإغلاق</option></select></div><div class="f full"><label>ملاحظة</label><textarea id="bN" placeholder="مثال: الطفاية في المطبخ بجانب الشواية"></textarea></div></div><div class="mfoot"><button class="btn btn-o" onclick="DZ.close()">إلغاء</button><button class="btn btn-p" onclick="doBook('${aid}')"><i class="fa-solid fa-paper-plane"></i>إرسال الطلب</button></div>`)}
+function bookCat(pid){const p=DZ.prov(pid);const a=SH.assets.find(x=>x.cat===p.cat&&!DZ.ast(x,SH).ok)||SH.assets.find(x=>x.cat===p.cat);if(a)book(a.id)}
+function doBook(aid){const a=SH.assets.find(x=>x.id===aid),pid=$('bP').value,j=DZ.jobs();
+ j.unshift({id:'J-'+(3110+j.length),shop:ID,shopName:SH.name,dist:SH.dist,asset:aid,assetName:a.name,prov:pid,st:0,date:$('bD').value,amt:[320,480,650,900][j.length%4],note:$('bN').value,fresh:true});DZ.saveJobs(j);DZ.close();DZ.toast('تم إرسال الطلب إلى '+DZ.prov(pid).name)}
+let upOk=false;
+function upInv(aid){const a=SH.assets.find(x=>x.id===aid);upOk=false;const ps=DZ.PROV.filter(p=>p.cat===a.cat);
+ DZ.modal(`<h3>رفع فاتورة صيانة · ${a.name}</h3><p class="sub">الفاتورة تُرسل للمزود المذكور ليتحقق منها من سجلاته. الفواتير من جهات غير معتمدة لا تُحتسب في الامتثال.</p><div class="form"><div class="f full"><label>جهة الصيانة</label><select id="iP">${ps.map(p=>`<option value="${p.id}">${p.name} (معتمد)</option>`).join('')}<option value="x">جهة أخرى غير مسجلة</option></select></div><div class="f"><label>رقم الفاتورة</label><input id="iN" placeholder="INV-00000"></div><div class="f"><label>تاريخ الصيانة</label><input type="date" id="iD" value="${DZ.d(0)}"></div><div class="f full"><div class="upl" id="iU" onclick="this.classList.add('ok');this.innerHTML='<i class=\\'fa-solid fa-file-circle-check\\'></i>invoice.pdf · تم الإرفاق';upOk=true"><i class="fa-solid fa-cloud-arrow-up"></i>اضغط لإرفاق صورة الفاتورة</div></div></div><div class="mfoot"><button class="btn btn-o" onclick="DZ.close()">إلغاء</button><button class="btn btn-p" onclick="doInv('${aid}')"><i class="fa-solid fa-paper-plane"></i>إرسال للتحقق</button></div>`)}
+function doInv(aid){if(!upOk){DZ.toast('أرفق صورة الفاتورة أولاً','fa-circle-exclamation');return}const pid=$('iP').value,s=DZ.shops(),a=s[ID].assets.find(x=>x.id===aid);
+ if(pid==='x'){a.verified=false;a.note='فاتورة من جهة غير معتمدة';DZ.saveShops(s);DZ.close();DZ.toast('سُجلت الفاتورة لكنها لا تُحتسب: الجهة غير معتمدة','fa-triangle-exclamation');RENDER.assets();return}
+ a.verified='pending';a.prov=pid;DZ.saveShops(s);const v=DZ.vers();v.unshift({id:'V-'+(890+v.length),shop:ID,shopName:SH.name,asset:aid,assetName:a.name,prov:pid,inv:$('iN').value||'INV-'+(10000+Math.floor(Math.random()*8999)),amt:350,date:$('iD').value,st:0,fresh:true});DZ.saveVers(v);
+ DZ.close();DZ.toast('أُرسلت الفاتورة إلى '+DZ.prov(pid).name+' للتحقق');RENDER.assets()}
+function activate(){const s=DZ.shops();s[ID].vision=true;s[ID].visionScore=88;DZ.saveShops(s);DZ.toast('تم تفعيل عين الضامن على '+SH.cams.length+' كاميرات');RENDER.eye()}
+function renew(){const s=DZ.shops();s[ID].licExp=DZ.d(365+DZ.days(s[ID].licExp));DZ.saveShops(s);DZ.toast('أُرسل طلب التجديد مع سجل الامتثال الموثق');RENDER.lic()}
+addEventListener('storage',()=>{const on=document.querySelector('.page.on');if(on)RENDER[on.id.slice(3)]()});
+DZ.nav({home:['لوحة الامتثال','مؤشر محلك ومستويات الامتثال'],assets:['الاشتراطات والفواتير','كل أصل بفاتورته وموعد صيانته'],eye:['عين الضامن','سلوك المطبخ اليومي على كاميراتك'],market:['خدمات السلامة','مزودون معتمدون يصدرون شهادات موثقة'],lic:['الرخصة والتجديد','جاهزية التجديد مرتبطة بسجل الامتثال'],alerts:['التنبيهات','كل ما يحتاج تدخلك']},'home');
+</script>
+</body>
+</html>

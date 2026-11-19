@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الضامن | بوابة مزود خدمات السلامة</title>
+<meta name="author" content="SULAIMAN O. ALKHATEEB">
+<link rel="icon" href="dhamn-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="portal.css">
+<script src="core.js"></script>
+<script>DZ_GUARD('provider')</script>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="logo"><img src="dhamn-icon.png" alt=""><div><b>الضامن</b><small>بوابة مزود خدمات السلامة</small></div></div>
+  <div class="devcard"><div class="r"><span class="lg"><i class="fa-solid fa-helmet-safety"></i></span><div><b id="pName"></b><small id="pCat"></small></div></div><div class="zone"><i class="fa-solid fa-certificate"></i><span id="pLic"></span></div></div>
+  <button class="nav-i" data-p="home"><i class="fa-solid fa-chart-simple"></i>الرئيسية</button>
+  <button class="nav-i" data-p="jobs"><i class="fa-solid fa-briefcase"></i>طلبات الصيانة<span class="cnt" id="cJ"></span></button>
+  <button class="nav-i" data-p="verify"><i class="fa-solid fa-file-circle-question"></i>تحقق الفواتير<span class="cnt" id="cV"></span></button>
+  <button class="nav-i" data-p="certs"><i class="fa-solid fa-qrcode"></i>الشهادات الصادرة</button>
+  <button class="nav-i" data-p="leads"><i class="fa-solid fa-bullseye"></i>فرص قريبة</button>
+  <button class="nav-i" data-p="acc"><i class="fa-solid fa-id-card"></i>الاعتماد والاشتراك</button>
+  <div class="sep">العرض</div>
+  <div class="acts"><button onclick="dzView('mobile')"><i class="fa-solid fa-mobile-screen"></i>عرض تطبيق الجوال</button><a href="../index.html"><i class="fa-solid fa-table-cells-large"></i>كل البوابات</a><button onclick="dzLogout()"><i class="fa-solid fa-right-from-bracket"></i>تسجيل الخروج</button></div>
+  <div class="foot"><img src="dhamn-icon.png" alt=""><span>نسخة تجريبية</span></div>
+</aside>
+<div class="main">
+  <nav class="mnav"><button data-p="home"><i class="fa-solid fa-chart-simple"></i>الرئيسية</button><button data-p="jobs"><i class="fa-solid fa-briefcase"></i>الطلبات</button><button data-p="verify"><i class="fa-solid fa-file-circle-question"></i>التحقق</button><button data-p="certs"><i class="fa-solid fa-qrcode"></i>الشهادات</button><button data-p="leads"><i class="fa-solid fa-bullseye"></i>الفرص</button><button data-p="acc"><i class="fa-solid fa-id-card"></i>الاعتماد</button><button onclick="dzLogout()" class="x"><i class="fa-solid fa-right-from-bracket"></i>خروج</button></nav>
+  <header class="top"><div><h1 id="ttl"></h1><div class="sub" id="sub"></div></div><div class="sp"></div><div class="user"><div><b>مدير العمليات</b><small id="uSub"></small></div><span class="av"><i class="fa-solid fa-user"></i></span></div></header>
+  <div class="content">
+    <section class="page" id="pg-home"></section><section class="page" id="pg-jobs"></section><section class="page" id="pg-verify"></section><section class="page" id="pg-certs"></section><section class="page" id="pg-leads"></section><section class="page" id="pg-acc"></section>
+    <div class="credit">بيانات توضيحية</div>
+  </div>
+</div>
+</div>
+<script>
+const S=window.DZ_SESSION||{acc:'p1'};const PID=S.acc||'p1',P=DZ.prov(PID);const $=id=>document.getElementById(id);
+$('pName').textContent=P.name;$('pCat').textContent=DZ.CAT[P.cat];$('pLic').textContent='معتمد · ترخيص '+P.lic;$('uSub').textContent=P.name;
+const JS=[['جديد','c-b'],['مقبول','c-a'],['مكتمل · شهادة صادرة','c-o'],['مرفوض','c-r']];
+const my=()=>DZ.jobs().filter(j=>j.prov===PID),myV=()=>DZ.vers().filter(v=>v.prov===PID);
+function counters(){$('cJ').textContent=my().filter(j=>j.st===0).length||'';$('cV').textContent=myV().filter(v=>v.st===0).length||''}
+function issued(){return DZ.get('dz_issued_v1',[]).filter(c=>c.prov===PID)}
+function leads(){const out=[];const s=DZ.shops();[s.m1,s.m2].forEach(sh=>sh.assets.filter(a=>a.cat===P.cat).forEach(a=>{const st=DZ.ast(a,sh);if(!st.ok||st.k==='due')out.push({shop:sh.name,dist:sh.dist,asset:a.name,st})}));
+ const extra=P.cat==='fire'?[['مطعم الريم','الملقا','طفايات البودرة ×4','مستحق خلال 18 يوم','c-a'],['ملحمة الخير','العارض','كواشف الدخان ×3','منتهي منذ 9 يوم','c-r'],['كافيه الديرة','حطين','إنارة الطوارئ','مستحق خلال 25 يوم','c-a']]:[['مطعم النخيل','الربيع','كاميرا المطبخ','متوقفة منذ يومين','c-r'],['مخبز السنبلة','النرجس','نظام التسجيل','مستحق خلال 14 يوم','c-a']];
+ extra.forEach(x=>out.push({shop:x[0],dist:x[1],asset:x[2],st:{t:x[3],c:x[4]}}));return out}
+const RENDER={
+home(){counters();const j=my(),done=j.filter(x=>x.st===2),rev=done.reduce((s,x)=>s+x.amt,0)+issued().length*0;
+ $('pg-home').innerHTML=`<div class="grid g-k"><div class="card kpi"><b>${j.filter(x=>x.st===0).length}</b><span>طلبات جديدة</span></div><div class="card kpi"><b>${j.filter(x=>x.st===1).length}</b><span>قيد التنفيذ</span></div><div class="card kpi"><b>${myV().filter(v=>v.st===0).length}</b><span>فواتير بانتظار تحققك</span></div><div class="card kpi"><b>${leads().length}</b><span>فرص صيانة قريبة</span></div></div>
+ <div class="grid g-2"><div class="card"><div class="ch"><h3><i class="fa-solid fa-briefcase"></i>أحدث الطلبات</h3><button class="btn btn-o btn-x" onclick="GO('jobs')">الكل</button></div>${j.slice(0,4).map(x=>`<div class="li"><span class="ic pill ${JS[x.st][1]}" style="width:38px;height:38px;justify-content:center"><i class="fa-solid fa-store"></i></span><div class="tx"><b>${x.shopName} · ${x.assetName}</b><span>حي ${x.dist} · ${DZ.date(x.date)} · ${DZ.fmt(x.amt)} ريال</span></div><span class="pill ${JS[x.st][1]}">${JS[x.st][0]}</span></div>`).join('')||'<div class="empty">لا توجد طلبات</div>'}</div>
+  <div class="card"><div class="ch"><h3><i class="fa-solid fa-shield-halved"></i>دورك في الضامن</h3></div>${[['fa-qrcode','تصدر الشهادة رقمياً','تُرفق بسجل المحل فوراً برمز تحقق'],['fa-file-circle-question','تتحقق من الفواتير','أي فاتورة باسمك يرفعها تاجر تصلك لتؤكدها أو ترفضها'],['fa-ban','تحمي اسمك','الملصقات والفواتير المزورة باسمك تُكشف'],['fa-bullseye','تصلك الفرص','المحلات التي تقترب مواعيد صيانتها']].map(x=>`<div class="li"><span class="ic pill c-p" style="width:38px;height:38px;justify-content:center"><i class="fa-solid ${x[0]}"></i></span><div class="tx"><b>${x[1]}</b><span>${x[2]}</span></div></div>`).join('')}</div></div>`},
+jobs(){counters();const j=my();
+ $('pg-jobs').innerHTML=`<div class="card"><div class="ch"><h3><i class="fa-solid fa-briefcase"></i>طلبات الصيانة</h3><span class="note">بعد التنفيذ تصدر الشهادة الرقمية من هنا</span></div><div class="tw"><table><thead><tr><th>الطلب</th><th>المحل</th><th>الخدمة</th><th>الموعد</th><th>القيمة</th><th>الحالة</th><th></th></tr></thead><tbody>${j.map(x=>`<tr class="${x.fresh?'fresh':''}"><td class="uid">${x.id}</td><td>${x.shopName}<br><small style="color:var(--muted)">حي ${x.dist}</small></td><td>${x.assetName}${x.note?'<br><small style="color:var(--muted)">'+x.note+'</small>':''}</td><td>${DZ.date(x.date)}</td><td>${DZ.fmt(x.amt)} ريال</td><td><span class="pill ${JS[x.st][1]}">${JS[x.st][0]}</span></td><td>${x.st===0?`<button class="btn btn-p btn-x" onclick="setJ('${x.id}',1)">قبول</button> <button class="btn btn-o btn-x" onclick="setJ('${x.id}',3)">رفض</button>`:x.st===1?`<button class="btn btn-p btn-x" onclick="issue('${x.id}')"><i class="fa-solid fa-qrcode"></i>إنهاء وإصدار الشهادة</button>`:x.cert?'<span class="uid" style="font-size:12px">'+x.cert+'</span>':''}</td></tr>`).join('')||'<tr><td colspan="7" class="empty">لا توجد طلبات</td></tr>'}</tbody></table></div></div>`},
+verify(){counters();const v=myV();
+ $('pg-verify').innerHTML=`<div class="hint" style="margin:0 0 14px"><i class="fa-solid fa-circle-info"></i><span>هذه فواتير رفعها تجار باسم مؤسستك. تأكيدك يعتمد الصيانة في سجل المحل، ورفضك يُبلغ البلدية بوجود فاتورة غير صحيحة. هكذا ينتهي «الملصق بدون صيانة».</span></div>
+ <div class="card"><div class="ch"><h3><i class="fa-solid fa-file-circle-question"></i>طلبات تحقق الفواتير</h3></div>${v.map(x=>`<div class="li"><span class="ic pill ${x.st===0?'c-b':x.st===1?'c-o':'c-r'}" style="width:38px;height:38px;justify-content:center"><i class="fa-solid fa-file-invoice"></i></span><div class="tx"><b>${x.shopName} · ${x.assetName}</b><span>فاتورة ${x.inv} · ${DZ.date(x.date)} · ${DZ.fmt(x.amt)} ريال${x.flag?' · <b style="color:var(--red);display:inline">'+x.flag+'</b>':''}</span></div>${x.st===0?`<button class="btn btn-p btn-x" onclick="ver('${x.id}',1)"><i class="fa-solid fa-check"></i>تأكيد</button><button class="btn btn-o btn-x" onclick="ver('${x.id}',2)">ليست من سجلاتنا</button>`:`<span class="pill ${x.st===1?'c-o':'c-r'}">${x.st===1?'مؤكدة':'مرفوضة · أُبلغت البلدية'}</span>`}</div>`).join('')||'<div class="empty">لا توجد طلبات تحقق</div>'}</div>`},
+certs(){const c=issued(),done=my().filter(j=>j.st===2&&j.cert&&!c.find(x=>x.cert===j.cert)).map(j=>({cert:j.cert,shop:j.shopName,asset:j.assetName,date:j.date}));const all=[...c,...done];
+ $('pg-certs').innerHTML=`<div class="grid g-h">${all.map(x=>`<div class="cert"><div><span class="pill c-o" style="margin-bottom:8px"><i class="fa-solid fa-circle-check"></i>شهادة صيانة موثقة</span><div class="kv"><span>رقم الشهادة</span><b>${x.cert}</b><span>المحل</span><b>${x.shop}</b><span>الخدمة</span><b>${x.asset}</b><span>التاريخ</span><b>${DZ.date(x.date)}</b><span>المزود</span><b>${P.name}</b></div></div><div class="qr">${DZ.qr(x.cert)}</div></div>`).join('')||'<div class="card empty">لم تصدر شهادات بعد</div>'}</div>`},
+leads(){const l=leads();$('pg-leads').innerHTML=`<div class="card"><div class="ch"><h3><i class="fa-solid fa-bullseye"></i>محلات تحتاج خدماتك</h3><span class="note">تظهر للمزودين المعتمدين فقط · التاجر يختار</span></div>${l.map(x=>`<div class="li"><span class="ic pill ${x.st.c}" style="width:38px;height:38px;justify-content:center"><i class="fa-solid fa-store"></i></span><div class="tx"><b>${x.shop} · ${x.asset}</b><span>حي ${x.dist}</span></div><span class="pill ${x.st.c}">${x.st.t}</span><button class="btn btn-o btn-x" onclick="DZ.toast('أُرسل عرضك للتاجر')">إرسال عرض</button></div>`).join('')}</div>`},
+acc(){$('pg-acc').innerHTML=`<div class="grid g-h"><div class="card"><div class="ch"><h3><i class="fa-solid fa-certificate"></i>حالة الاعتماد</h3><span class="pill c-o">معتمد</span></div>${[['الترخيص',P.lic],['التخصص',DZ.CAT[P.cat]],['التقييم','★ '+P.rate],['الطلبات المنفذة',DZ.fmt(P.jobs)],['صلاحية الاعتماد',DZ.date(DZ.d(214))]].map(r=>`<div class="chk"><i class="fa-solid fa-circle-check" style="color:var(--ok)"></i><div>${r[0]}<small>${r[1]}</small></div></div>`).join('')}</div>
+ <div class="card"><div class="ch"><h3><i class="fa-solid fa-receipt"></i>رسوم الاعتماد السنوية</h3></div><div class="rev"><small>رسوم الاعتماد</small><b>5,000 ريال</b><small>سنوياً · تشمل إصدار الشهادات الرقمية وظهورك في سوق خدمات السلامة</small></div><div class="hint"><i class="fa-solid fa-circle-info"></i><span>يُضاف إلى ذلك عمولة على الطلبات المنفذة عبر المنصة. الأرقام توضيحية.</span></div><button class="btn btn-p" style="width:100%;margin-top:14px" onclick="DZ.toast('تم تجديد الاعتماد')"><i class="fa-solid fa-rotate"></i>تجديد الاعتماد</button></div></div>`}};
+function setJ(id,st){const j=DZ.jobs();const x=j.find(a=>a.id===id);x.st=st;delete x.fresh;DZ.saveJobs(j);DZ.toast(st===1?'تم قبول الطلب':'تم رفض الطلب');RENDER.jobs()}
+function issue(id){const x=DZ.jobs().find(a=>a.id===id);
+ DZ.modal(`<h3>إصدار شهادة صيانة موثقة</h3><p class="sub">${x.shopName} · ${x.assetName}</p><div class="form"><div class="f"><label>تاريخ التنفيذ</label><input type="date" value="${DZ.d(0)}"></div><div class="f"><label>الفني</label><input value="م. خالد اليامي"></div><div class="f full"><label>ما تم</label><textarea>تمت الصيانة والفحص وفق اشتراطات الدفاع المدني، وتعبئة/استبدال ما يلزم.</textarea></div><div class="f full"><div class="upl ok"><i class="fa-solid fa-camera"></i>صورتا قبل وبعد · مرفقة</div></div></div><div class="mfoot"><button class="btn btn-o" onclick="DZ.close()">إلغاء</button><button class="btn btn-p" onclick="doIssue('${id}')"><i class="fa-solid fa-qrcode"></i>إصدار الشهادة</button></div>`)}
+function doIssue(id){const j=DZ.jobs(),x=j.find(a=>a.id===id),c=DZ.certNo();x.st=2;x.cert=c;delete x.fresh;DZ.saveJobs(j);
+ const ok=DZ.applyCert(x.shop,x.asset,PID,c);const is=DZ.get('dz_issued_v1',[]);is.unshift({cert:c,prov:PID,shop:x.shopName,asset:x.assetName,date:DZ.d(0)});DZ.set('dz_issued_v1',is);
+ DZ.close();DZ.toast(ok?'صدرت الشهادة '+c+' وأُرفقت بسجل '+x.shopName:'صدرت الشهادة '+c);RENDER.jobs()}
+function ver(id,st){const v=DZ.vers(),x=v.find(a=>a.id===id);x.st=st;DZ.saveVers(v);
+ const s=DZ.shops();if(s[x.shop]){const a=s[x.shop].assets.find(z=>z.id===x.asset);if(a){if(st===1){a.verified=true;a.last=x.date;a.next=DZ.d(a.every+DZ.days(x.date));a.inv=x.inv;delete a.note;if(a.camAsset)s[x.shop].cams.forEach(c=>c.on=true)}else{a.verified=false;a.note='رفض المزود الفاتورة'}DZ.saveShops(s)}}
+ DZ.toast(st===1?'تم تأكيد الفاتورة واعتماد الصيانة':'رُفضت الفاتورة وأُبلغت البلدية',st===1?'fa-circle-check':'fa-ban');RENDER.verify()}
+addEventListener('storage',()=>{const on=document.querySelector('.page.on');if(on)RENDER[on.id.slice(3)]()});
+DZ.nav({home:['الرئيسية',P.name],jobs:['طلبات الصيانة','طلبات التجار عبر الضامن'],verify:['تحقق الفواتير','فواتير مرفوعة باسم مؤسستك'],certs:['الشهادات الصادرة','شهادات رقمية برمز تحقق'],leads:['فرص قريبة','محلات تقترب مواعيد صيانتها'],acc:['الاعتماد والاشتراك','حالة اعتمادك في المنصة']},'home');
+</script>
+</body>
+</html>

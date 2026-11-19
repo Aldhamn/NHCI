@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الضامن للمحلات | عرض تطبيق الجوال</title>
+<meta name="author" content="SULAIMAN O. ALKHATEEB">
+<link rel="icon" href="dhamn-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Noto+Kufi+Arabic:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+(function(){var p=new URLSearchParams(location.search).get('p')||'';var ok={'merchant.html':'merchant','municipality.html':'muni','provider.html':'provider'};
+try{var s=JSON.parse(sessionStorage.getItem('dz_session')||'null');if(!s||s.role!==ok[p]){location.replace('login.html');return}window.DZ_SESSION=s}catch(e){}
+if(window.innerWidth<=820){location.replace(p);return}window.DZ_PAGE=p})();
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;gap:56px;padding:20px;color:#F1EEFA;
+  background:radial-gradient(900px 500px at 80% 0%,rgba(232,86,42,.28),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(123,63,242,.18),transparent 60%),#0B0818}
+h1{font-family:'Noto Kufi Arabic',sans-serif;line-height:1.4}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.side{max-width:340px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.brand img{height:46px}.brand b{font-family:'Noto Kufi Arabic';font-size:20px;display:block;line-height:1.2}.brand small{color:#FFC066;font-size:12px}
+h1{font-size:28px;font-weight:900;margin-bottom:8px}
+h1 span{background:linear-gradient(100deg,#FFC066,#FF7A45 50%,#B79CFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side p{color:#A9A3C6;font-size:14px;line-height:1.8;margin-bottom:22px}
+.box{background:rgba(255,255,255,.04);border:1px solid rgba(255,170,90,.25);border-radius:18px;padding:16px;margin-bottom:12px}
+.box h4{font-size:13px;color:#FFC066;margin-bottom:8px;display:flex;gap:8px;align-items:center}
+.box div{font-size:13px;color:#d6d4f0;line-height:2}
+.btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border-radius:13px;border:1px solid rgba(255,255,255,.1);font-size:14px;color:#d6d4f0;margin-bottom:10px;transition:.2s;text-decoration:none}
+.btn:hover{border-color:#FF9A3D;color:#fff}
+.btn.p{background:linear-gradient(120deg,#FF8A3D,#E8562A 50%,#7B3FF2);color:#fff;border-color:transparent;font-weight:700}
+.credit{font-size:12px;color:#706A96;margin-top:14px}
+.phone{width:400px;height:min(860px,calc(100vh - 40px));border-radius:46px;border:11px solid #140D24;background:#F3F4FA;position:relative;overflow:hidden;flex-shrink:0;
+  box-shadow:0 40px 90px -20px rgba(0,0,0,.7),0 0 0 1px rgba(255,170,90,.35),0 0 80px -20px rgba(232,86,42,.55)}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:110px;height:26px;background:#140D24;border-radius:20px;z-index:3;pointer-events:none}
+.status{height:40px;background:#140D24}
+iframe{border:0;width:100%;height:calc(100% - 40px);display:block;background:#F3F4FA}
+@media(max-width:900px){.side{display:none}}
+</style>
+</head>
+<body>
+<aside class="side">
+  <div class="brand"><img src="dhamn-icon.png" alt=""><div><b>الضامن</b><small>للمحلات التجارية</small></div></div>
+  <h1 id="ttl"></h1><p id="desc"></p>
+  <div class="box"><h4><i class="fa-solid fa-user"></i>الحساب</h4><div id="acc"></div></div>
+  <button class="btn p" onclick="toDesk()"><i class="fa-solid fa-display"></i>التبديل إلى عرض المتصفح</button>
+  <a class="btn" href="../index.html"><i class="fa-solid fa-table-cells-large"></i>كل البوابات</a>
+  <button class="btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>تسجيل الخروج</button>
+</aside>
+<div class="phone"><div class="notch"></div><div class="status"></div><iframe id="app" title="تطبيق الضامن"></iframe></div>
+<script>
+const NAMES={m1:'مطعم السفرة الذهبية<br>حي النرجس',m2:'مخبز ريحانة الصباح<br>حي الياسمين',b1:'بلدية شمال الرياض<br>مدير الرقابة',p1:'مؤسسة درع الأمان لأنظمة السلامة<br>مزود معتمد',p2:'شركة رؤية الأمن للكاميرات<br>مزود معتمد'};
+const INFO={'merchant.html':['بوابة <span>التاجر</span>','سجل امتثالك وفواتيرك وتقارير عين الضامن وتجديد رخصتك، من جوالك.'],
+ 'municipality.html':['لوحة <span>البلدية</span>','مؤشرات الامتثال والتفتيش الموجّه بالخطورة وطابور التجديد، من جوالك.'],
+ 'provider.html':['بوابة <span>مزود السلامة</span>','استقبل طلبات المحلات وأصدر الشهادات الموثقة وتحقق من الفواتير، من جوالك.']};
+const p=window.DZ_PAGE;if(p){const i=INFO[p];document.getElementById('ttl').innerHTML=i[0];document.getElementById('desc').textContent=i[1];
+  document.getElementById('acc').innerHTML=NAMES[(window.DZ_SESSION||{}).acc]||'';document.getElementById('app').src=p}
+function toDesk(){try{const s=JSON.parse(sessionStorage.getItem('dz_session')||'{}');s.view='desktop';sessionStorage.setItem('dz_session',JSON.stringify(s))}catch(e){}location.href=p}
+function logout(){try{sessionStorage.removeItem('dz_session')}catch(e){}location.href='login.html'}
+</script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الضامن للمحلات | امتثال يُثبت نفسه</title>
+<meta name="description" content="مقترح الضامن للبلديات: سجل امتثال رقمي للمحلات التجارية وعين الضامن لمراقبة سلوكيات النظافة وسلامة الغذاء.">
+<meta name="author" content="SULAIMAN O. ALKHATEEB">
+<meta name="theme-color" content="#0B0818">
+<link rel="icon" href="dhamn-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#0B0818;--bg2:#120E26;--card:rgba(255,255,255,.035);--card2:rgba(255,255,255,.065);--line:rgba(255,170,90,.2);--line2:rgba(255,255,255,.08);
+  --o:#FF9A3D;--o2:#FFC066;--o3:#C2410C;--p:#7B3FF2;--p2:#A88BFF;--t:#16D1C2;--t2:#8BF5EA;--mint:#5FD3A5;--red:#FF6B7D;--text:#F1EEFA;--muted:#A9A3C6;--dim:#706A96;
+  --grad:linear-gradient(120deg,#FF9A3D,#E8562A 45%,#7B3FF2);--grad2:linear-gradient(120deg,#7B3FF2,#4F46E5 45%,#16D1C2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,.kufi{font-family:'Noto Kufi Arabic',sans-serif;line-height:1.45}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.aura{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(1000px 600px at 92% -10%,rgba(232,86,42,.22),transparent 60%),radial-gradient(800px 600px at -10% 40%,rgba(123,63,242,.16),transparent 60%),radial-gradient(800px 500px at 50% 120%,rgba(22,209,194,.1),transparent 60%)}
+main,header,footer{position:relative;z-index:2}
+.prog{position:fixed;top:0;inset-inline-start:0;height:3px;background:var(--grad);z-index:70;width:0}
+/* nav */
+.nav{position:fixed;top:0;inset-inline:0;z-index:50;transition:.3s}
+.nav.scrolled{background:rgba(11,8,24,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Noto Kufi Arabic';font-weight:800;font-size:18px}
+.brand img{height:36px}
+.brand small{font-family:'IBM Plex Sans Arabic';font-size:11.5px;color:var(--o2);font-weight:600;display:block;line-height:1}
+.navlinks{display:flex;gap:2px}
+.navlinks a{font-size:13px;color:var(--muted);padding:7px 11px;border-radius:9px}
+.navlinks a:hover{color:var(--text);background:var(--card2)}
+.btn{position:relative;display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:14px;font-weight:700;font-size:15px;transition:transform .25s,box-shadow .25s,border-color .25s;white-space:nowrap;overflow:hidden}
+.btn-o{background:var(--grad);color:#fff;box-shadow:0 12px 34px -12px rgba(232,86,42,.8)}
+.btn-o:hover{transform:translateY(-2px);box-shadow:0 18px 44px -12px rgba(255,154,61,.7)}
+.btn-g{background:var(--card2);color:var(--text);border:1px solid var(--line2)}
+.btn-g:hover{border-color:var(--o2);transform:translateY(-2px)}
+.btn-sm{padding:9px 14px;font-size:13px;border-radius:11px}
+.nav-acts{display:flex;gap:8px}
+@media(max-width:1080px){.navlinks{display:none}}
+@media(max-width:560px){.nav .btn-sm span{display:none}}
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:110px 0 60px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.hero .wrap>*{min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;color:var(--o2);border:1px solid var(--line);background:rgba(255,154,61,.07);padding:7px 14px;border-radius:99px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--o);box-shadow:0 0 0 4px rgba(255,154,61,.18);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(255,154,61,0)}}
+.hero h1{font-size:clamp(30px,4.4vw,54px);font-weight:900;margin:22px 0 16px}
+.gt{background:linear-gradient(100deg,#FFC066,#FF7A45 35%,#B79CFF 70%,#FFC066);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 7s linear infinite}
+@keyframes flow{to{background-position:-220% 0}}
+.lead{font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:610px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 30px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:600px}
+.stat{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:12px}
+.stat b{display:block;font-family:'Noto Kufi Arabic';font-size:21px;color:var(--o2)}
+.stat span{font-size:11.8px;color:var(--muted);line-height:1.5;display:block}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+/* camera demo */
+.cam{position:relative;border-radius:26px;overflow:hidden;border:1.5px solid var(--line);background:#06040f;box-shadow:0 40px 90px -30px rgba(0,0,0,.9),0 0 80px -30px rgba(232,86,42,.5)}
+.cam-top{position:absolute;top:0;inset-inline:0;display:flex;justify-content:space-between;align-items:center;padding:12px 14px;z-index:4;font-size:12px;font-family:monospace;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,.65),transparent)}
+.rec{display:flex;align-items:center;gap:7px;font-family:'IBM Plex Sans Arabic';font-weight:700}
+.rec i{width:9px;height:9px;border-radius:50%;background:#FF3B4E;animation:bl 1.2s infinite}
+@keyframes bl{50%{opacity:.2}}
+.cam svg{display:block;width:100%;height:auto}
+.box{position:absolute;border:2.5px solid;border-radius:8px;z-index:3;opacity:0;transition:opacity .4s}
+.box.on{opacity:1}
+.box span{position:absolute;top:-28px;inset-inline-start:-2px;white-space:nowrap;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:7px 7px 7px 0;color:#fff}
+.box.bad{border-color:#FF4D63;box-shadow:0 0 18px rgba(255,77,99,.6)}.box.bad span{background:#FF4D63}
+.box.ok{border-color:#2BD49A}.box.ok span{background:#13a679}
+.cam-feed{position:absolute;bottom:0;inset-inline:0;z-index:4;padding:10px 12px;display:flex;gap:6px;flex-wrap:wrap;background:linear-gradient(0deg,rgba(0,0,0,.8),transparent)}
+.ev{font-size:11.5px;padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);display:flex;gap:6px;align-items:center;animation:evin .4s}
+.ev.b{background:rgba(255,77,99,.85)}.ev.g{background:rgba(19,166,121,.85)}
+@keyframes evin{from{opacity:0;transform:translateY(6px)}}
+/* sections */
+section.s{padding:96px 0}
+.s-head{max-width:800px;margin-bottom:44px}
+.s-head.c{text-align:center;margin-inline:auto}
+.tag{font-size:12px;font-weight:700;color:var(--o2);display:inline-flex;align-items:center;gap:8px;margin-bottom:12px}
+.tag::before{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+.s-head.c .tag::after{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+h2{font-size:clamp(25px,3.2vw,40px);font-weight:900;margin-bottom:12px}
+.s-head p{color:var(--muted);font-size:16px}
+.card{background:var(--card);border:1px solid var(--line2);border-radius:20px;padding:24px;transition:border-color .3s,transform .3s}
+.card:hover{border-color:var(--line)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+/* theatre */
+.theatre{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.th{padding:22px 18px}
+.th .ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:21px;background:rgba(255,107,125,.12);color:var(--red);margin-bottom:14px}
+.th h3{font-size:16px;margin-bottom:6px}
+.th p{font-size:13px;color:var(--muted);line-height:1.7}
+.th .vs{margin-top:12px;font-size:12px;display:flex;gap:6px;flex-wrap:wrap}
+.th .vs span{padding:3px 9px;border-radius:7px;font-weight:700}
+.see{background:rgba(255,255,255,.06);color:#d7d3ee}.real{background:rgba(255,107,125,.14);color:var(--red)}
+@media(max-width:1000px){.theatre{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.theatre{grid-template-columns:1fr}}
+.food{margin-top:18px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:24px 26px;border-radius:22px;background:linear-gradient(135deg,rgba(255,107,125,.1),rgba(255,154,61,.05));border:1px dashed rgba(255,107,125,.4)}
+.food .big{font-size:44px;color:var(--red)}
+.food h3{font-size:19px;margin-bottom:4px}
+.food p{font-size:14.5px;color:#e4dff5}
+.chain{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.chain span{font-size:12.5px;padding:6px 11px;border-radius:10px;background:rgba(0,0,0,.25);border:1px solid var(--line2)}
+.chain i{color:var(--dim);font-size:11px}
+@media(max-width:600px){.food{grid-template-columns:1fr}}
+/* products */
+.prod{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.pd{border-radius:28px;padding:30px;position:relative;overflow:hidden;border:1.5px solid var(--line2)}
+.pd.a{background:linear-gradient(160deg,rgba(123,63,242,.16),rgba(22,209,194,.05))}
+.pd.b{background:linear-gradient(160deg,rgba(255,154,61,.14),rgba(194,65,12,.05))}
+.pd .lbl{font-size:12px;font-weight:800;padding:4px 11px;border-radius:99px;display:inline-block;margin-bottom:14px}
+.pd.a .lbl{background:rgba(22,209,194,.14);color:var(--t2)}.pd.b .lbl{background:rgba(255,154,61,.15);color:var(--o2)}
+.pd h3{font-size:24px;font-weight:900;margin-bottom:8px}
+.pd>p{font-size:14.5px;color:#d9d5ef;margin-bottom:18px}
+.steps{display:grid;gap:10px;margin-bottom:6px}
+.stp{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid var(--line2)}
+.stp .n{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:16px;color:#fff}
+.pd.a .stp .n{background:var(--grad2)}.pd.b .stp .n{background:var(--grad)}
+.stp b{font-size:14px;display:block}
+.stp span{font-size:12.5px;color:var(--muted)}
+@media(max-width:960px){.prod{grid-template-columns:1fr}}
+.ladder{display:grid;gap:14px}
+.lv{display:grid;grid-template-columns:120px 1fr 240px;gap:20px;align-items:center;padding:22px 24px;border-radius:22px;border:1.5px solid var(--line2);background:var(--card);position:relative}
+.lv .no{font-family:'Noto Kufi Arabic';font-weight:900;font-size:15px;text-align:center}
+.lv .no i{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;margin:0 auto 6px;font-size:23px;color:#fff}
+.lv h3{font-size:17px;margin-bottom:4px}.lv p{font-size:13.5px;color:var(--muted)}
+.lv .its{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.lv .its span{font-size:12px;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--line2)}
+.lv .gate{font-size:12.5px;padding:12px 14px;border-radius:14px;line-height:1.7}
+.lv1 .no i{background:linear-gradient(135deg,#FF6B7D,#C2410C)}.lv1 .gate{background:rgba(255,107,125,.1);border:1px dashed rgba(255,107,125,.45)}
+.lv2 .no i{background:linear-gradient(135deg,#FF9A3D,#E8562A)}.lv2 .gate{background:rgba(255,154,61,.1);border:1px dashed rgba(255,154,61,.45)}
+.lv3 .no i{background:linear-gradient(135deg,#16D1C2,#7B3FF2)}.lv3 .gate{background:rgba(22,209,194,.08);border:1px dashed rgba(22,209,194,.45)}
+.lv+.lv::before{content:"\f063";font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;top:-19px;right:80px;font-size:13px;color:var(--dim)}
+.why3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.why3 .card{padding:20px}.why3 h4{font-size:15px;margin-bottom:4px;display:flex;gap:8px;align-items:center}.why3 h4 i{color:var(--o2)}.why3 p{font-size:13px;color:var(--muted)}
+.badge-safe{display:flex;align-items:center;gap:16px;margin-top:18px;padding:18px 22px;border-radius:20px;background:linear-gradient(120deg,rgba(95,211,165,.12),rgba(22,209,194,.04));border:1px solid rgba(95,211,165,.35)}
+.badge-safe .sh{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:26px;background:linear-gradient(135deg,#5FD3A5,#13a679);color:#fff;flex-shrink:0}
+.badge-safe b{font-size:16px;display:block}.badge-safe span{font-size:13px;color:#d6f3e8}
+@media(max-width:960px){.lv{grid-template-columns:1fr;gap:12px}.lv .no{display:flex;align-items:center;gap:12px;text-align:start}.lv .no i{margin:0}.why3{grid-template-columns:1fr}}
+/* vision demo */
+.vis{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+@media(max-width:960px){.vis{grid-template-columns:1fr}}
+.wa{border-radius:24px;overflow:hidden;border:1px solid var(--line2);background:#0B141A;max-width:430px;margin:0 auto;width:100%}
+.wa-top{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#1F2C34}
+.wa-top .av{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden}
+.wa-top .av img{width:30px}
+.wa-top b{font-size:14px;display:block}.wa-top small{font-size:11.5px;color:#8696A0}
+.wa-body{padding:14px;min-height:430px;background:#0B141A;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:16px 16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:92%;background:#202C33;border-radius:12px 12px 12px 3px;padding:10px 12px;font-size:13px;line-height:1.75;color:#E9EDEF;align-self:flex-start;opacity:0;transform:translateY(8px);transition:.5s}
+.msg.in{opacity:1;transform:none}
+.msg b{color:#fff}
+.msg .t{display:block;text-align:left;font-size:10.5px;color:#8696A0;margin-top:4px}
+.msg .r{color:#FF8A97}.msg .g{color:#5FE0B0}
+.wtabs{display:flex;gap:6px;padding:10px 14px;background:#111B21;border-top:1px solid #222D34}
+.wtabs button{flex:1;padding:8px;border-radius:10px;font-size:12.5px;color:#aebac1;background:#202C33}
+.wtabs button.on{background:#005C4B;color:#fff;font-weight:700}
+.trend{margin-top:16px}
+.trend .bars{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:end;height:150px}
+.trend .bars div{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.trend .bars i{display:block;width:100%;max-width:40px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#FF6B7D,#C2410C);transition:height 1s cubic-bezier(.2,.8,.2,1)}
+.trend .bars div:last-child i,.trend .bars div:nth-last-child(2) i{background:linear-gradient(180deg,#5FD3A5,#13a679)}
+.trend small{font-size:11px;color:var(--muted)}.trend b{font-size:11.5px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.ct{padding:14px 10px;border-radius:14px;background:var(--card);border:1px solid var(--line2);text-align:center;font-size:12.5px}
+.ct i{font-size:20px;color:var(--o2);display:block;margin-bottom:6px}
+@media(max-width:600px){.cats{grid-template-columns:1fr 1fr}}
+/* revenue */
+.streams{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:30px}
+.sm{padding:20px 16px}
+.sm .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:18px;background:var(--grad);color:#fff;margin-bottom:12px}
+.sm h3{font-size:14.5px;margin-bottom:4px}
+.sm .pay{font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px;display:inline-block;margin-bottom:8px;background:rgba(255,154,61,.13);color:var(--o2)}
+.sm p{font-size:12.5px;color:var(--muted);line-height:1.7}
+@media(max-width:1100px){.streams{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.streams{grid-template-columns:1fr}}
+.calc{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}
+@media(max-width:960px){.calc{grid-template-columns:1fr}}
+.ctrl{margin-bottom:16px}
+.ctrl .lb{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:8px;gap:10px}
+.ctrl .lb b{color:var(--o2);font-family:'Noto Kufi Arabic';font-size:14px;white-space:nowrap}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9px;outline:none;background:linear-gradient(270deg,var(--o) 0,var(--o3) var(--v,50%),rgba(255,255,255,.09) var(--v,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--o);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:5px solid var(--o);cursor:pointer}
+.total{padding:20px;border-radius:18px;background:linear-gradient(150deg,rgba(255,154,61,.18),rgba(123,63,242,.06));border:1px solid var(--line);margin-bottom:14px}
+.total small{font-size:12.5px;color:var(--muted);display:block}
+.total b{font-family:'Noto Kufi Arabic';font-size:clamp(24px,3vw,36px);font-weight:900;color:var(--o2);display:block;line-height:1.5}
+.total em{font-style:normal;font-size:12px;color:var(--muted)}
+.rows{display:grid;gap:7px}
+.row{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;padding:9px 12px;border-radius:11px;background:rgba(255,255,255,.03)}
+.row span{display:flex;gap:9px;align-items:center}.row .sw{width:10px;height:10px;border-radius:3px}
+.assume{margin-top:14px;font-size:11.5px;color:var(--dim);line-height:1.8}
+/* path */
+.path{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ph{padding:26px 22px;position:relative}
+.ph .n{font-family:'Noto Kufi Arabic';font-size:13px;font-weight:800;color:var(--o2);margin-bottom:6px}
+.ph h3{font-size:18px;margin-bottom:8px}
+.ph p{font-size:13.5px;color:var(--muted);margin-bottom:12px}
+.ph ul{list-style:none;display:grid;gap:6px}
+.ph li{font-size:13px;display:flex;gap:8px}.ph li i{color:var(--mint);margin-top:6px;font-size:11px}
+.meter{height:8px;border-radius:9px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:16px}
+.meter i{display:block;height:100%;background:var(--grad);border-radius:9px}
+@media(max-width:900px){.path{grid-template-columns:1fr}}
+/* trust */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tr{display:flex;gap:14px;padding:18px}
+.tr i{font-size:20px;color:var(--t);margin-top:4px;width:24px;text-align:center}
+.tr h4{font-size:15px;margin-bottom:3px}
+.tr p{font-size:13px;color:var(--muted);line-height:1.7}
+@media(max-width:900px){.trust{grid-template-columns:1fr}}
+.v30{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.v30 div{padding:16px;border-radius:16px;background:rgba(22,209,194,.05);border:1px solid rgba(22,209,194,.2);font-size:13px}
+.v30 b{display:block;font-size:14.5px;margin-bottom:3px;color:var(--t2)}
+@media(max-width:900px){.v30{grid-template-columns:1fr 1fr}}
+.final{border-radius:32px;padding:56px 30px;text-align:center;background:radial-gradient(600px 300px at 50% 0%,rgba(255,154,61,.3),transparent 70%),radial-gradient(500px 300px at 50% 110%,rgba(123,63,242,.25),transparent 70%),#120E26;border:1px solid var(--line)}
+.final h2{font-size:clamp(24px,3.4vw,40px)}
+.final p{color:#d8d3ee;max-width:640px;margin:0 auto 26px}
+.final .ctas{justify-content:center;margin:0}
+footer{padding:30px 0;border-top:1px solid var(--line2);margin-top:60px;font-size:12.5px;color:var(--dim)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+@media(max-width:600px){.btn{white-space:normal;justify-content:center;text-align:center;width:100%}.nav .btn{width:auto}.stats{grid-template-columns:1fr 1fr 1fr}.stat b{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="aura"></div><div class="prog" id="prog"></div>
+<header class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="index.html"><img src="dhamn-icon.png" alt=""><div>الضامن<small>للمحلات التجارية</small></div></a>
+  <nav class="navlinks"><a href="#problem">المشكلة</a><a href="#products">الحل</a><a href="#ladder">سُلّم الامتثال</a><a href="#vision">عين الضامن</a><a href="#revenue">الدخل</a><a href="#path">مسار الإلزام</a><a href="#trust">الخصوصية</a></nav>
+  <div class="nav-acts"><a href="../index.html" class="btn btn-g btn-sm"><i class="fa-solid fa-table-cells-large"></i><span>كل البوابات</span></a><a href="login.html" class="btn btn-o btn-sm"><i class="fa-solid fa-right-to-bracket"></i><span>دخول المنصة</span></a></div>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow"><span class="dot"></span>مقترح للبلديات · امتثال المحلات التجارية</span>
+    <h1>الرخصة تُثبت أن المحل كان ممتثلاً يوم الإصدار…<br><span class="gt">الضامن يُثبت أنه ممتثل كل يوم</span></h1>
+    <p class="lead">اليوم يقتصر دخل البلدية من المحل على رسوم الرخصة، ويقتصر الامتثال على زيارة تفتيش. الضامن يحوّل اشتراطات السلامة وسلامة الغذاء إلى سجل رقمي حي بفواتير موثقة وتنبيهات صيانة، ويضيف «عين الضامن» على كاميرات المحل لرصد السلوكيات اليومية — ومعه مصادر دخل جديدة ومتكررة.</p>
+    <div class="ctas"><a href="login.html" class="btn btn-o"><i class="fa-solid fa-right-to-bracket"></i>الانتقال إلى المنصة التجريبية</a><a href="#revenue" class="btn btn-g"><i class="fa-solid fa-coins"></i>نموذج الدخل</a></div>
+    <div class="stats"><div class="stat"><b>365</b><span>يوم امتثال مُثبت بدل زيارة واحدة</span></div><div class="stat"><b>2</b><span>منتجان: سجل الامتثال وعين الضامن</span></div><div class="stat"><b>5</b><span>مصادر دخل جديدة</span></div></div>
+  </div>
+  <div class="cam rv" id="cam">
+    <div class="cam-top"><span class="rec"><i></i>عين الضامن · مباشر</span><span>CAM-02 · المطبخ · <span id="clk">13:42:08</span></span></div>
+    <svg viewBox="0 0 600 400" aria-label="مشهد مطبخ توضيحي">
+      <defs><linearGradient id="wl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f3a"/><stop offset="1" stop-color="#1b1f28"/></linearGradient><linearGradient id="st" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a96a8"/><stop offset="1" stop-color="#5a6577"/></linearGradient></defs>
+      <rect width="600" height="400" fill="url(#wl)"/>
+      <g fill="#323848"><rect x="0" y="0" width="600" height="140"/></g>
+      <g stroke="#3d4456" stroke-width="2"><line x1="0" y1="60" x2="600" y2="60"/><line x1="0" y1="100" x2="600" y2="100"/></g>
+      <rect x="380" y="20" width="190" height="90" rx="6" fill="#262b37" stroke="#4a5266"/>
+      <rect x="0" y="250" width="600" height="150" fill="url(#st)"/><rect x="0" y="244" width="600" height="10" fill="#a9b4c4"/>
+      <rect x="40" y="215" width="120" height="32" rx="4" fill="#3a3f4b"/><circle cx="70" cy="214" r="18" fill="#2d323d"/><circle cx="125" cy="214" r="18" fill="#2d323d"/>
+      <rect x="430" y="206" width="110" height="42" rx="6" fill="#1d2129"/><rect x="440" y="212" width="60" height="20" rx="3" fill="#33d6a8" opacity=".55"/>
+      <rect x="300" y="226" width="80" height="20" rx="3" fill="#d9c7a8"/>
+      <!-- worker 1 cook -->
+      <g transform="translate(140 96)"><ellipse cx="40" cy="20" rx="27" ry="13" fill="#f2f2f2"/><circle cx="40" cy="38" r="22" fill="#c99a76"/><path d="M8 70 Q40 52 72 70 L80 160 L0 160Z" fill="#e9edf2"/><rect x="-14" y="100" width="22" height="12" rx="6" fill="#c99a76" transform="rotate(-20)"/><circle cx="74" cy="118" r="9" fill="#c99a76"/></g>
+      <!-- worker 2 cashier -->
+      <g transform="translate(410 96)"><circle cx="40" cy="38" r="22" fill="#b5866a"/><path d="M14 26 Q40 4 66 26 L66 34 Q40 22 14 34Z" fill="#2a2018"/><path d="M8 70 Q40 52 72 70 L80 160 L0 160Z" fill="#3f7fb8"/><circle cx="2" cy="120" r="10" fill="#6fb8ff"/><rect x="-26" y="112" width="26" height="14" rx="3" fill="#7fbf7f"/></g>
+    </svg>
+    <div class="box ok" id="b1" style="left:24.5%;top:24%;width:15%;height:16%"><span>غطاء شعر ✓</span></div>
+    <div class="box bad" id="b2" style="left:63%;top:22%;width:14%;height:17%"><span>بدون غطاء شعر</span></div>
+    <div class="box bad" id="b3" style="left:61%;top:50%;width:12%;height:14%"><span>قفاز بعد لمس النقود</span></div>
+    <div class="box ok" id="b4" style="left:36%;top:51%;width:8%;height:11%"><span>قفاز ✓</span></div>
+    <div class="cam-feed" id="feed"></div>
+  </div>
+</div></section>
+
+<section class="s" id="problem"><div class="wrap">
+  <div class="s-head rv"><span class="tag">المشكلة</span><h2>امتثال على الورق… <span class="gt">ينهار وقت الحاجة</span></h2><p>المحل يجتاز التفتيش، والملصقات في مكانها، والكاميرات معلّقة على الجدار. لكن لا أحد يعرف ما إذا كانت تعمل فعلاً — حتى تقع المشكلة.</p></div>
+  <div class="theatre">
+    <div class="card th rv"><div class="ic"><i class="fa-solid fa-fire-extinguisher"></i></div><h3>طفاية بملصق جديد</h3><p>الملصق محدّث، لكن هل أُعيدت تعبئة الطفاية فعلاً؟ لا فاتورة ولا دليل.</p><div class="vs"><span class="see">الظاهر: ملصق</span><span class="real">الواقع: غير معروف</span></div></div>
+    <div class="card th rv"><div class="ic"><i class="fa-solid fa-video-slash"></i></div><h3>كاميرات للمنظر</h3><p>معلّقة ولا تسجّل. وعند وقوع حادث، يتضح أنها معطلة منذ أشهر.</p><div class="vs"><span class="see">الظاهر: مراقَب</span><span class="real">الواقع: لا تسجيل</span></div></div>
+    <div class="card th rv"><div class="ic"><i class="fa-solid fa-bell-slash"></i></div><h3>إنذار وكاشف حريق</h3><p>بطارية منتهية أو نظام مفصول، ولا أحد يُنبَّه قبل أن يحتاجه.</p><div class="vs"><span class="see">الظاهر: مركّب</span><span class="real">الواقع: معطّل</span></div></div>
+    <div class="card th rv"><div class="ic"><i class="fa-solid fa-user-clock"></i></div><h3>التفتيش لحظة واحدة</h3><p>المفتش الميداني يرى المحل ساعة في السنة. أما 8,700 ساعة الباقية فلا يراها أحد.</p><div class="vs"><span class="see">الظاهر: مفتَّش</span><span class="real">الواقع: لقطة واحدة</span></div></div>
+  </div>
+  <div class="food rv"><div class="big"><i class="fa-solid fa-hand-dots"></i></div><div><h3>والمخالفات الصحية تبدأ من أشياء صغيرة متراكمة</h3><p>عامل يلمس النقود في الكاشير، ثم يعود للمطبخ بالقفاز نفسه. لا أحد يراقب 24 ساعة، والتاجر يكتشف المشكلة مع المخالفة أو حالة التسمم.</p>
+    <div class="chain"><span>لمس النقود</span><i class="fa-solid fa-arrow-left"></i><span>نفس القفاز</span><i class="fa-solid fa-arrow-left"></i><span>تحضير الطعام</span><i class="fa-solid fa-arrow-left"></i><span style="border-color:rgba(255,107,125,.5);color:var(--red)">مخالفة أو تسمم</span></div></div></div>
+</div></section>
+
+<section class="s" id="products"><div class="wrap">
+  <div class="s-head c rv"><span class="tag">الحل</span><h2>منتجان يعملان معاً على <span class="gt">حساب واحد للتاجر</span></h2><p>يفتح التاجر حسابه في الضامن مرة واحدة، ويصبح امتثاله قابلاً للقياس والتحقق طوال مدة الرخصة.</p></div>
+  <div class="prod">
+    <div class="pd a rv"><span class="lbl">المنتج الأول · إلزامي تدريجياً</span><h3><i class="fa-solid fa-file-shield" style="color:var(--t)"></i> سجل الامتثال الرقمي</h3><p>كل اشتراط سلامة مسجّل بأصله وتاريخ صيانته وفاتورته، موثّق من مزود معتمد، ومرتبط بتجديد الرخصة.</p>
+      <div class="steps">
+        <div class="stp"><span class="n"><i class="fa-solid fa-list-check"></i></span><div><b>قائمة اشتراطات حسب النشاط</b><span>مطعم، مخبز، صيدلية، بقالة… لكلٍ أصوله: طفايات، إنذار، كاشفات، كاميرات، إنارة طوارئ، شهادات صحية.</span></div></div>
+        <div class="stp"><span class="n"><i class="fa-solid fa-qrcode"></i></span><div><b>فاتورة موثقة من مزود معتمد</b><span>المزود يصدر شهادة الصيانة رقمياً برمز تحقق، فتُرفق تلقائياً بسجل المحل. لا ملصقات بلا دليل.</span></div></div>
+        <div class="stp"><span class="n"><i class="fa-solid fa-bell"></i></span><div><b>تنبيهات قبل كل موعد صيانة</b><span>على التطبيق والواتساب، مع حجز مباشر من مزودي السلامة.</span></div></div>
+        <div class="stp"><span class="n"><i class="fa-solid fa-gauge-high"></i></span><div><b>مؤشر امتثال يحدد جاهزية التجديد</b><span>البلدية ترى المؤشر وتوجّه التفتيش الميداني للمحلات الأعلى خطورة.</span></div></div>
+      </div></div>
+    <div class="pd b rv"><span class="lbl">المنتج الثاني · اشتراك اختياري ثم إلزامي للفئات الحساسة</span><h3><i class="fa-solid fa-eye" style="color:var(--o2)"></i> عين الضامن</h3><p>نظام ذكاء اصطناعي يُركّب على كاميرات المحل الحالية، يرصد سلوكيات النظافة وسلامة الغذاء ويرسل للتاجر تقارير يومية وأسبوعية على الواتساب.</p>
+      <div class="steps">
+        <div class="stp"><span class="n"><i class="fa-solid fa-plug"></i></span><div><b>يعمل على الكاميرات الموجودة</b><span>جهاز صغير داخل المحل يحلل البث محلياً، دون تغيير الكاميرات.</span></div></div>
+        <div class="stp"><span class="n"><i class="fa-solid fa-hand-sparkles"></i></span><div><b>يرصد ما لا يراه أحد</b><span>القفازات وتغييرها، غطاء الشعر، غسل اليدين، الزي، نظافة الأسطح، الكاميرا المتوقفة.</span></div></div>
+        <div class="stp"><span class="n"><i class="fa-brands fa-whatsapp"></i></span><div><b>تنبيه فوري وتقرير يومي وأسبوعي</b><span>مع مقارنة أسبوعية لتحسّن السلوك ونسبة الامتثال.</span></div></div>
+        <div class="stp"><span class="n"><i class="fa-solid fa-camera-rotate"></i></span><div><b>يكشف الكاميرات المعطلة</b><span>أي كاميرا تتوقف عن البث تُسجَّل في سجل الامتثال فوراً.</span></div></div>
+      </div></div>
+  </div>
+</div></section>
+
+<section class="s" id="ladder"><div class="wrap">
+  <div class="s-head rv"><span class="tag">سُلّم الامتثال</span><h2>من لم يضمن الطفاية… <span class="gt">لا يمكن ضمان مطبخه</span></h2><p>لذلك الامتثال في الضامن ليس قائمة متساوية، بل سُلّم: لا ينتقل المحل لمستوى قبل اكتمال الذي قبله. والإهمال في الأساسيات نعتبره مؤشراً مبكراً على خطر داخل المطبخ.</p></div>
+  <div class="ladder">
+    <div class="lv lv1 rv"><div class="no"><i class="fa-solid fa-fire-extinguisher"></i>المستوى 1</div><div><h3>سلامة المنشأة · الأساسيات</h3><p>ما يحمي الأرواح والمكان. موثّق بفواتير مزودين معتمدين، لا بملصقات.</p><div class="its"><span>الطفايات</span><span>إنذار الحريق</span><span>كواشف الدخان</span><span>إنارة الطوارئ</span><span>مخارج الطوارئ</span><span>كاميرات تعمل وتسجّل</span></div></div><div class="gate"><b>بوابة إلزامية:</b> بدون اكتماله لا تجديد للرخصة، ولا يُفعَّل المستوى 2 ولا 3. وأي نقص فيه يرفع المحل لقائمة التفتيش الميداني فوراً.</div></div>
+    <div class="lv lv2 rv"><div class="no"><i class="fa-solid fa-notes-medical"></i>المستوى 2</div><div><h3>صحة المنشأة والعاملين</h3><p>ما يسبق الطبخ: من يعمل، ومن أين يأتي الغذاء، وكيف يُحفظ.</p><div class="its"><span>الشهادات الصحية للعاملين</span><span>مكافحة الحشرات</span><span>تنظيف وتعقيم الخزانات</span><span>فواتير الموردين</span><span>حساسات حرارة الثلاجات</span></div></div><div class="gate"><b>إلزامي لأنشطة الغذاء:</b> شهادة منتهية لعامل أو ثلاجة خارج الحرارة الآمنة تنبيه فوري للتاجر، ونقطة خطورة عند البلدية.</div></div>
+    <div class="lv lv3 rv"><div class="no"><i class="fa-solid fa-eye"></i>المستوى 3</div><div><h3>سلوك المطبخ اليومي · عين الضامن</h3><p>ما يحدث فعلاً كل يوم داخل المطبخ وعند الكاشير.</p><div class="its"><span>القفازات وتغييرها</span><span>غطاء الشعر</span><span>غسل اليدين</span><span>فصل النيء والمطهو</span><span>نظافة الأسطح</span></div></div><div class="gate"><b>يعمل فقط فوق المستويين 1 و2:</b> يحتاج كاميرات سليمة (من المستوى 1) وعاملين بشهادات سارية (من المستوى 2).</div></div>
+  </div>
+  <div class="why3">
+    <div class="card rv"><h4><i class="fa-solid fa-link"></i>الأساسيات شرط تقني</h4><p>عين الضامن تشتغل على كاميرات المحل. كاميرا معطلة تعني مطبخاً لا يُرى، فتُسجَّل مخالفة في المستوى 1 قبل أي شيء.</p></div>
+    <div class="card rv"><h4><i class="fa-solid fa-triangle-exclamation"></i>الإهمال مؤشر خطورة</h4><p>المحل الذي يهمل طفايته غالباً يهمل مطبخه. نقص المستوى 1 يرفع مؤشر خطورة الغذاء، وتتوجه له زيارة تفتيش تشمل المطبخ.</p></div>
+    <div class="card rv"><h4><i class="fa-solid fa-user-check"></i>التفتيش يكمّل لا يُستبدل</h4><p>الضامن لا يلغي المفتش، بل يخبره أين يذهب: المفتش يزور الأعلى خطورة، والممتثل يُكافأ بزيارات أقل.</p></div>
+  </div>
+  <div class="badge-safe rv"><div class="sh"><i class="fa-solid fa-shield-heart"></i></div><div><b>شارة «مطبخ آمن» لا تُمنح إلا باكتمال المستويات الثلاثة</b><span>تظهر للعملاء على باب المحل وفي التطبيقات برمز QR يعرض حالة الامتثال الحية، وتسقط تلقائياً عند أي نقص.</span></div></div>
+</div></section>
+
+<section class="s" id="vision"><div class="wrap">
+  <div class="s-head rv"><span class="tag">عين الضامن</span><h2>التاجر يعرف ما يحدث في محله… <span class="gt">قبل أن يعرفه المفتش</span></h2><p>بدل مراجعة ساعات من التسجيلات، يصل التاجر ملخص واضح على الواتساب: ماذا حدث، متى، وأين، وهل يتحسن فريقه.</p></div>
+  <div class="vis">
+    <div>
+      <div class="card rv"><h3 style="font-size:16px;margin-bottom:6px"><i class="fa-solid fa-chart-column" style="color:var(--o2)"></i> مخالفات السلوك أسبوعياً — مطعم توضيحي</h3><p style="font-size:13px;color:var(--muted)">التقارير اليومية وحدها تخفض المخالفات، لأن الفريق يعرف أن السلوك مرصود.</p>
+        <div class="trend"><div class="bars" id="tbars"></div></div></div>
+      <div class="cats rv"><div class="ct"><i class="fa-solid fa-mitten"></i>القفازات وتغييرها</div><div class="ct"><i class="fa-solid fa-hat-cowboy-side"></i>غطاء الشعر</div><div class="ct"><i class="fa-solid fa-hands-bubbles"></i>غسل اليدين</div><div class="ct"><i class="fa-solid fa-shirt"></i>الزي والنظافة</div><div class="ct"><i class="fa-solid fa-smoking"></i>التدخين</div><div class="ct"><i class="fa-solid fa-drumstick-bite"></i>فصل النيء والمطهو</div><div class="ct"><i class="fa-solid fa-broom"></i>نظافة الأسطح</div><div class="ct"><i class="fa-solid fa-video-slash"></i>توقف الكاميرا</div></div>
+    </div>
+    <div class="wa rv">
+      <div class="wa-top"><div class="av"><img src="dhamn-icon.png" alt=""></div><div><b>عين الضامن</b><small>حساب أعمال موثّق</small></div></div>
+      <div class="wa-body" id="wa"></div>
+      <div class="wtabs"><button class="on" data-w="d">اليومي</button><button data-w="w">الأسبوعي</button><button data-w="a">تنبيه فوري</button></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="s" id="revenue"><div class="wrap">
+  <div class="s-head c rv"><span class="tag">نموذج الدخل</span><h2>من رسوم رخصة… إلى <span class="gt">خمسة مصادر دخل متكررة</span></h2><p>الضامن يبني ويشغّل ويستقطب المزودين، والدخل يُقسم بنموذج إيراد مشترك تُحدد نسبه لاحقاً بين الأطراف.</p></div>
+  <div class="streams">
+    <div class="card sm rv"><div class="ic"><i class="fa-solid fa-file-shield"></i></div><span class="pay">التاجر · سنوي</span><h3>اشتراك سجل الامتثال</h3><p>رسوم سنوية رمزية لكل محل، تُحصّل مع إصدار الرخصة أو تجديدها.</p></div>
+    <div class="card sm rv"><div class="ic"><i class="fa-solid fa-eye"></i></div><span class="pay">التاجر · شهري</span><h3>اشتراك عين الضامن</h3><p>اشتراك شهري لكل كاميرا مفعّلة، يبدأ اختيارياً ثم يصبح إلزامياً لفئات الغذاء.</p></div>
+    <div class="card sm rv"><div class="ic"><i class="fa-solid fa-screwdriver-wrench"></i></div><span class="pay">مزود السلامة · لكل طلب</span><h3>عمولة سوق خدمات السلامة</h3><p>صيانة الطفايات وأنظمة الإنذار والكاميرات تُحجز عبر المنصة بعمولة.</p></div>
+    <div class="card sm rv"><div class="ic"><i class="fa-solid fa-certificate"></i></div><span class="pay">مزود السلامة · سنوي</span><h3>رسوم اعتماد المزودين</h3><p>كل مزود يريد إصدار شهادات موثقة داخل المنصة يدفع رسوم اعتماد سنوية.</p></div>
+    <div class="card sm rv"><div class="ic"><i class="fa-solid fa-chart-pie"></i></div><span class="pay">الجهات · تعاقد</span><h3>تحليلات المخاطر</h3><p>لوحات مخاطر وتوجيه التفتيش للجهات الرقابية بتعاقد مؤسسي.</p></div>
+  </div>
+  <div class="calc">
+    <div class="card rv">
+      <h3 style="font-size:16px;margin-bottom:16px"><i class="fa-solid fa-sliders" style="color:var(--o2)"></i> حرّك الافتراضات</h3>
+      <div class="ctrl"><div class="lb"><span>عدد المحلات المسجلة</span><b id="nT"></b></div><input type="range" id="n" min="5000" max="200000" step="5000" value="50000"></div>
+      <div class="ctrl"><div class="lb"><span>اشتراك سجل الامتثال السنوي للمحل</span><b id="fT"></b></div><input type="range" id="f" min="100" max="1000" step="50" value="300"></div>
+      <div class="ctrl"><div class="lb"><span>المحلات المشتركة في عين الضامن</span><b id="aT"></b></div><input type="range" id="a" min="5" max="60" step="5" value="15"></div>
+      <div class="ctrl"><div class="lb"><span>متوسط الكاميرات لكل محل</span><b id="cT"></b></div><input type="range" id="c" min="1" max="8" step="1" value="3"></div>
+      <div class="ctrl"><div class="lb"><span>اشتراك الكاميرا الشهري</span><b id="pT"></b></div><input type="range" id="p" min="29" max="199" step="10" value="79"></div>
+      <div class="ctrl" style="margin-bottom:0"><div class="lb"><span>مزودو سلامة معتمدون</span><b id="vT"></b></div><input type="range" id="v" min="50" max="2000" step="50" value="400"></div>
+    </div>
+    <div class="card rv" style="border-color:var(--line)">
+      <div class="total"><small>إجمالي الدخل السنوي التقديري</small><b id="tot"></b><em>ريال سعودي · قبل أي تقسيم بين الأطراف</em></div>
+      <div class="rows" id="rows"></div>
+      <p class="assume">افتراضات ثابتة للعرض: متوسط إنفاق المحل على صيانة السلامة 1,200 ريال سنوياً بعمولة 10% · رسوم اعتماد المزود 5,000 ريال سنوياً · تحليلات المخاطر غير محتسبة. جميع الأرقام تقديرية ونسب الشراكة لم تُحدد بعد.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="s" id="path"><div class="wrap">
+  <div class="s-head rv"><span class="tag">مسار الإلزام</span><h2>نبدأ بالحافز… <span class="gt">وننتهي بالاشتراط</span></h2><p>التاجر لا يُفرض عليه شيء من اليوم الأول. يتبنّاه لأنه يحميه من المخالفات، ثم يصبح جزءاً من الرخصة.</p></div>
+  <div class="path">
+    <div class="card ph rv"><div class="n">المرحلة 1</div><h3>طوعي بحوافز</h3><p>التاجر يشترك لأن الضامن يوفر عليه المخالفات ويسرّع تجديده.</p><ul><li><i class="fa-solid fa-check"></i>أولوية في تجديد الرخصة</li><li><i class="fa-solid fa-check"></i>شارة «محل ممتثل» يراها العملاء</li><li><i class="fa-solid fa-check"></i>زيارات تفتيش أقل للمحل الممتثل</li></ul><div class="meter"><i style="width:33%"></i></div></div>
+    <div class="card ph rv"><div class="n">المرحلة 2</div><h3>إلزامي للفئات عالية الخطورة</h3><p>المطاعم والمخابز والمطابخ المركزية ومستودعات الغذاء أولاً.</p><ul><li><i class="fa-solid fa-check"></i>سجل الامتثال شرط للتجديد</li><li><i class="fa-solid fa-check"></i>عين الضامن لمطابخ الأغذية</li><li><i class="fa-solid fa-check"></i>اعتماد مزودي السلامة</li></ul><div class="meter"><i style="width:66%"></i></div></div>
+    <div class="card ph rv"><div class="n">المرحلة 3</div><h3>جزء من كل رخصة</h3><p>كل رخصة تجارية تصدر ومعها سجل امتثال رقمي حي.</p><ul><li><i class="fa-solid fa-check"></i>تكامل مع بوابات الرخص</li><li><i class="fa-solid fa-check"></i>تفتيش موجّه بالمخاطر</li><li><i class="fa-solid fa-check"></i>بيانات وطنية للامتثال</li></ul><div class="meter"><i style="width:100%"></i></div></div>
+  </div>
+</div></section>
+
+<section class="s" id="trust"><div class="wrap">
+  <div class="s-head rv"><span class="tag">الخصوصية والحوكمة</span><h2>مراقبة السلوك… <span class="gt">بدون انتهاك الخصوصية</span></h2><p>عين الضامن مصمم ليتوافق مع نظام حماية البيانات الشخصية والأنظمة المنظمة لكاميرات المراقبة، ويُراجع مع الجهات المختصة قبل الإطلاق.</p></div>
+  <div class="trust">
+    <div class="card tr rv"><i class="fa-solid fa-microchip"></i><div><h4>تحليل داخل المحل</h4><p>البث يُحلل محلياً على جهاز المحل، ولا يُرسل الفيديو الكامل لأي خادم.</p></div></div>
+    <div class="card tr rv"><i class="fa-solid fa-user-secret"></i><div><h4>بدون تعرّف على الوجوه</h4><p>النظام يرصد السلوك لا الهوية، ويعرض الموظفين برموز مجهولة.</p></div></div>
+    <div class="card tr rv"><i class="fa-solid fa-clock-rotate-left"></i><div><h4>احتفاظ محدود</h4><p>تُحفظ مقاطع قصيرة للمخالفة فقط ولمدة محددة، ثم تُحذف تلقائياً.</p></div></div>
+    <div class="card tr rv"><i class="fa-solid fa-store"></i><div><h4>البيانات للتاجر</h4><p>التفاصيل يراها التاجر وحده، والبلدية ترى مؤشرات مجمّعة.</p></div></div>
+    <div class="card tr rv"><i class="fa-solid fa-file-signature"></i><div><h4>إشعار وموافقة</h4><p>لافتات إشعار في المحل وإقرار من الموظفين ضمن عقود العمل.</p></div></div>
+    <div class="card tr rv"><i class="fa-solid fa-scale-balanced"></i><div><h4>أداة تحسين لا عقوبة</h4><p>الهدف تدريب الفريق ورفع الامتثال، والتقارير تقيس التحسن أسبوعياً.</p></div></div>
+  </div>
+  <div class="v30 rv">
+    <div><b>التحول الرقمي</b>من التفتيش الورقي إلى امتثال قابل للقياس لحظياً.</div>
+    <div><b>جودة الحياة</b>محلات أكثر أماناً وغذاء أكثر سلامة للسكان والزوار.</div>
+    <div><b>تمكين القطاع الخاص</b>سوق لمزودي السلامة والصيانة المحليين.</div>
+    <div><b>كفاءة الإنفاق</b>تفتيش ميداني موجّه بالمخاطر بدل الزيارات العشوائية.</div>
+  </div>
+</div></section>
+
+<section class="s" style="padding-top:20px"><div class="wrap">
+  <div class="final rv"><span class="tag" style="justify-content:center">جرّبها الآن</span><h2>ادخل المنصة بعين التاجر… <span class="gt">وبعين البلدية</span></h2><p>منصة تجريبية كاملة بثلاثة حسابات: التاجر وسجل امتثاله وعين الضامن، والبلدية ولوحة مخاطرها، ومزود خدمات السلامة الذي يصدر الشهادات الموثقة.</p>
+    <div class="ctas"><a href="login.html" class="btn btn-o"><i class="fa-solid fa-right-to-bracket"></i>الانتقال إلى المنصة التجريبية</a><a href="../index.html" class="btn btn-g"><i class="fa-solid fa-table-cells-large"></i>كل البوابات</a></div></div>
+</div></section>
+</main>
+<footer><div class="wrap"><div class="brand"><img src="dhamn-icon.png" alt=""><div>الضامن<small>للمحلات التجارية</small></div></div><span>مقترح سري · الأرقام والأسماء توضيحية</span></div></footer>
+
+<script>
+const $=id=>document.getElementById(id);const fmt=n=>Math.round(n).toLocaleString('en-US');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+addEventListener('scroll',()=>{$('nav').classList.toggle('scrolled',scrollY>30);const h=document.documentElement.scrollHeight-innerHeight;$('prog').style.width=(scrollY/h*100)+'%'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)});
+/* camera demo loop */
+(function(){const B=['b1','b2','b3','b4'].map($),feed=$('feed');
+  const EV=[['b1','g','غطاء شعر ✓ · عامل 1'],['b4','g','قفاز ✓ · التحضير'],['b2','b','بدون غطاء شعر · عامل 2'],['b3','b','قفاز بعد لمس النقود → المطبخ']];let k=0;
+  function step(){const e=EV[k%EV.length];B.forEach(b=>b.classList.remove('on'));
+    EV.slice(0,(k%EV.length)+1).forEach(x=>$(x[0]).classList.add('on'));
+    const d=document.createElement('span');d.className='ev '+e[1];d.innerHTML=`<i class="fa-solid ${e[1]==='b'?'fa-triangle-exclamation':'fa-check'}"></i>${e[2]}`;feed.prepend(d);while(feed.children.length>3)feed.lastChild.remove();k++}
+  step();if(!RM)setInterval(step,1900);else EV.forEach(x=>$(x[0]).classList.add('on'));
+  setInterval(()=>{const t=new Date();$('clk').textContent=t.toTimeString().slice(0,8)},1000)})();
+/* trend */
+(function(){const v=[46,38,31,22,14,9],L=['الأسبوع 1','الأسبوع 2','الأسبوع 3','الأسبوع 4','الأسبوع 5','الأسبوع 6'];
+  $('tbars').innerHTML=v.map((x,i)=>`<div><b>${x}</b><i style="height:0" data-h="${x/46*115}"></i><small>${L[i]}</small></div>`).join('');
+  const o=new IntersectionObserver(es=>{if(es[0].isIntersecting){$('tbars').querySelectorAll('i').forEach(i=>i.style.height=i.dataset.h+'px');o.disconnect()}});o.observe($('tbars'))})();
+/* whatsapp */
+const WA={
+ d:[`<b>📋 التقرير اليومي · مطعم السفرة الذهبية</b><br>الأربعاء · 4 كاميرات تعمل ✅`,`<b>مؤشر امتثال اليوم: 86%</b> <span class="g">▲ 5 نقاط</span><br>• <span class="r">3</span> عدم تغيير القفاز بعد الكاشير<br>• <span class="r">2</span> بدون غطاء شعر (المطبخ)<br>• <span class="g">0</span> تدخين داخل المحل`,`أكثر وقت للمخالفات: <b>1:00 – 2:30 م</b> (ذروة الغداء)<br>💡 اقتراح: محطة قفازات بجانب الكاشير.`],
+ w:[`<b>📊 التقرير الأسبوعي · الأسبوع 6</b>`,`المخالفات: <b>9</b> مقابل 14 الأسبوع الماضي <span class="g">▼ 36%</span><br>مؤشر الامتثال: <b>91%</b> <span class="g">▲ 7</span>`,`🏅 الأفضل التزاماً: <b>عامل 3</b> (0 مخالفات)<br>⚠️ يحتاج تدريباً: <b>عامل 2</b> (غطاء الشعر)<br>✅ جاهزية تجديد الرخصة: <b>مكتملة</b>`],
+ a:[`<b>🚨 تنبيه فوري · CAM-02 المطبخ</b><br>13:42 — عامل انتقل من الكاشير إلى منطقة التحضير دون تغيير القفاز.`,`📎 مقطع 8 ثوانٍ مرفق (يُحذف تلقائياً بعد 7 أيام)`,`<b>🔴 CAM-04 المخزن</b><br>الكاميرا متوقفة عن البث منذ 20 دقيقة. سُجّلت في سجل الامتثال.`]};
+let waT=[];function wa(k){waT.forEach(clearTimeout);waT=[];const b=$('wa');b.innerHTML='';const tm=['8:00 م','8:00 م','8:01 م'];
+  WA[k].forEach((m,i)=>{const d=document.createElement('div');d.className='msg';d.innerHTML=m+`<span class="t">${k==='a'?['1:42 م','1:42 م','1:55 م'][i]:tm[i]}</span>`;b.appendChild(d);waT.push(setTimeout(()=>d.classList.add('in'),RM?0:250+i*550))});
+  document.querySelectorAll('.wtabs button').forEach(x=>x.classList.toggle('on',x.dataset.w===k))}
+document.querySelectorAll('.wtabs button').forEach(x=>x.onclick=()=>wa(x.dataset.w));wa('d');
+/* calc */
+const COL=['#FF9A3D','#E8562A','#A88BFF','#16D1C2'];
+function calc(){const n=+$('n').value,f=+$('f').value,a=$('a').value/100,c=+$('c').value,p=+$('p').value,v=+$('v').value;
+  $('nT').textContent=fmt(n)+' محل';$('fT').textContent=fmt(f)+' ريال';$('aT').textContent=Math.round(a*100)+'%';$('cT').textContent=c+' كاميرات';$('pT').textContent=p+' ريال';$('vT').textContent=fmt(v)+' مزود';
+  const R=[['اشتراك سجل الامتثال',n*f],['اشتراك عين الضامن',n*a*c*p*12],['عمولة سوق خدمات السلامة',n*1200*.10],['رسوم اعتماد المزودين',v*5000]];
+  $('tot').textContent=fmt(R.reduce((s,r)=>s+r[1],0))+' ﷼';
+  $('rows').innerHTML=R.map((r,i)=>`<div class="row"><span><i class="sw" style="background:${COL[i]}"></i>${r[0]}</span><b>${fmt(r[1])}</b></div>`).join('');
+  document.querySelectorAll('input[type=range]').forEach(el=>el.style.setProperty('--v',(el.value-el.min)/(el.max-el.min)*100+'%'))}
+['n','f','a','c','p','v'].forEach(id=>$(id).addEventListener('input',calc));calc();
+</script>
+</body>
+</html>
